@@ -1,0 +1,9 @@
+From step 1 to step 4: Terminal 1 shows the original table without the modifications that happened in terminal 2
+but terminal 2 show the table with the modifications. This happened because the read committed isolation prenvents
+the dirty reads. 
+
+Step 5: we can see that both the terminals shows the same results because of the commit in terminal 2 
+
+Step 7 to 8: When I tried to update the balance of Alice in terminal 2, the transaction aborted because this 
+cell was being edited in another transaction and it is not available yet.
+

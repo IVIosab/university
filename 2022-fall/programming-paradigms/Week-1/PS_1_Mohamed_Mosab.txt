@@ -1,0 +1,230 @@
+1: 
+1a- λa.(λb.a b) a
+1b- λa.(λb.b) a
+1c- λa.λb.a b
+1d- λa.a (λb.b)
+1e- λa.(λb.b) a
+1f- (λa.λb.b) c d 
+
+2:
+In this problem i will first rename the variables to minimize the number of name shadowing later on, and in the case of it happening after the renaming i will use numbers after the variable names to make it clear.
+I will show the original and renamed expression in the first and last step for each problem, but other than that I will reduce on the renamed expression  
+
+2a- (λx.λy.x) y z <=> (λa.λb.a) c d
+	-> (λb.c) d
+	-> c
+	-> y #original naming
+	
+2b- (λx.λy.x) (λz.y) z w <=> (λa.λb.a) (λc.d) e f
+A = (λa.λb.a)
+B = (λc.d)
+	-> A B e f 
+	-> (λa.λb.a) B e f 
+	-> (λb.B) e f 
+	-> (λb.(λc.d)) e f 
+	-> (λb.λc.d) e f
+	-> (λc.d) f
+	-> d
+	-> y #original naming
+	
+2c- (λb.λf.λt.b t f) (λf.λt.t) <=> (λa.λb.λc.a c b) (λd.λe.e)
+A = (λa.λb.λc.a c b)
+B = (λd.λe.e)
+	-> A B
+	-> (λa.λb.λc.a c b) B
+	-> λb.λc.B c b
+	-> λb.λc.(λd.λe.e) c b
+	-> λb.λc.(λe.e) b
+	-> λb.λc.b
+	-> λf.λt.f #original naming  
+	
+2d- (λs.λz.s (s z)) (λb.λf.λt.b t f) (λf.λt.t) <=> (λa.λb.a (a b)) (λc.λd.λe.c e d) (λf.λg.g)
+A = (λa.λb.a (a b))
+B = (λc.λd.λe.c e d)
+C = (λf.λg.g)
+	-> A B C
+	-> (λa.λb.a (a b)) B C
+	-> (λb.B (B b)) C
+	-> (B (B C))
+	-> ((λc.λd.λe.c e d) (B C))
+	-> ((λd.λe.(B C) e d))
+	-> ((λd0.λe0.((λc.λd.λe.c e d) C) e0 d0))
+	-> ((λd0.λe0.(λd.λe.C e d) e0 d0))
+	-> ((λd0.λe0.(λe.C e e0) d0))
+	-> ((λd0.λe0.(C d0 e0)))
+	-> (λd.λe.(C d e))
+	-> (λd.λe.((λf.λg.g) d e))
+	-> (λd.λe.((λg.g) e))
+	-> (λd.λe.e) 
+	-> (λf.λt.t) #original naming
+	
+2e- (λs.λz.s (s z)) (λs.λz.s (s z)) (λb.λf.λt.b t f) (λf.λt.t) <=> (λa.λb.a (a b)) (λa.λb.a (a b)) (λc.λd.λe.c e d) (λf.λg.g)
+A = (λa.λb.a (a b))
+B = (λc.λd.λe.c e d)
+C = (λf.λg.g)
+	-> A A B C
+	-> (λa.λb.a (a b)) A B C
+	-> (λb.A (A b)) B C
+	-> (A (A B)) C
+	-> ((λa.λb.a (a b)) (A B)) C
+	-> (λb.(A B) ((A B) b)) C
+	-> ((A B) ((A B) C))
+	-> (((λa.λb.a (a b)) B) ((A B) C))
+	-> (B (B ((A B) C)))
+	-> (λd.λe.(B ((A B) C)) e d)
+	-> (λd0.λe0.((λd.λe.((A B) C) e d)) e0 d0)
+	-> (λd0.λe0.(λe.((A B) C) e e0) d0)
+	-> (λd.λe.(((A B) C) d e))
+	-> (λd.λe.((((λa.λb.a (a b)) B) C) d e))
+	-> (λd.λe.((((λb.B (B b))) C) d e))
+	-> (λd.λe.(((B (B C))) d e))
+	-> (λd0.λe0.(((λc.λd.λe.c e d) (B C)) d0 e0))
+	-> (λd0.λe0.(((λd.λe.(B C) e d)) d0 e0))
+	-> (λd0.λe0.((λd.λe.(B C) e d) d0 e0))
+	-> (λd0.λe0.((λe.(B C) e d0) e0))
+	-> (λd.λe.((B C) e d))
+	-> (λd0.λe0.(((λc.λd.λe.c e d) C) e0 d0))
+	-> (λd0.λe0.(((λd.λe.C e d)) e0 d0))
+	-> (λd0.λe0.(((λe.C e e0)) d0))
+	-> (λd0.λe0.(((C d0 e0))))
+	-> (λd.λe.(C d e))
+	-> (λd.λe.((λf.λg.g) d e))
+	-> (λd.λe.((λg.g) e))
+	-> λd.λe.e
+	-> λf.λt.t #original naming
+
+3:
+3a- the following statement explains implication: 
+if x is false then return true otherwise return y
+therefore we will have the lambda expression: 
+IMPL: λx.λy.x y tru
+
+testing: 
+IMPL tru tru -> (λx.λy.x y tru) tru tru -> (λy.tru y tru) tru -> tru tru tru -> (λx.λy.x) (λx.λy.x) (λx.λy.x) -> (λy.(λx.λy0.x)) (λx.λy.x) -> (λx.λy.x) -> tru
+IMPL tru fls -> (λx.λy.x y tru) tru fls -> (λy.tru y tru) fls -> tru fls tru -> (λx.λy.x) (λx.λy.y) (λx.λy.x) -> (λy.(λx.λy0.y0)) (λx.λy.x) -> (λx.λy.y) -> fls
+IMPL fls tru -> (λx.λy.x y tru) fls tru -> (λy.fls y tru) tru -> fls tru tru -> (λx.λy.y) (λx.λy.x) (λx.λy.x) -> (λy.y) (λx.λy.x) -> (λx.λy.x) -> tru
+IMPL fls fls -> (λx.λy.x y tru) fls fls -> (λy.fls y tru) fls -> fls fls tru -> (λx.λy.y) (λx.λy.y) (λx.λy.x) -> (λy.y) (λx.λy.x) -> (λx.λy.x) -> tru
+
+so the bare lambda calculus expression for implication will be: λx.λy.x y tru <=> λx.λy.x y (λx.λy.x)
+
+3b- IMPL fls tru <=>
+	-> (λx.λy.x y tru) fls tru 
+	-> (λy.fls y tru) tru 
+	-> fls tru tru 
+	-> (λx.λy.y) (λx.λy.x) (λx.λy.x) 
+	-> (λy.y) (λx.λy.x) 
+	-> (λx.λy.x) 
+	-> tru
+	
+4:
+ZERO: λs.λz.z
+ONE: λs.λz.s z
+TWO: λs.λz.s (s z)
+THREE: λs.λz.s (s (s z))
+FOUR: λs.λz.s (s (s (s z)))
+FIVE: λs.λz.s (s (s (s (s z))))
+INCR: λn.λf.λx.f (n f x) <=> n+1
+DECR: λn.λf.λx.n (λg.λh.h (g f)) (λu.x) (λu.u) <=> n-1
+PLUS: λm.λn.n INCR m <=> m + n
+SUB: λm.λn.n DECR m <=> m - n
+MULT: λm.λn.λf.m (n f) <=> m * n
+POW: λm.λn.n m <=> m ^ n
+
+4a-
+i- ((INCR) ((MULT) (TWO) (N)))
+ii- ((INCR) ((POW) (N) (TWO)))
+iii- ((INCR) ((POW) (TWO) (N)))
+iv- ((POW) (TWO) ((INCR) (N)))
+
+4b-
+i- ((INCR) ((MULT) (TWO) (TWO)))
+	-> (λf.λx.f (((MULT) (TWO) (TWO)) f x))
+	-> (λf0.λx.f0 (((λm.λn.λf.m (n f)) (TWO) (TWO)) f0 x))
+	-> (λf0.λx.f0 (((λn.λf.TWO (n f)) (TWO)) f0 x))
+	-> (λf0.λx.f0 ((λf.TWO (TWO f)) f0 x))
+	-> (λf.λx.f ((TWO (TWO f)) x))
+	-> (λf.λx.f (((λs.λz.s (s z)) (TWO f)) x))
+	-> (λf.λx.f (((λz.(TWO f) ((TWO f) z))) x))
+	-> (λf.λx.f (((λz.((λa.λb.a (a b)) f) ((TWO f) z))) x))
+	-> (λf.λx.f ((λz.(λb.f (f b)) ((TWO f) z)) x))
+	-> (λf.λx.f ((λb.f (f b)) ((TWO f) x)))
+	-> (λf.λx.f (f (f ((TWO f) x))))
+	-> (λf.λx.f (f (f (((λa.λb.a (a b)) f) x))))
+	-> (λf.λx.f (f (f ((λb.f (f b)) x))))
+	-> (λf.λx.f (f (f (f (f x)))))
+	-> FIVE <=> (λf.λx.f (f (f (f (f x)))))
+
+ii- ((INCR) ((POW) (TWO) (TWO)))
+	-> (λn.λf.λx.f (n f x) ((POW) (TWO) (TWO)))
+	-> (λf.λx.f (((POW) (TWO) (TWO)) f x))
+	-> (λf.λx.f (((λm.λn.n m) (TWO) (TWO)) f x))
+	-> (λf.λx.f (((λn.n (TWO)) (TWO)) f x))
+	-> (λf.λx.f (((TWO) (TWO)) f x))
+	-> (λf.λx.f (((λa.λb.a (a b)) (TWO)) f x))
+	-> (λf.λx.f (((λb.(TWO) ((TWO) b))) f x))
+	-> (λf.λx.f (((TWO) ((TWO) f)) x))
+	-> (λf.λx.f (((λa.λb.a (a b)) ((TWO) f)) x))
+	-> (λf.λx.f ((λb.((TWO) f) (((TWO) f) b)) x))
+	-> (λf.λx.f (((TWO) f) (((TWO) f) x)))
+	-> (λf.λx.f (((λa.λb.a (a b)) f) (((TWO) f) x)))
+	-> (λf.λx.f ((λb.f (f b)) (((TWO) f) x)))
+	-> (λf.λx.f (f (f (((TWO) f) x))))
+	-> (λf.λx.f (f (f (((λa.λb.a (a b)) f) x))))
+	-> (λf.λx.f (f (f ((λb.f (f b)) x))))
+	-> (λf.λx.f (f (f (f (f x)))))
+	-> FIVE <=> (λf.λx.f (f (f (f (f x)))))
+	
+iii- ((INCR) ((POW) (TWO) (TWO))) #Exactly the same as the previous one 
+	-> (λn.λf.λx.f (n f x) ((POW) (TWO) (TWO)))
+	-> (λf.λx.f (((POW) (TWO) (TWO)) f x))
+	-> (λf.λx.f (((λm.λn.n m) (TWO) (TWO)) f x))
+	-> (λf.λx.f (((λn.n (TWO)) (TWO)) f x))
+	-> (λf.λx.f (((TWO) (TWO)) f x))
+	-> (λf.λx.f (((λa.λb.a (a b)) (TWO)) f x))
+	-> (λf.λx.f (((λb.(TWO) ((TWO) b))) f x))
+	-> (λf.λx.f (((TWO) ((TWO) f)) x))
+	-> (λf.λx.f (((λa.λb.a (a b)) ((TWO) f)) x))
+	-> (λf.λx.f ((λb.((TWO) f) (((TWO) f) b)) x))
+	-> (λf.λx.f (((TWO) f) (((TWO) f) x)))
+	-> (λf.λx.f (((λa.λb.a (a b)) f) (((TWO) f) x)))
+	-> (λf.λx.f ((λb.f (f b)) (((TWO) f) x)))
+	-> (λf.λx.f (f (f (((TWO) f) x))))
+	-> (λf.λx.f (f (f (((λa.λb.a (a b)) f) x))))
+	-> (λf.λx.f (f (f ((λb.f (f b)) x))))
+	-> (λf.λx.f (f (f (f (f x)))))
+	-> FIVE <=> (λf.λx.f (f (f (f (f x)))))
+	
+iv- ((POW) (TWO) ((INCR) (TWO)))
+	-> ((λm.λn.n m) (TWO) ((INCR) (TWO)))
+	-> ((λn.n (TWO)) ((INCR) (TWO)))
+	-> (((INCR) (TWO)) (TWO))
+	-> (((λn.λf.λx.f (n f x)) (TWO)) (TWO))
+	-> ((λf.λx.f ((TWO) f x)) (TWO))
+	-> ((λx.(TWO) ((TWO) (TWO) x)))
+	-> ((λx.(λa.λb.a (a b)) ((TWO) (TWO) x)))
+	-> (λx.(λb.((TWO) (TWO) x) (((TWO) (TWO) x) b)))
+	-> (λx.(λb.((λc.λd.c (c d)) (TWO) x) (((TWO) (TWO) x) b)))
+	-> (λx.(λb.((λd.(TWO) ((TWO) d)) x) (((TWO) (TWO) x) b)))
+	-> (λx.(λb.((TWO) ((TWO) x)) (((TWO) (TWO) x) b)))
+	-> (λx.(λb.((λe.λf.e (e f)) ((TWO) x)) (((TWO) (TWO) x) b)))
+	-> (λx.(λb.((λf.((TWO) x) (((TWO) x) f))) (((TWO) (TWO) x) b)))
+	-> (λx.(λb.(((TWO) x) (((TWO) x) (((TWO) (TWO) x) b)))))
+	-> (λx.(λb.(((λg.λh.g (g h)) x) (((TWO) x) (((TWO) (TWO) x) b)))))
+	-> (λx.(λb.((λh.x (x h)) (((TWO) x) (((TWO) (TWO) x) b)))))
+	-> (λx.(λb.(x (x (((TWO) x) (((TWO) (TWO) x) b))))))
+	-> (λx.(λb.(x (x (((λi.λj.i (i j)) x) (((TWO) (TWO) x) b))))))
+	-> (λx.(λb.(x (x ((λj.x (x j)) (((TWO) (TWO) x) b))))))
+	-> (λx.(λb.(x (x (x (x (((TWO) (TWO) x) b)))))))
+	-> (λx.(λb.(x (x (x (x (((λc.λd.c (c d)) (TWO) x) b)))))))
+	-> (λx.(λb.(x (x (x (x (((λd.(TWO) ((TWO) d)) x) b)))))))
+	-> (λx.(λb.(x (x (x (x (((TWO) ((TWO) x)) b)))))))
+	-> (λx.(λb.(x (x (x (x (((λc.λd.c (c d)) ((TWO) x)) b)))))))
+	-> (λx.(λb.(x (x (x (x ((λd.((TWO) x) (((TWO) x) d)) b)))))))
+	-> (λx.(λb.(x (x (x (x (((TWO) x) (((TWO) x) b))))))))
+	-> (λx.(λb.(x (x (x (x (((λc.λd.c (c d)) x) (((TWO) x) b))))))))
+	-> (λx.(λb.(x (x (x (x ((λd.x (x d)) (((TWO) x) b))))))))
+	-> (λx.(λb.(x (x (x (x (x (x (((TWO) x) b)))))))))
+	-> (λx.(λb.(x (x (x (x (x (x (((λc.λd.c (c d)) x) b)))))))))
+	-> (λx.(λb.(x (x (x (x (x (x ((λd.x (x d)) b)))))))))
+	-> (λx.(λb.(x (x (x (x (x (x (x (x b))))))))))
+	-> EIGHT <=> (λx.(λb.(x (x (x (x (x (x (x (x b))))))))))

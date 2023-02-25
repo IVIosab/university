@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+service Service{
+    rpc ServerPut(StringMessage) returns (BoolResponse);
+    rpc ServerPeek(EmptyMessage) returns (StringResponse);
+    rpc ServerPop(EmptyMessage) returns (StringResponse);
+    rpc ServerSize(EmptyMessage) returns (IntResponse);
+}
+
+message StringMessage{
+    string str = 1;
+}
+message BoolResponse{
+    bool result = 1;
+}
+message EmptyMessage{
+}
+message StringResponse{
+    string str = 1;
+}
+message IntResponse{
+    int32 size = 1;
+}

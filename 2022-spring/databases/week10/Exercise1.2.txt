@@ -1,0 +1,56 @@
+CREATE TABLE  accounts
+(
+    id       INTEGER primary key,
+    name     VARCHAR(50) not null,
+    credit   INTEGER     not null,
+    currency VARCHAR(50) not null
+);
+
+INSERT INTO accounts (id, name, credit, currency)
+VALUES (1, 'account1', 1000, 'rub'),
+       (2, 'account2', 1000, 'rub'),
+       (3, 'account3', 1000, 'rub'),
+       (4, 'account4', 0, 'rub');
+
+ALTER TABLE accounts ADD COLUMN bankname VARCHAR(50);
+
+UPDATE accounts SET bankname = 'sberbank' WHERE name='account1';
+UPDATE accounts SET bankname = 'tinkoff' WHERE name='account2';
+UPDATE accounts SET bankname = 'sberbank' WHERE name='account3';
+UPDATE accounts SET bankname = 'both' WHERE name='account4';
+
+
+CREATE OR REPLACE FUNCTION trans(fromid INTEGER, toid INTEGER, amount INTEGER)
+RETURNS INTEGER LANGUAGE plpgsql AS
+$$
+BEGIN
+    IF EXISTS(SELECT 1 FROM accounts a1, accounts a2 WHERE a1.id = fromid AND a2.id = toid AND a1.bankname != a2.bankname) THEN
+        UPDATE accounts SET credit = credit - 30 WHERE id = fromid;
+        UPDATE accounts SET credit = credit + 30 WHERE id = 4;
+    end if;
+    UPDATE accounts SET credit = credit - amount WHERE id = fromid;
+    UPDATE accounts SET credit = credit + amount WHERE id = toid;
+    RETURN 1;
+END;
+$$;
+
+BEGIN TRANSACTION ISOLATION LEVEL REPEATABLE READ;
+SAVEPOINT T1;
+SELECT trans(1,3,500);
+SELECT * FROM accounts;
+ROLLBACK TO T1;
+COMMIT;
+
+BEGIN TRANSACTION ISOLATION LEVEL REPEATABLE READ;
+SAVEPOINT T2;
+SELECT trans(2,1,700);
+SELECT * FROM accounts;
+ROLLBACK TO T2;
+COMMIT;
+
+BEGIN TRANSACTION ISOLATION LEVEL REPEATABLE READ;
+SAVEPOINT T3;
+SELECT trans(2,3,100);
+SELECT * FROM accounts;
+ROLLBACK TO T3;
+COMMIT;

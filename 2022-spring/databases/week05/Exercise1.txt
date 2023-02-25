@@ -1,0 +1,44 @@
+CREATE TABLE ShippingAddress
+(
+shippingaddressId int PRIMARY KEY,
+house# int,
+street char(50),
+district char(50),
+city char(50),
+);
+
+CREATE TABLE Customer
+(
+customerId int PRIMARY KEY,
+shippingaddress int,
+balance float,
+creditLimit int,
+discount float,
+CONSTRAINT FK_shippingaddress FOREIGN KEY (shippingaddress) REFERENCES ShippingAddress(shippingaddressId)
+);
+
+CREATE TABLE Order
+(
+orderId int PRIMARY KEY, 
+shippingaddress int,
+customer int,
+date date default sysdate,
+CONSTRAINT FK_shippingaddress FOREIGN KEY (shippingaddress) REFERENCES ShippingAddress(shippingaddressId)
+CONSTRAINT FK_customer FOREIGN KEY (customer) REFERENCES Customer(customerId)
+);
+
+CREATE TABLE Item
+(
+itemId int PRIMARY KEY,
+manufacturer int,
+order int,
+description char(250),
+CONSTRAINT FK_manufacturer FOREIGN KEY (manufacturer) REFERENCES Manufacturer(manufacturerId)
+CONSTRAINT FK_order FOREIGN KEY (order) REFERENCES Order(orderId)
+);
+
+CREATE TABLE Manufacturer
+(
+manufacturerId int PRIMARY KEY,
+phonenumber int,
+);

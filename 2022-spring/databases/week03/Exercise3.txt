@@ -1,0 +1,8 @@
+This is the procedure for creating and selling a computer.
+Let's start with the hardware: the computer must be either a laptop or a desktop, and its MAC or ID property can be used to identify it. It also has RAM and CPU capabilities.
+The device's weight is a significant aspect in both circumstances.
+If it is a laptop, it has the component options of memory only, different memories can be identified by its ID.
+If it's a desktop, the component options include RAM, sound card, and video card, each with its own ID.
+Now for the software side, the computers just need to install one operating system, which was originally software and has its own ID and version.
+Furthermore, the computer can install several types of software that will support the computer's components.
+After collecting all of the computer's components, it's ready to be sold, with each computer being offered with a variety of attachments, such as a keyboard, monitor, and mouse, each with its own set of capabilities.

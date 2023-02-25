@@ -1,0 +1,49 @@
+Name: Mosab Fathy Ramadan Mohamed
+Group: B20-SD-01
+Lab 1: Introduction to Linux 
+
+Q1: 
+	iviosab, by using "hostname" command or "hostnamectl" for more information other than only the hostname
+
+Q2: 
+	Ubuntu, version 22.04
+	You can view information about the OS with lsb_release.
+Q3: 
+	/root which is represented as / and can be accessed by "cd /". it is the top-most directory in the hierarchy.
+
+Q4: 
+	Implementation-wise there are too many differences to name, because bash is essentially a superset of sh.
+	But basically: 
+	Bash is sh, but with more features and better syntax. While on the other hand sh is just scripting in any shell. On most systems /bin/sh is a symbolic link and will not invoke sh. 
+	In ubuntu /bin/sh used to link to bash but now it links to another shell called dash.
+
+Q5: 
+	-x        Print commands and their arguments as they are executed.
+	-v        Print shell input lines as they are read.
+	-l        Make bash act as if it had been invoked as a login shell. A login shell is one whose first character of argument zero is a -, or one started with the --login option. 
+	
+Q6: 
+	mint: it minimizes the learning curve when switching from windows to linux, thanks to its simple ui and ease of use.
+	redhat: used for diverse purposes for the development and operation of software and hardware and it is known for its reliability and fast speed
+	OpenSUSE: offers a stable environment for its users and works well with almost all of the best Linux desktop apps. 
+	fedora: it has great graphical tools and useful software for office work
+	CentOS: it runs faster than other distros thanks to its lightweight and reliable software
+	
+Q7: 
+	POSIX is a family of standards, used to clarify and make uniform the application programming interface.
+	The reason behind it is to be able to port programs easily among UNIX derivatives.
+
+Q8: 
+	With POSIX you are not dependent on any one entity to have thought of a comprehensive and robust set of application APIs. The POSIX standard is powerful and feature rich. 
+	Having a rich and well proven set of APIs will speed up development time, which, in turn, reduces engineering costs.
+	
+Q9: 
+	The packagins system is pretty much the biggest difference between Debian and Slackware, and is also what makes Debian superior.
+	It's much easier managing packages with dpkg and apt than the way slackware does it.
+	But on the other hand Slackware gives a lot more control to the user.
+	
+Q10: 
+	It displays the operating system name as well as the system node, operating system release, operating system version, hardware name, processor type and hardware platform
+	note: processor type and hardware platform are not portable and omitted if they're unknown.
+ 
+	

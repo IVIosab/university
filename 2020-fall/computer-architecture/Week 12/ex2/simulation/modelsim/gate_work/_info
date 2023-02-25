@@ -1,0 +1,186 @@
+m255
+K4
+z2
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 dC:/Users/mosab/Desktop/CA LABS/Week 12/ex2/simulation/modelsim
+vadd
+Z1 !s110 1605816841
+!i10b 1
+!s100 =cDNiMoS9=Gb01VJiMQ>:2
+Io]HWiNe<G^B:3U74aA;Vm0
+Z2 VDg1SIo80bB@j0V0VzS_@n1
+R0
+w1605815481
+8C:/Users/mosab/Desktop/CA LABS/Week 12/ex2/add.v
+FC:/Users/mosab/Desktop/CA LABS/Week 12/ex2/add.v
+L0 1
+Z3 OV;L;10.5b;63
+r1
+!s85 0
+31
+Z4 !s108 1605816841.000000
+!s107 C:/Users/mosab/Desktop/CA LABS/Week 12/ex2/add.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+C:/Users/mosab/Desktop/CA LABS/Week 12/ex2|C:/Users/mosab/Desktop/CA LABS/Week 12/ex2/add.v|
+!i113 1
+Z5 o-vlog01compat -work work
+Z6 !s92 -vlog01compat -work work {+incdir+C:/Users/mosab/Desktop/CA LABS/Week 12/ex2}
+Z7 tCvgOpt 0
+valu
+Z8 !s110 1605816842
+!i10b 1
+!s100 Bf<Xo0dAY[m6]RKd4aT@73
+IBfR69`JkCJTUzof6KWQlA0
+R2
+R0
+w1605815389
+8C:/Users/mosab/Desktop/CA LABS/Week 12/ex2/alu.v
+FC:/Users/mosab/Desktop/CA LABS/Week 12/ex2/alu.v
+L0 1
+R3
+r1
+!s85 0
+31
+Z9 !s108 1605816842.000000
+!s107 C:/Users/mosab/Desktop/CA LABS/Week 12/ex2/alu.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+C:/Users/mosab/Desktop/CA LABS/Week 12/ex2|C:/Users/mosab/Desktop/CA LABS/Week 12/ex2/alu.v|
+!i113 1
+R5
+R6
+R7
+vglob
+R8
+!i10b 1
+!s100 b0ABYh7ijRe29?XHF8:fE2
+IchPZZKCmd]@Qk06Nak^M>1
+R2
+R0
+w1605815599
+8C:/Users/mosab/Desktop/CA LABS/Week 12/ex2/glob.v
+FC:/Users/mosab/Desktop/CA LABS/Week 12/ex2/glob.v
+L0 1
+R3
+r1
+!s85 0
+31
+R9
+!s107 C:/Users/mosab/Desktop/CA LABS/Week 12/ex2/glob.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+C:/Users/mosab/Desktop/CA LABS/Week 12/ex2|C:/Users/mosab/Desktop/CA LABS/Week 12/ex2/glob.v|
+!i113 1
+R5
+R6
+R7
+vhard_block
+!s110 1605816840
+!i10b 1
+!s100 Sl8`:`dZ`dIn6`WY83jg`0
+I60PY3KY=_IHSGc5nKR[dH1
+R2
+R0
+w1605816821
+8alu.vo
+Falu.vo
+L0 532
+R3
+r1
+!s85 0
+31
+!s108 1605816840.000000
+!s107 alu.vo|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+.|alu.vo|
+!i113 1
+R5
+!s92 -vlog01compat -work work +incdir+.
+R7
+vmux
+R8
+!i10b 1
+!s100 hPA@zV>YNH[5@7b0JQ10E3
+II5ZDE6cPbP^HK4JULDN:^1
+R2
+R0
+w1605815459
+8C:/Users/mosab/Desktop/CA LABS/Week 12/ex2/mux.v
+FC:/Users/mosab/Desktop/CA LABS/Week 12/ex2/mux.v
+L0 1
+R3
+r1
+!s85 0
+31
+R9
+!s107 C:/Users/mosab/Desktop/CA LABS/Week 12/ex2/mux.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+C:/Users/mosab/Desktop/CA LABS/Week 12/ex2|C:/Users/mosab/Desktop/CA LABS/Week 12/ex2/mux.v|
+!i113 1
+R5
+R6
+R7
+vsrl
+R8
+!i10b 1
+!s100 LZ[33glaN^VFh1WnGZOkL1
+IE54E]^UgOK?O]M[2DUg5`2
+R2
+R0
+w1605815437
+8C:/Users/mosab/Desktop/CA LABS/Week 12/ex2/srl.v
+FC:/Users/mosab/Desktop/CA LABS/Week 12/ex2/srl.v
+L0 1
+R3
+r1
+!s85 0
+31
+R9
+!s107 C:/Users/mosab/Desktop/CA LABS/Week 12/ex2/srl.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+C:/Users/mosab/Desktop/CA LABS/Week 12/ex2|C:/Users/mosab/Desktop/CA LABS/Week 12/ex2/srl.v|
+!i113 1
+R5
+R6
+R7
+vsub
+R1
+!i10b 1
+!s100 GDHcMn0LV[ekC[@T`7[143
+IYm?lTPmN?SJZlVKlC?;c<1
+R2
+R0
+w1605815413
+8C:/Users/mosab/Desktop/CA LABS/Week 12/ex2/sub.v
+FC:/Users/mosab/Desktop/CA LABS/Week 12/ex2/sub.v
+L0 1
+R3
+r1
+!s85 0
+31
+R4
+!s107 C:/Users/mosab/Desktop/CA LABS/Week 12/ex2/sub.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+C:/Users/mosab/Desktop/CA LABS/Week 12/ex2|C:/Users/mosab/Desktop/CA LABS/Week 12/ex2/sub.v|
+!i113 1
+R5
+R6
+R7
+vtestbench
+R1
+!i10b 1
+!s100 ;JYz_hSQ8LjY=@U>hK9az3
+IdMiSK5ogEbE@8W_8lDHFN3
+R2
+R0
+w1605815516
+8C:/Users/mosab/Desktop/CA LABS/Week 12/ex2/testbench.v
+FC:/Users/mosab/Desktop/CA LABS/Week 12/ex2/testbench.v
+L0 1
+R3
+r1
+!s85 0
+31
+R4
+!s107 C:/Users/mosab/Desktop/CA LABS/Week 12/ex2/testbench.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+C:/Users/mosab/Desktop/CA LABS/Week 12/ex2|C:/Users/mosab/Desktop/CA LABS/Week 12/ex2/testbench.v|
+!i113 1
+R5
+R6
+R7

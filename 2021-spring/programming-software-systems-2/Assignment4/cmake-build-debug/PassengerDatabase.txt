@@ -1,0 +1,16 @@
+passenger1
+{
+ad1 ad2 18:20 8
+}
+passenger2
+{
+ad1 ad2 12:30 25
+}
+passenger3
+{
+ad1 ad2 08:20 50
+}
+passenger4
+{
+ad1 ad2 22:20 12
+}

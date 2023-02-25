@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Week 2 lab</title>
+    </head>
+    <body>
+        <!--practice for event driven--> 
+        <!-- <form id="form" action="/user">
+            <input type="text" name="username" placeholder="username">
+            <button type="submit" value="Submit">Submit</button>
+        </form> -->
+        <button id="button">Click me</button>
+        <p id="joke"></p>
+        <script>
+            /* event driven */
+            // const btn = document.getElementById('button')
+            // btn.addEventListener('click', buttonClicked)
+            // btn.removeEventListener('click', buttonClicked)
+            // function buttonClicked() {
+            //     alert("Button clicked");
+            // }
+
+            /* object orinted programming */
+            // function Person(name){
+            //     this.name = name;
+            // }
+            // const personPrototype = {
+            //     greet: () => {
+            //         console.log("Hello, my name is " + this.name + ".");
+            //     }
+            // }
+            // Person.prototype = personPrototype;
+            // Person.prototype.constructor = Person;
+            // const mike = new Person("Mike");
+            // console.log(mike.name);
+
+            /* THIS IS THE SAME AS ABOVE BUT IT IS SYNTACTIC SUGAR*/
+            // class Person {
+            //     constructor(){
+            //         this.name = name;
+            //     }
+            //     greet(){
+            //         console.log("Hello, my name is " + this.name + ".");
+            //     }
+            // }
+
+            /* functional programming */
+            // const numbers = [2, 4, 6, 8, 10];
+            // const doubles = numbers.map(num => num * 2); // arrow functions could omit the return when it is a single line
+            // console.log(numbers)
+            // console.log(doubles)
+                
+            /* practice for event driven */
+            // const form = document.getElementById('form');
+            // form.addEventListener('submit', (event) => {
+            //     const username = form.elements.username.value;
+            //     if (username === ""){
+            //         event.preventDefault();
+            //         alert("Please enter a username");
+            //     }
+            //     console.log(username);
+            // });
+
+            /* fetching */
+            const btn = document.getElementById('button');
+            const joke = document.getElementById('joke');
+            btn.addEventListener('click', getJoke);
+            async function getJoke(){
+                const res = await fetch('https://v2.jokeapi.dev/joke/Any');
+                const data = await res.json();
+                if (data.joke){
+                    joke.innerHTML = data.joke
+                }
+                else{
+                    joke.innerHTML = data.setup + " ...................... " + data.delivery;
+                }
+                console.log(data);
+            }
+            
+        </script>
+    </body>
+</html>

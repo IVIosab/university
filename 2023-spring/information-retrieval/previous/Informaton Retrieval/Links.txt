@@ -1,0 +1,20 @@
+Online Syllabus
+==========
+https://eduwiki.innopolis.university/index.php/BSc:InformationRetrieval.S22
+
+Course repo
+=============
+https://github.com/IUCVLab/information-retrieval
+
+Assignments
+===========
+https://github.com/Sh3B0/Courses/tree/main/Coursework/Information%20Retrieval
+
+Lecture videos (S22)
+=====================
+https://www.youtube.com/playlist?list=PLneu1tELBieLsJRXj3Xsd6oPeOn-Z6mf2
+
+Lecture videos (Previous years)
+================================
+https://www.youtube.com/playlist?list=PLneu1tELBieLz8TSEUGsjme4JDoY8AvoA
+https://www.youtube.com/playlist?list=PLneu1tELBieKC_LRkCuqBECabgHiosIUs

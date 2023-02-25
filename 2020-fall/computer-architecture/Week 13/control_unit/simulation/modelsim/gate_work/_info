@@ -1,0 +1,120 @@
+m255
+K4
+z2
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 dC:/Users/mosab/Desktop/CA LABS/Week 13/control_unit/simulation/modelsim
+valu_decoder
+Z1 !s110 1606400969
+!i10b 1
+!s100 0Z32bT;Adm[=]Yd6PFj?V1
+IiUFfgVZM4gATLhmBG=iV90
+Z2 VDg1SIo80bB@j0V0VzS_@n1
+R0
+w1606400850
+8C:/Users/mosab/Desktop/CA LABS/Week 13/control_unit/alu_decoder.v
+FC:/Users/mosab/Desktop/CA LABS/Week 13/control_unit/alu_decoder.v
+L0 1
+Z3 OV;L;10.5b;63
+r1
+!s85 0
+31
+Z4 !s108 1606400969.000000
+!s107 C:/Users/mosab/Desktop/CA LABS/Week 13/control_unit/alu_decoder.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+C:/Users/mosab/Desktop/CA LABS/Week 13/control_unit|C:/Users/mosab/Desktop/CA LABS/Week 13/control_unit/alu_decoder.v|
+!i113 1
+Z5 o-vlog01compat -work work
+Z6 !s92 -vlog01compat -work work {+incdir+C:/Users/mosab/Desktop/CA LABS/Week 13/control_unit}
+Z7 tCvgOpt 0
+vcontrol_unit
+R1
+!i10b 1
+!s100 GcYCZa3>P<_2gmVPkH^Fm0
+IbQ:2n824>al8ASmV<H5PC0
+R2
+R0
+w1606399890
+8C:/Users/mosab/Desktop/CA LABS/Week 13/control_unit/control_unit.v
+FC:/Users/mosab/Desktop/CA LABS/Week 13/control_unit/control_unit.v
+L0 1
+R3
+r1
+!s85 0
+31
+R4
+!s107 C:/Users/mosab/Desktop/CA LABS/Week 13/control_unit/control_unit.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+C:/Users/mosab/Desktop/CA LABS/Week 13/control_unit|C:/Users/mosab/Desktop/CA LABS/Week 13/control_unit/control_unit.v|
+!i113 1
+R5
+R6
+R7
+vhard_block
+R1
+!i10b 1
+!s100 3J0=7YP8_n9Cn=A@GNT:20
+I6:BN`OPFMFb1]=6CU@jRn1
+R2
+R0
+w1606400945
+8control_unit.vo
+Fcontrol_unit.vo
+L0 1095
+R3
+r1
+!s85 0
+31
+!s108 1606400968.000000
+!s107 control_unit.vo|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+.|control_unit.vo|
+!i113 1
+R5
+!s92 -vlog01compat -work work +incdir+.
+R7
+vmain_decoder
+!s110 1606400970
+!i10b 1
+!s100 ofY_JT<FQe75DYdAh0aFJ0
+IbnU^g`66nheK?Xd;g9FLk0
+R2
+R0
+w1606400257
+8C:/Users/mosab/Desktop/CA LABS/Week 13/control_unit/main_decoder.v
+FC:/Users/mosab/Desktop/CA LABS/Week 13/control_unit/main_decoder.v
+L0 1
+R3
+r1
+!s85 0
+31
+R4
+!s107 C:/Users/mosab/Desktop/CA LABS/Week 13/control_unit/main_decoder.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+C:/Users/mosab/Desktop/CA LABS/Week 13/control_unit|C:/Users/mosab/Desktop/CA LABS/Week 13/control_unit/main_decoder.v|
+!i113 1
+R5
+R6
+R7
+vtestbench
+R1
+!i10b 1
+!s100 8j^925n7Zd;RLhW=[8Ag<3
+I^VhZJ7ABYG9N_8V4FE42L3
+R2
+R0
+w1606400090
+8C:/Users/mosab/Desktop/CA LABS/Week 13/control_unit/testbench.v
+FC:/Users/mosab/Desktop/CA LABS/Week 13/control_unit/testbench.v
+L0 1
+R3
+r1
+!s85 0
+31
+R4
+!s107 C:/Users/mosab/Desktop/CA LABS/Week 13/control_unit/testbench.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+C:/Users/mosab/Desktop/CA LABS/Week 13/control_unit|C:/Users/mosab/Desktop/CA LABS/Week 13/control_unit/testbench.v|
+!i113 1
+R5
+R6
+R7

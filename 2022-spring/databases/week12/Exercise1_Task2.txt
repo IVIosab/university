@@ -1,0 +1,1 @@
+MATCH (ee:Fighter), (ff:Fighter) WHERE (ee)-[:beats]->(ff) AND (ff)-[:beats]->(ee) RETURN ee, count((ff)-[:beats]->(ee))=1, count((ee)-[:beats]->(ff))=1

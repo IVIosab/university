@@ -1,0 +1,45 @@
+CREATE TABLE accounts
+(
+    id       INTEGER primary key,
+    name     VARCHAR(50) not null,
+    credit   INTEGER     not null,
+    currency VARCHAR(50) not null
+);
+
+
+INSERT INTO accounts (id, name, credit, currency)
+VALUES (1, 'account1', 1000, 'rub'),
+       (2, 'account2', 1000, 'rub'),
+       (3, 'account3', 1000, 'rub');
+
+CREATE OR REPLACE FUNCTION trans(fromid INTEGER, toid INTEGER, amount INTEGER)
+RETURNS INTEGER LANGUAGE plpgsql AS
+$$
+BEGIN
+    UPDATE accounts SET credit = credit - amount WHERE id = fromid;
+    UPDATE accounts SET credit = credit + amount WHERE id = toid;
+    RETURN 1;
+END;
+$$;
+
+
+BEGIN TRANSACTION ISOLATION LEVEL REPEATABLE READ;
+SAVEPOINT T1;
+SELECT trans(1,3,500);
+SELECT * FROM accounts;
+ROLLBACK TO T1;
+COMMIT;
+
+BEGIN TRANSACTION ISOLATION LEVEL REPEATABLE READ;
+SAVEPOINT T2;
+SELECT trans(2,1,700);
+SELECT * FROM accounts;
+ROLLBACK TO T2;
+COMMIT;
+
+BEGIN TRANSACTION ISOLATION LEVEL REPEATABLE READ;
+SAVEPOINT T3;
+SELECT trans(2,3,100);
+SELECT * FROM accounts;
+ROLLBACK TO T3;
+COMMIT;

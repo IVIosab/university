@@ -1,0 +1,1 @@
+MATCH (ee:Fighter)-[:beats]->(ff:Fighter) WHERE (ee.weight = 155 OR ee.weight = 170 OR ee.weight = 185) RETURN ee

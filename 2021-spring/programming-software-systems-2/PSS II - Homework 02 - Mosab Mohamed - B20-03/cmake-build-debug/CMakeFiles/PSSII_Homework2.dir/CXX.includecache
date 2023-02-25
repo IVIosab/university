@@ -1,0 +1,104 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+C:/Users/Mosab Mohamed/CLionProjects/PSSII_Homework2/Admin.h
+bits/stdc++.h
+-
+Usertype.h
+C:/Users/Mosab Mohamed/CLionProjects/PSSII_Homework2/Usertype.h
+
+C:/Users/Mosab Mohamed/CLionProjects/PSSII_Homework2/Cabinet.h
+bits/stdc++.h
+-
+RoomType.h
+C:/Users/Mosab Mohamed/CLionProjects/PSSII_Homework2/RoomType.h
+
+C:/Users/Mosab Mohamed/CLionProjects/PSSII_Homework2/ClassRoom.h
+bits/stdc++.h
+-
+RoomType.h
+C:/Users/Mosab Mohamed/CLionProjects/PSSII_Homework2/RoomType.h
+
+C:/Users/Mosab Mohamed/CLionProjects/PSSII_Homework2/ConferenceRoom.h
+bits/stdc++.h
+-
+RoomType.h
+C:/Users/Mosab Mohamed/CLionProjects/PSSII_Homework2/RoomType.h
+
+C:/Users/Mosab Mohamed/CLionProjects/PSSII_Homework2/Director.h
+bits/stdc++.h
+-
+Usertype.h
+C:/Users/Mosab Mohamed/CLionProjects/PSSII_Homework2/Usertype.h
+
+C:/Users/Mosab Mohamed/CLionProjects/PSSII_Homework2/DirectorCabinet.h
+bits/stdc++.h
+-
+RoomType.h
+C:/Users/Mosab Mohamed/CLionProjects/PSSII_Homework2/RoomType.h
+
+C:/Users/Mosab Mohamed/CLionProjects/PSSII_Homework2/LabEmployee.h
+bits/stdc++.h
+-
+Usertype.h
+C:/Users/Mosab Mohamed/CLionProjects/PSSII_Homework2/Usertype.h
+
+C:/Users/Mosab Mohamed/CLionProjects/PSSII_Homework2/LectureHall.h
+bits/stdc++.h
+-
+RoomType.h
+C:/Users/Mosab Mohamed/CLionProjects/PSSII_Homework2/RoomType.h
+
+C:/Users/Mosab Mohamed/CLionProjects/PSSII_Homework2/Professor.h
+bits/stdc++.h
+-
+Usertype.h
+C:/Users/Mosab Mohamed/CLionProjects/PSSII_Homework2/Usertype.h
+
+C:/Users/Mosab Mohamed/CLionProjects/PSSII_Homework2/RoomType.h
+bits/stdc++.h
+-
+
+C:/Users/Mosab Mohamed/CLionProjects/PSSII_Homework2/Student.h
+bits/stdc++.h
+-
+Usertype.h
+C:/Users/Mosab Mohamed/CLionProjects/PSSII_Homework2/Usertype.h
+
+C:/Users/Mosab Mohamed/CLionProjects/PSSII_Homework2/Usertype.h
+bits/stdc++.h
+-
+
+C:/Users/Mosab Mohamed/CLionProjects/PSSII_Homework2/main.cpp
+bits/stdc++.h
+-
+Student.h
+C:/Users/Mosab Mohamed/CLionProjects/PSSII_Homework2/Student.h
+Professor.h
+C:/Users/Mosab Mohamed/CLionProjects/PSSII_Homework2/Professor.h
+LabEmployee.h
+C:/Users/Mosab Mohamed/CLionProjects/PSSII_Homework2/LabEmployee.h
+Director.h
+C:/Users/Mosab Mohamed/CLionProjects/PSSII_Homework2/Director.h
+Admin.h
+C:/Users/Mosab Mohamed/CLionProjects/PSSII_Homework2/Admin.h
+Usertype.h
+C:/Users/Mosab Mohamed/CLionProjects/PSSII_Homework2/Usertype.h
+RoomType.h
+C:/Users/Mosab Mohamed/CLionProjects/PSSII_Homework2/RoomType.h
+LectureHall.h
+C:/Users/Mosab Mohamed/CLionProjects/PSSII_Homework2/LectureHall.h
+ClassRoom.h
+C:/Users/Mosab Mohamed/CLionProjects/PSSII_Homework2/ClassRoom.h
+Cabinet.h
+C:/Users/Mosab Mohamed/CLionProjects/PSSII_Homework2/Cabinet.h
+DirectorCabinet.h
+C:/Users/Mosab Mohamed/CLionProjects/PSSII_Homework2/DirectorCabinet.h
+ConferenceRoom.h
+C:/Users/Mosab Mohamed/CLionProjects/PSSII_Homework2/ConferenceRoom.h
+

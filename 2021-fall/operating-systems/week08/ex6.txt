@@ -1,0 +1,4 @@
+8 KB pages, 16-bit virtual addresses
+
+The offset should be between 0 and 8KB = 8192 = 2^13.
+As a result, the offset requires 13 bits, leaving just 3 bits for the page number (23) = 8, limiting us to only 8 pages (entries).

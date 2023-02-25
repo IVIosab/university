@@ -1,0 +1,49 @@
+CREATE TABLE Airport
+(
+IATACode int PRIMARY KEY,
+);
+
+CREATE TABLE AircraftType
+(
+typeId int PRIMARY KEY,
+);
+
+CREATE TABLE CanLand
+(
+IATACode int PRIMARY KEY,
+typeId int PRIMARY KEY,
+CONSTRAINT FK_IATAcode FOREIGN KEY (IATACode) REFERENCES Airport(IATACode)
+CONSTRAINT FK_typeId FOREIGN KEY (typeId) REFERENCES AircraftType(typeId)
+);
+
+CREATE TABLE AssignedTo
+(
+typeId int,
+DFLegId int,
+CONSTRAINT FK_typeId FOREIGN KEY (typeId) REFERENCES AircraftType(typeId)
+CONSTRAINT FK_DFLegId FOREIGN KEY (DFLegId) REFERENCES DailyFlightLegCombination(DFLegId) 
+);
+
+CREATE TABLE FlightLeg
+(
+flightLegId int PRIMARY KEY,
+airportstart int,
+airportend int, 
+flight int,
+legcompination int,
+CONSTRAINT FK_airportstart FOREIGN KEY (airportstart) REFERENCES Airport(airportId)
+CONSTRAINT FK_airportend FOREIGN KEY (airportend) REFERENCES Airport(airportId)
+CONSTRAINT FK_flight FOREIGN KEY (flight) REFERENCES Flight(flightNum)
+CONSTRAINT FK_legcompination FOREIGN KEY (legcompination) REFERENCES DailyFlightLegCombination(legcompination)
+);
+
+CREATE TABLE Flight
+(
+flightNum int PRIMARY KEY,
+);
+
+CREATE TABLE DailyFlightLegCombination
+(
+DFLegId int PRIMARY KEY,
+);
+

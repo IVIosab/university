@@ -1,0 +1,6 @@
+mode of '_ex3.txt' retained as 0664 (rw-rw-r--)
+mode of '_ex3.txt' changed from 0664 (rw-rw-r--) to 0707 (rwx---rwx)
+mode of '_ex3.txt' changed from 0707 (rwx---rwx) to 0777 (rwxrwxrwx)
+660 means that only owner and group can r/w file
+775 means that owner and group has all rights for file and others can only read/execute
+777 means everyone has all rights

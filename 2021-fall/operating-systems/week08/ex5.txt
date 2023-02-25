@@ -1,0 +1,2 @@
+Physical Addresses : (Hardware addresses of physical memory) a location in physical RAM that holds actual program data
+Virtual Addresses : (virtual store viewed by the process) a process/address program's that can be mapped to a physical address in RAM. The MMU performs the translation from PA to VA using the page table.

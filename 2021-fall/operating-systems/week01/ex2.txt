@@ -1,0 +1,33 @@
+    1  test
+    2  help
+    3  ls
+    4  ls /usr/bin | grep 'gcc'
+    5  ls /usr/bin
+    6  ls /usr/bin | grep gcc
+    7  ls /usr/bin/ | grep gcc
+    8  sudo
+    9  sudo update
+   10  update
+   11  sudo apt -get gcc
+   12  sudo apt-get gcc
+   13  sudo apt install gcc
+   14  ls /usr/bin/ | grep gcc
+   15  ls /usr/bin/ | grep gcc | sort -r
+   16  ls
+   17  nautilus
+   18  ls
+   19  sudo apt install git
+   20  ls
+   21  cd Desktop/
+   22  git clone https://github.com/IVIosab/OS.git
+   23  ls
+   24  cd OS/
+   25  mkdir week01
+   26  ls
+   27  cd week01/
+   28  ls /usr/bin | grep gcc | sort -r > ex1.txt
+   29  ls
+   30  nano ex1.txt 
+   31  ls /usr/bin | grep gcc
+   32  history
+   33  history > ex2.txt

@@ -1,0 +1,673 @@
+$date
+	Fri Nov 06 00:25:03 2020
+$end
+$version
+	ModelSim Version 10.5b
+$end
+$timescale
+	1ps
+$end
+
+$scope module ripple_carry_testbench $end
+$var reg 16 ! in1 [15:0] $end
+$var reg 16 " in2 [15:0] $end
+$var wire 1 # out [15] $end
+$var wire 1 $ out [14] $end
+$var wire 1 % out [13] $end
+$var wire 1 & out [12] $end
+$var wire 1 ' out [11] $end
+$var wire 1 ( out [10] $end
+$var wire 1 ) out [9] $end
+$var wire 1 * out [8] $end
+$var wire 1 + out [7] $end
+$var wire 1 , out [6] $end
+$var wire 1 - out [5] $end
+$var wire 1 . out [4] $end
+$var wire 1 / out [3] $end
+$var wire 1 0 out [2] $end
+$var wire 1 1 out [1] $end
+$var wire 1 2 out [0] $end
+$var wire 1 3 overflow $end
+
+$scope module rc $end
+$var wire 1 4 fir [15] $end
+$var wire 1 5 fir [14] $end
+$var wire 1 6 fir [13] $end
+$var wire 1 7 fir [12] $end
+$var wire 1 8 fir [11] $end
+$var wire 1 9 fir [10] $end
+$var wire 1 : fir [9] $end
+$var wire 1 ; fir [8] $end
+$var wire 1 < fir [7] $end
+$var wire 1 = fir [6] $end
+$var wire 1 > fir [5] $end
+$var wire 1 ? fir [4] $end
+$var wire 1 @ fir [3] $end
+$var wire 1 A fir [2] $end
+$var wire 1 B fir [1] $end
+$var wire 1 C fir [0] $end
+$var wire 1 D sec [15] $end
+$var wire 1 E sec [14] $end
+$var wire 1 F sec [13] $end
+$var wire 1 G sec [12] $end
+$var wire 1 H sec [11] $end
+$var wire 1 I sec [10] $end
+$var wire 1 J sec [9] $end
+$var wire 1 K sec [8] $end
+$var wire 1 L sec [7] $end
+$var wire 1 M sec [6] $end
+$var wire 1 N sec [5] $end
+$var wire 1 O sec [4] $end
+$var wire 1 P sec [3] $end
+$var wire 1 Q sec [2] $end
+$var wire 1 R sec [1] $end
+$var wire 1 S sec [0] $end
+$var wire 1 # ot [15] $end
+$var wire 1 $ ot [14] $end
+$var wire 1 % ot [13] $end
+$var wire 1 & ot [12] $end
+$var wire 1 ' ot [11] $end
+$var wire 1 ( ot [10] $end
+$var wire 1 ) ot [9] $end
+$var wire 1 * ot [8] $end
+$var wire 1 + ot [7] $end
+$var wire 1 , ot [6] $end
+$var wire 1 - ot [5] $end
+$var wire 1 . ot [4] $end
+$var wire 1 / ot [3] $end
+$var wire 1 0 ot [2] $end
+$var wire 1 1 ot [1] $end
+$var wire 1 2 ot [0] $end
+$var wire 1 T bit [1] $end
+$var wire 1 3 bit [0] $end
+$var wire 1 U wr [16] $end
+$var wire 1 V wr [15] $end
+$var wire 1 W wr [14] $end
+$var wire 1 X wr [13] $end
+$var wire 1 Y wr [12] $end
+$var wire 1 Z wr [11] $end
+$var wire 1 [ wr [10] $end
+$var wire 1 \ wr [9] $end
+$var wire 1 ] wr [8] $end
+$var wire 1 ^ wr [7] $end
+$var wire 1 _ wr [6] $end
+$var wire 1 ` wr [5] $end
+$var wire 1 a wr [4] $end
+$var wire 1 b wr [3] $end
+$var wire 1 c wr [2] $end
+$var wire 1 d wr [1] $end
+$var wire 1 e wr [0] $end
+$var wire 1 f sm [15] $end
+$var wire 1 g sm [14] $end
+$var wire 1 h sm [13] $end
+$var wire 1 i sm [12] $end
+$var wire 1 j sm [11] $end
+$var wire 1 k sm [10] $end
+$var wire 1 l sm [9] $end
+$var wire 1 m sm [8] $end
+$var wire 1 n sm [7] $end
+$var wire 1 o sm [6] $end
+$var wire 1 p sm [5] $end
+$var wire 1 q sm [4] $end
+$var wire 1 r sm [3] $end
+$var wire 1 s sm [2] $end
+$var wire 1 t sm [1] $end
+$var wire 1 u sm [0] $end
+
+$scope begin add[15] $end
+$var parameter 32 v i $end
+
+$scope module fa $end
+$var wire 1 4 x $end
+$var wire 1 D y $end
+$var wire 1 V in $end
+$var wire 1 f sum $end
+$var wire 1 U out $end
+$upscope $end
+$upscope $end
+
+$scope begin add[14] $end
+$var parameter 32 w i $end
+
+$scope module fa $end
+$var wire 1 5 x $end
+$var wire 1 E y $end
+$var wire 1 W in $end
+$var wire 1 g sum $end
+$var wire 1 V out $end
+$upscope $end
+$upscope $end
+
+$scope begin add[13] $end
+$var parameter 32 x i $end
+
+$scope module fa $end
+$var wire 1 6 x $end
+$var wire 1 F y $end
+$var wire 1 X in $end
+$var wire 1 h sum $end
+$var wire 1 W out $end
+$upscope $end
+$upscope $end
+
+$scope begin add[12] $end
+$var parameter 32 y i $end
+
+$scope module fa $end
+$var wire 1 7 x $end
+$var wire 1 G y $end
+$var wire 1 Y in $end
+$var wire 1 i sum $end
+$var wire 1 X out $end
+$upscope $end
+$upscope $end
+
+$scope begin add[11] $end
+$var parameter 32 z i $end
+
+$scope module fa $end
+$var wire 1 8 x $end
+$var wire 1 H y $end
+$var wire 1 Z in $end
+$var wire 1 j sum $end
+$var wire 1 Y out $end
+$upscope $end
+$upscope $end
+
+$scope begin add[10] $end
+$var parameter 32 { i $end
+
+$scope module fa $end
+$var wire 1 9 x $end
+$var wire 1 I y $end
+$var wire 1 [ in $end
+$var wire 1 k sum $end
+$var wire 1 Z out $end
+$upscope $end
+$upscope $end
+
+$scope begin add[9] $end
+$var parameter 32 | i $end
+
+$scope module fa $end
+$var wire 1 : x $end
+$var wire 1 J y $end
+$var wire 1 \ in $end
+$var wire 1 l sum $end
+$var wire 1 [ out $end
+$upscope $end
+$upscope $end
+
+$scope begin add[8] $end
+$var parameter 32 } i $end
+
+$scope module fa $end
+$var wire 1 ; x $end
+$var wire 1 K y $end
+$var wire 1 ] in $end
+$var wire 1 m sum $end
+$var wire 1 \ out $end
+$upscope $end
+$upscope $end
+
+$scope begin add[7] $end
+$var parameter 32 ~ i $end
+
+$scope module fa $end
+$var wire 1 < x $end
+$var wire 1 L y $end
+$var wire 1 ^ in $end
+$var wire 1 n sum $end
+$var wire 1 ] out $end
+$upscope $end
+$upscope $end
+
+$scope begin add[6] $end
+$var parameter 32 !! i $end
+
+$scope module fa $end
+$var wire 1 = x $end
+$var wire 1 M y $end
+$var wire 1 _ in $end
+$var wire 1 o sum $end
+$var wire 1 ^ out $end
+$upscope $end
+$upscope $end
+
+$scope begin add[5] $end
+$var parameter 32 "! i $end
+
+$scope module fa $end
+$var wire 1 > x $end
+$var wire 1 N y $end
+$var wire 1 ` in $end
+$var wire 1 p sum $end
+$var wire 1 _ out $end
+$upscope $end
+$upscope $end
+
+$scope begin add[4] $end
+$var parameter 32 #! i $end
+
+$scope module fa $end
+$var wire 1 ? x $end
+$var wire 1 O y $end
+$var wire 1 a in $end
+$var wire 1 q sum $end
+$var wire 1 ` out $end
+$upscope $end
+$upscope $end
+
+$scope begin add[3] $end
+$var parameter 32 $! i $end
+
+$scope module fa $end
+$var wire 1 @ x $end
+$var wire 1 P y $end
+$var wire 1 b in $end
+$var wire 1 r sum $end
+$var wire 1 a out $end
+$upscope $end
+$upscope $end
+
+$scope begin add[2] $end
+$var parameter 32 %! i $end
+
+$scope module fa $end
+$var wire 1 A x $end
+$var wire 1 Q y $end
+$var wire 1 c in $end
+$var wire 1 s sum $end
+$var wire 1 b out $end
+$upscope $end
+$upscope $end
+
+$scope begin add[1] $end
+$var parameter 32 &! i $end
+
+$scope module fa $end
+$var wire 1 B x $end
+$var wire 1 R y $end
+$var wire 1 d in $end
+$var wire 1 t sum $end
+$var wire 1 c out $end
+$upscope $end
+$upscope $end
+
+$scope begin add[0] $end
+$var parameter 32 '! i $end
+
+$scope module fa $end
+$var wire 1 C x $end
+$var wire 1 S y $end
+$var wire 1 e in $end
+$var wire 1 u sum $end
+$var wire 1 d out $end
+$upscope $end
+$upscope $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+#0
+$dumpvars
+b0 !
+b0 "
+b0 '!
+b1 &!
+b10 %!
+b11 $!
+b100 #!
+b101 "!
+b110 !!
+b111 ~
+b1000 }
+b1001 |
+b1010 {
+b1011 z
+b1100 y
+b1101 x
+b1110 w
+b1111 v
+02
+01
+00
+0/
+0.
+0-
+0,
+0+
+0*
+0)
+0(
+0'
+0&
+0%
+0$
+0#
+03
+0e
+0d
+0c
+0b
+0a
+0`
+0_
+0^
+0]
+0\
+0[
+0Z
+0Y
+0X
+0W
+0V
+0U
+0u
+0t
+0s
+0r
+0q
+0p
+0o
+0n
+0m
+0l
+0k
+0j
+0i
+0h
+0g
+0f
+0S
+0R
+0Q
+0P
+0O
+0N
+0M
+0L
+0K
+0J
+0I
+0H
+0G
+0F
+0E
+0D
+0C
+0B
+0A
+0@
+0?
+0>
+0=
+0<
+0;
+0:
+09
+08
+07
+06
+05
+04
+0T
+$end
+#5
+b1 !
+1C
+1u
+12
+#10
+b1 "
+1S
+0u
+1d
+1t
+02
+11
+#15
+b10 !
+0C
+1B
+0t
+1c
+1u
+0d
+1t
+0c
+12
+#20
+b11000111 !
+b1100001 "
+1N
+1M
+1C
+1A
+1=
+1<
+1n
+1^
+1s
+0u
+1d
+1p
+0t
+1c
+0n
+1]
+1m
+0s
+1b
+1r
+02
+01
+1/
+1-
+1*
+#25
+b10000001 !
+b0 "
+0S
+0N
+0M
+0B
+0A
+0=
+1s
+0b
+1t
+0c
+0^
+0p
+1u
+0d
+0t
+1n
+0]
+0s
+0r
+0m
+12
+0/
+0-
+1+
+0*
+#30
+b1111111111111111 !
+b1111111111111111 "
+1S
+1R
+1Q
+1P
+1O
+1N
+1M
+1L
+1K
+1J
+1I
+1H
+1G
+1F
+1E
+1D
+1B
+1A
+1@
+1?
+1>
+1=
+1;
+1:
+19
+18
+17
+16
+15
+14
+1U
+1V
+1W
+1X
+1Y
+1Z
+1[
+1\
+1^
+1_
+1`
+1a
+1b
+1c
+1f
+1g
+1h
+1i
+1j
+1k
+1l
+1]
+1o
+1p
+1q
+1r
+1s
+0u
+1d
+1t
+1m
+02
+11
+10
+1/
+1.
+1-
+1,
+1*
+1)
+1(
+1'
+1&
+1%
+1$
+1#
+13
+#35
+b1 "
+0R
+0Q
+0P
+0O
+0N
+0M
+0L
+0K
+0J
+0I
+0H
+0G
+0F
+0E
+0D
+0f
+0g
+0h
+0i
+0j
+0k
+0l
+0m
+0n
+0o
+0p
+0q
+0r
+0s
+0t
+01
+00
+0/
+0.
+0-
+0,
+0+
+0*
+0)
+0(
+0'
+0&
+0%
+0$
+0#
+#40
+b0 "
+0S
+1u
+0d
+1t
+0c
+1s
+0b
+1r
+0a
+1q
+0`
+1p
+0_
+1o
+0^
+1n
+0]
+1m
+0\
+1l
+0[
+1k
+0Z
+1j
+0Y
+1i
+0X
+1h
+0W
+1g
+0V
+1f
+0U
+03
+12
+11
+10
+1/
+1.
+1-
+1,
+1+
+1*
+1)
+1(
+1'
+1&
+1%
+1$
+1#

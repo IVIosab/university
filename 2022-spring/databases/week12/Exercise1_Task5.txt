@@ -1,0 +1,6 @@
+MATCH (ee:Fighter) SET ee.record = [0,0]
+
+MATCH (ee:Fighter),(ff:Fighter) WHERE (ee)-[:beats]->(ff)  SET ee.record = [ee.record[0]+1,0]
+
+MATCH (ee:Fighter),(ff:Fighter) WHERE (ff)-[:beats]->(ee)  SET ee.record = [ee.record[0],ee.record[1]+1]
+

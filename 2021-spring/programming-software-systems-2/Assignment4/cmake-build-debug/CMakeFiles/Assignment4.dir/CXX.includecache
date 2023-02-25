@@ -1,0 +1,74 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+C:/Users/Mosab Mohamed/CLionProjects/Assignment4/CarType/Business.h
+Car.h
+C:/Users/Mosab Mohamed/CLionProjects/Assignment4/CarType/Car.h
+
+C:/Users/Mosab Mohamed/CLionProjects/Assignment4/CarType/Car.h
+bits/stdc++.h
+-
+
+C:/Users/Mosab Mohamed/CLionProjects/Assignment4/CarType/Comfort.h
+Car.h
+C:/Users/Mosab Mohamed/CLionProjects/Assignment4/CarType/Car.h
+
+C:/Users/Mosab Mohamed/CLionProjects/Assignment4/CarType/ComfortPlus.h
+Comfort.h
+C:/Users/Mosab Mohamed/CLionProjects/Assignment4/CarType/Comfort.h
+
+C:/Users/Mosab Mohamed/CLionProjects/Assignment4/CarType/Economy.h
+Car.h
+C:/Users/Mosab Mohamed/CLionProjects/Assignment4/CarType/Car.h
+
+C:/Users/Mosab Mohamed/CLionProjects/Assignment4/Controller.h
+bits/stdc++.h
+-
+OrderQuery.h
+C:/Users/Mosab Mohamed/CLionProjects/Assignment4/OrderQuery.h
+PassengerGateway.h
+C:/Users/Mosab Mohamed/CLionProjects/Assignment4/PassengerGateway.h
+
+C:/Users/Mosab Mohamed/CLionProjects/Assignment4/DriverGateway.h
+CarType/Car.h
+C:/Users/Mosab Mohamed/CLionProjects/Assignment4/CarType/Car.h
+OrderQuery.h
+C:/Users/Mosab Mohamed/CLionProjects/Assignment4/OrderQuery.h
+
+C:/Users/Mosab Mohamed/CLionProjects/Assignment4/OrderQuery.h
+bits/stdc++.h
+-
+
+C:/Users/Mosab Mohamed/CLionProjects/Assignment4/PassengerGateway.h
+bits/stdc++.h
+-
+CarType/Car.h
+C:/Users/Mosab Mohamed/CLionProjects/Assignment4/CarType/Car.h
+DriverGateway.h
+C:/Users/Mosab Mohamed/CLionProjects/Assignment4/DriverGateway.h
+OrderQuery.h
+C:/Users/Mosab Mohamed/CLionProjects/Assignment4/OrderQuery.h
+
+C:/Users/Mosab Mohamed/CLionProjects/Assignment4/main.cpp
+bits/stdc++.h
+-
+OrderQuery.h
+C:/Users/Mosab Mohamed/CLionProjects/Assignment4/OrderQuery.h
+PassengerGateway.h
+C:/Users/Mosab Mohamed/CLionProjects/Assignment4/PassengerGateway.h
+CarType/Economy.h
+C:/Users/Mosab Mohamed/CLionProjects/Assignment4/CarType/Economy.h
+CarType/Comfort.h
+C:/Users/Mosab Mohamed/CLionProjects/Assignment4/CarType/Comfort.h
+CarType/ComfortPlus.h
+C:/Users/Mosab Mohamed/CLionProjects/Assignment4/CarType/ComfortPlus.h
+CarType/Business.h
+C:/Users/Mosab Mohamed/CLionProjects/Assignment4/CarType/Business.h
+Controller.h
+C:/Users/Mosab Mohamed/CLionProjects/Assignment4/Controller.h
+

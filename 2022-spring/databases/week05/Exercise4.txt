@@ -1,0 +1,63 @@
+CREATE TABLE Salesperson
+(
+salespersonId int PRIMARY KEY
+);
+
+CREATE TABLE Customer
+(
+customerId int PRIMARY KEY
+);
+
+CREATE TABLE Car
+(
+carId int PRIMARY KEY,
+customer int,
+salesperson int,
+CONSTRAINT FK_customer FOREIGN KEY (customer) REFERENCES Customer(customerId),
+CONSTRAINT FK_salesperson FOREIGN KEY (salesperson) REFERENCES Salesperson(salespersonId)
+);
+
+CREATE TABLE Mechanic
+(
+mechanicId int PRIMARY KEY
+);
+
+CREATE TABLE Invoice
+(
+invoiceId int PRIMARY KEY,
+writer int,
+reciever int,
+car int,
+CONSTRAINT FK_writer FOREIGN KEY (writer) REFERENCES Salesperson(salespersonId),
+CONSTRAINT FK_reciever FOREIGN KEY (reciever) REFERENCES Customer(customerId),
+CONSTRAINT FK_car FOREIGN KEY (car) REFERENCES Car(carId)
+);
+
+CREATE TABLE Part
+(
+partId int PRIMARY KEY
+);
+
+CREATE TABLE Service
+(
+serialNumber int PRIMARY KEY,
+customer int,
+CONSTRAINT FK_serialNumber FOREIGN KEY (serialNumber) REFERENCES Car(carId),
+CONSTRAINT FK_customer FOREIGN KEY (customer) REFERENCES Customer(customerId)
+);
+
+CREATE TABLE WorksOn
+(
+mechanic int PRIMARY KEY,
+service int PRIMARY KEY,
+CONSTRAINT FK_mechanic FOREIGN KEY (mechanic) REFERENCES Mechanic(serialNumber),
+CONSTRAINT FK_service FOREIGN KEY (service) REFERENCES Service(mechanicId)
+);
+
+CREATE TABLE PartsNeeded
+(
+part int PRIMARY KEY,
+service int PRIMARY KEY,
+CONSTRAINT FK_part FOREIGN KEY (part) REFERENCES Part(partId),
+CONSTRAINT FK_service FOREIGN KEY (service) REFERENCES Service(mechanicId)
+);

@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="PSSII_Homework2"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="gcc"/>
+		<Option virtualFolders="CMake Files\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="C:/Users/Mosab Mohamed/Desktop/PSS II - Homework 03 - Mosab Mohamed - B20-03/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="C:/PROGRA~2/MINGW-~1/I686-8~1.0-P/mingw32/bin/mingw32-make.exe -f &quot;C:/Users/Mosab Mohamed/Desktop/PSS II - Homework 03 - Mosab Mohamed - B20-03/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="C:/PROGRA~2/MINGW-~1/I686-8~1.0-P/mingw32/bin/mingw32-make.exe -f &quot;C:/Users/Mosab Mohamed/Desktop/PSS II - Homework 03 - Mosab Mohamed - B20-03/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/PROGRA~2/MINGW-~1/I686-8~1.0-P/mingw32/bin/mingw32-make.exe -f &quot;C:/Users/Mosab Mohamed/Desktop/PSS II - Homework 03 - Mosab Mohamed - B20-03/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/PROGRA~2/MINGW-~1/I686-8~1.0-P/mingw32/bin/mingw32-make.exe -f &quot;C:/Users/Mosab Mohamed/Desktop/PSS II - Homework 03 - Mosab Mohamed - B20-03/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="C:/Users/Mosab Mohamed/Desktop/PSS II - Homework 03 - Mosab Mohamed - B20-03/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="C:/PROGRA~2/MINGW-~1/I686-8~1.0-P/mingw32/bin/mingw32-make.exe -f &quot;C:/Users/Mosab Mohamed/Desktop/PSS II - Homework 03 - Mosab Mohamed - B20-03/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="C:/PROGRA~2/MINGW-~1/I686-8~1.0-P/mingw32/bin/mingw32-make.exe -f &quot;C:/Users/Mosab Mohamed/Desktop/PSS II - Homework 03 - Mosab Mohamed - B20-03/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/PROGRA~2/MINGW-~1/I686-8~1.0-P/mingw32/bin/mingw32-make.exe -f &quot;C:/Users/Mosab Mohamed/Desktop/PSS II - Homework 03 - Mosab Mohamed - B20-03/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/PROGRA~2/MINGW-~1/I686-8~1.0-P/mingw32/bin/mingw32-make.exe -f &quot;C:/Users/Mosab Mohamed/Desktop/PSS II - Homework 03 - Mosab Mohamed - B20-03/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="PSSII_Homework2">
+				<Option output="C:/Users/Mosab Mohamed/Desktop/PSS II - Homework 03 - Mosab Mohamed - B20-03/cmake-build-debug/PSSII_Homework2.exe" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="C:/Users/Mosab Mohamed/Desktop/PSS II - Homework 03 - Mosab Mohamed - B20-03/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="C:/Program Files (x86)/mingw-w64/i686-8.1.0-posix-dwarf-rt_v6-rev0/mingw32/bin/../lib/gcc/i686-w64-mingw32/8.1.0/include/c++"/>
+					<Add directory="C:/Program Files (x86)/mingw-w64/i686-8.1.0-posix-dwarf-rt_v6-rev0/mingw32/bin/../lib/gcc/i686-w64-mingw32/8.1.0/include/c++/i686-w64-mingw32"/>
+					<Add directory="C:/Program Files (x86)/mingw-w64/i686-8.1.0-posix-dwarf-rt_v6-rev0/mingw32/bin/../lib/gcc/i686-w64-mingw32/8.1.0/include/c++/backward"/>
+					<Add directory="C:/Program Files (x86)/mingw-w64/i686-8.1.0-posix-dwarf-rt_v6-rev0/mingw32/bin/../lib/gcc/i686-w64-mingw32/8.1.0/include"/>
+					<Add directory="C:/Program Files (x86)/mingw-w64/i686-8.1.0-posix-dwarf-rt_v6-rev0/mingw32/bin/../lib/gcc/i686-w64-mingw32/8.1.0/include-fixed"/>
+					<Add directory="C:/Program Files (x86)/mingw-w64/i686-8.1.0-posix-dwarf-rt_v6-rev0/mingw32/bin/../lib/gcc/i686-w64-mingw32/8.1.0/../../../../i686-w64-mingw32/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="C:/PROGRA~2/MINGW-~1/I686-8~1.0-P/mingw32/bin/mingw32-make.exe -f &quot;C:/Users/Mosab Mohamed/Desktop/PSS II - Homework 03 - Mosab Mohamed - B20-03/cmake-build-debug/Makefile&quot;  VERBOSE=1 PSSII_Homework2"/>
+					<CompileFile command="C:/PROGRA~2/MINGW-~1/I686-8~1.0-P/mingw32/bin/mingw32-make.exe -f &quot;C:/Users/Mosab Mohamed/Desktop/PSS II - Homework 03 - Mosab Mohamed - B20-03/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/PROGRA~2/MINGW-~1/I686-8~1.0-P/mingw32/bin/mingw32-make.exe -f &quot;C:/Users/Mosab Mohamed/Desktop/PSS II - Homework 03 - Mosab Mohamed - B20-03/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/PROGRA~2/MINGW-~1/I686-8~1.0-P/mingw32/bin/mingw32-make.exe -f &quot;C:/Users/Mosab Mohamed/Desktop/PSS II - Homework 03 - Mosab Mohamed - B20-03/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="PSSII_Homework2/fast">
+				<Option output="C:/Users/Mosab Mohamed/Desktop/PSS II - Homework 03 - Mosab Mohamed - B20-03/cmake-build-debug/PSSII_Homework2.exe" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="C:/Users/Mosab Mohamed/Desktop/PSS II - Homework 03 - Mosab Mohamed - B20-03/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="C:/Program Files (x86)/mingw-w64/i686-8.1.0-posix-dwarf-rt_v6-rev0/mingw32/bin/../lib/gcc/i686-w64-mingw32/8.1.0/include/c++"/>
+					<Add directory="C:/Program Files (x86)/mingw-w64/i686-8.1.0-posix-dwarf-rt_v6-rev0/mingw32/bin/../lib/gcc/i686-w64-mingw32/8.1.0/include/c++/i686-w64-mingw32"/>
+					<Add directory="C:/Program Files (x86)/mingw-w64/i686-8.1.0-posix-dwarf-rt_v6-rev0/mingw32/bin/../lib/gcc/i686-w64-mingw32/8.1.0/include/c++/backward"/>
+					<Add directory="C:/Program Files (x86)/mingw-w64/i686-8.1.0-posix-dwarf-rt_v6-rev0/mingw32/bin/../lib/gcc/i686-w64-mingw32/8.1.0/include"/>
+					<Add directory="C:/Program Files (x86)/mingw-w64/i686-8.1.0-posix-dwarf-rt_v6-rev0/mingw32/bin/../lib/gcc/i686-w64-mingw32/8.1.0/include-fixed"/>
+					<Add directory="C:/Program Files (x86)/mingw-w64/i686-8.1.0-posix-dwarf-rt_v6-rev0/mingw32/bin/../lib/gcc/i686-w64-mingw32/8.1.0/../../../../i686-w64-mingw32/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="C:/PROGRA~2/MINGW-~1/I686-8~1.0-P/mingw32/bin/mingw32-make.exe -f &quot;C:/Users/Mosab Mohamed/Desktop/PSS II - Homework 03 - Mosab Mohamed - B20-03/cmake-build-debug/Makefile&quot;  VERBOSE=1 PSSII_Homework2/fast"/>
+					<CompileFile command="C:/PROGRA~2/MINGW-~1/I686-8~1.0-P/mingw32/bin/mingw32-make.exe -f &quot;C:/Users/Mosab Mohamed/Desktop/PSS II - Homework 03 - Mosab Mohamed - B20-03/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/PROGRA~2/MINGW-~1/I686-8~1.0-P/mingw32/bin/mingw32-make.exe -f &quot;C:/Users/Mosab Mohamed/Desktop/PSS II - Homework 03 - Mosab Mohamed - B20-03/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/PROGRA~2/MINGW-~1/I686-8~1.0-P/mingw32/bin/mingw32-make.exe -f &quot;C:/Users/Mosab Mohamed/Desktop/PSS II - Homework 03 - Mosab Mohamed - B20-03/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rebuild_cache">
+				<Option working_dir="C:/Users/Mosab Mohamed/Desktop/PSS II - Homework 03 - Mosab Mohamed - B20-03/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="C:/PROGRA~2/MINGW-~1/I686-8~1.0-P/mingw32/bin/mingw32-make.exe -f &quot;C:/Users/Mosab Mohamed/Desktop/PSS II - Homework 03 - Mosab Mohamed - B20-03/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="C:/PROGRA~2/MINGW-~1/I686-8~1.0-P/mingw32/bin/mingw32-make.exe -f &quot;C:/Users/Mosab Mohamed/Desktop/PSS II - Homework 03 - Mosab Mohamed - B20-03/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/PROGRA~2/MINGW-~1/I686-8~1.0-P/mingw32/bin/mingw32-make.exe -f &quot;C:/Users/Mosab Mohamed/Desktop/PSS II - Homework 03 - Mosab Mohamed - B20-03/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/PROGRA~2/MINGW-~1/I686-8~1.0-P/mingw32/bin/mingw32-make.exe -f &quot;C:/Users/Mosab Mohamed/Desktop/PSS II - Homework 03 - Mosab Mohamed - B20-03/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="C:/Users/Mosab Mohamed/Desktop/PSS II - Homework 03 - Mosab Mohamed - B20-03/Admin.cpp">
+			<Option target="PSSII_Homework2"/>
+		</Unit>
+		<Unit filename="C:/Users/Mosab Mohamed/Desktop/PSS II - Homework 03 - Mosab Mohamed - B20-03/Admin.h">
+			<Option target="PSSII_Homework2"/>
+		</Unit>
+		<Unit filename="C:/Users/Mosab Mohamed/Desktop/PSS II - Homework 03 - Mosab Mohamed - B20-03/Cabinet.cpp">
+			<Option target="PSSII_Homework2"/>
+		</Unit>
+		<Unit filename="C:/Users/Mosab Mohamed/Desktop/PSS II - Homework 03 - Mosab Mohamed - B20-03/Cabinet.h">
+			<Option target="PSSII_Homework2"/>
+		</Unit>
+		<Unit filename="C:/Users/Mosab Mohamed/Desktop/PSS II - Homework 03 - Mosab Mohamed - B20-03/ClassRoom.cpp">
+			<Option target="PSSII_Homework2"/>
+		</Unit>
+		<Unit filename="C:/Users/Mosab Mohamed/Desktop/PSS II - Homework 03 - Mosab Mohamed - B20-03/ClassRoom.h">
+			<Option target="PSSII_Homework2"/>
+		</Unit>
+		<Unit filename="C:/Users/Mosab Mohamed/Desktop/PSS II - Homework 03 - Mosab Mohamed - B20-03/ConferenceRoom.cpp">
+			<Option target="PSSII_Homework2"/>
+		</Unit>
+		<Unit filename="C:/Users/Mosab Mohamed/Desktop/PSS II - Homework 03 - Mosab Mohamed - B20-03/ConferenceRoom.h">
+			<Option target="PSSII_Homework2"/>
+		</Unit>
+		<Unit filename="C:/Users/Mosab Mohamed/Desktop/PSS II - Homework 03 - Mosab Mohamed - B20-03/Director.cpp">
+			<Option target="PSSII_Homework2"/>
+		</Unit>
+		<Unit filename="C:/Users/Mosab Mohamed/Desktop/PSS II - Homework 03 - Mosab Mohamed - B20-03/Director.h">
+			<Option target="PSSII_Homework2"/>
+		</Unit>
+		<Unit filename="C:/Users/Mosab Mohamed/Desktop/PSS II - Homework 03 - Mosab Mohamed - B20-03/DirectorCabinet.cpp">
+			<Option target="PSSII_Homework2"/>
+		</Unit>
+		<Unit filename="C:/Users/Mosab Mohamed/Desktop/PSS II - Homework 03 - Mosab Mohamed - B20-03/DirectorCabinet.h">
+			<Option target="PSSII_Homework2"/>
+		</Unit>
+		<Unit filename="C:/Users/Mosab Mohamed/Desktop/PSS II - Homework 03 - Mosab Mohamed - B20-03/Guest.cpp">
+			<Option target="PSSII_Homework2"/>
+		</Unit>
+		<Unit filename="C:/Users/Mosab Mohamed/Desktop/PSS II - Homework 03 - Mosab Mohamed - B20-03/Guest.h">
+			<Option target="PSSII_Homework2"/>
+		</Unit>
+		<Unit filename="C:/Users/Mosab Mohamed/Desktop/PSS II - Homework 03 - Mosab Mohamed - B20-03/LabEmployee.cpp">
+			<Option target="PSSII_Homework2"/>
+		</Unit>
+		<Unit filename="C:/Users/Mosab Mohamed/Desktop/PSS II - Homework 03 - Mosab Mohamed - B20-03/LabEmployee.h">
+			<Option target="PSSII_Homework2"/>
+		</Unit>
+		<Unit filename="C:/Users/Mosab Mohamed/Desktop/PSS II - Homework 03 - Mosab Mohamed - B20-03/LectureHall.cpp">
+			<Option target="PSSII_Homework2"/>
+		</Unit>
+		<Unit filename="C:/Users/Mosab Mohamed/Desktop/PSS II - Homework 03 - Mosab Mohamed - B20-03/LectureHall.h">
+			<Option target="PSSII_Homework2"/>
+		</Unit>
+		<Unit filename="C:/Users/Mosab Mohamed/Desktop/PSS II - Homework 03 - Mosab Mohamed - B20-03/Professor.cpp">
+			<Option target="PSSII_Homework2"/>
+		</Unit>
+		<Unit filename="C:/Users/Mosab Mohamed/Desktop/PSS II - Homework 03 - Mosab Mohamed - B20-03/Professor.h">
+			<Option target="PSSII_Homework2"/>
+		</Unit>
+		<Unit filename="C:/Users/Mosab Mohamed/Desktop/PSS II - Homework 03 - Mosab Mohamed - B20-03/RoomType.cpp">
+			<Option target="PSSII_Homework2"/>
+		</Unit>
+		<Unit filename="C:/Users/Mosab Mohamed/Desktop/PSS II - Homework 03 - Mosab Mohamed - B20-03/RoomType.h">
+			<Option target="PSSII_Homework2"/>
+		</Unit>
+		<Unit filename="C:/Users/Mosab Mohamed/Desktop/PSS II - Homework 03 - Mosab Mohamed - B20-03/Student.cpp">
+			<Option target="PSSII_Homework2"/>
+		</Unit>
+		<Unit filename="C:/Users/Mosab Mohamed/Desktop/PSS II - Homework 03 - Mosab Mohamed - B20-03/Student.h">
+			<Option target="PSSII_Homework2"/>
+		</Unit>
+		<Unit filename="C:/Users/Mosab Mohamed/Desktop/PSS II - Homework 03 - Mosab Mohamed - B20-03/Usertype.cpp">
+			<Option target="PSSII_Homework2"/>
+		</Unit>
+		<Unit filename="C:/Users/Mosab Mohamed/Desktop/PSS II - Homework 03 - Mosab Mohamed - B20-03/Usertype.h">
+			<Option target="PSSII_Homework2"/>
+		</Unit>
+		<Unit filename="C:/Users/Mosab Mohamed/Desktop/PSS II - Homework 03 - Mosab Mohamed - B20-03/main.cpp">
+			<Option target="PSSII_Homework2"/>
+		</Unit>
+		<Unit filename="C:/Users/Mosab Mohamed/Desktop/PSS II - Homework 03 - Mosab Mohamed - B20-03/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>

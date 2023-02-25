@@ -1,0 +1,67 @@
+First initializing the table and inserting the values 
+create table Shipment
+(
+    orderId int not null ,
+    date text not null ,
+    customerId int not null ,
+    customerName text not null ,
+    city text not null ,
+    itemId int not null ,
+    itemName text not null ,
+    quant int not null ,
+    price text not null
+);
+insert into Shipment values (2301,'23/02/2011',101,'Martin','Prague',3786,'Net',3,'$35,00'),
+                         (2301,'23/02/2011',101,'Martin','Prague',4011,'Racket',6,'$65,00'),
+                         (2301,'23/02/2011',101,'Martin','Prague',9132,'Pack-3',8,'$4,75'),
+                         (2302,'25/02/2011',107,'Herman','Madrid',5794,'Pack -6',4,'$5,00'),
+                         (2303,'27/02/2011',110,'Pedro','Moscow',4011,'Racket',2,'$65,00'),
+                         (2303,'27/02/2011',110,'Pedro','Moscow',3141,'Cover',2,'$10,00');
+We can see that without any modifications, this table follows the roles of 1NF which are
+○ It should only have single(atomic) valued
+attributes/columns.
+○ Values stored in a column should be of the same
+domain
+○ All the columns in a table should have unique
+names.
+○ And the order in which data is stored, does not
+matter.
+
+Now comming to the second form, we can notice that customerName, and city are dependent on customerId, also itemName is dependent on itemId, so we will create new tables with these dependencies
+
+ create table customerData(
+    customerId int not null primary key,
+    customerName text not null ,
+    city text not null
+);
+
+create table item(
+    itemId int not null primary key ,
+    itemName text not null
+);
+create table Shipment
+(
+    orderId int not null ,
+    date text not null ,
+    customerId int not null ,
+    itemsId int not null,
+    quant int not null ,
+    price text not null,
+    FOREIGN KEY (customerId) REFERENCES customerData (customerId),
+    FOREIGN KEY (itemsId) REFERENCES item (itemId)
+);
+
+for the 3NF we notice that the price is dependent of quantity and itemId, so we create new table for them
+
+create table expances(
+itemId int not null,
+quant int not null,
+price int not null,
+foreign key (itemId) reference item(itemId)
+);
+
+queries
+SELECT orderId , SUM(quant), SUM(quant * price)
+    FROM orderDetails LEFT OUTER JOIN item
+    on shipment.itemId = item.itemId
+    GROUP by orderId;

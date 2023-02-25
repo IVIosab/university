@@ -1,0 +1,23 @@
+CREATE TABLE Group(
+groupId int PRIMARY KEY,
+);
+
+CREATE TABLE Company(
+companyId int PRIMARY KEY,
+group int,
+structure int,
+CONSTRAINT FK_group FOREIGN KEY (group) REFERENCES Group(groupId)
+CONSTRAINT FK_structure FOREIGN KEY (structure) REFERENCES Company(companyId)
+);
+
+CREATE TABLE Item(
+itemId int PRIMARY KEY,
+plant int,
+CONSTRAINT FK_plant FOREIGN KEY (plant) REFERENCES Plant(plantId)
+);
+
+CREATE TABLE Plant(
+plantId int PRIMARY KEY,
+company int,
+CONSTRAINT FK_company FOREIGN KEY (company) REFERENCES Company(companyId)
+);

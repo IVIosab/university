@@ -1,0 +1,1 @@
+MATCH (ee:Fighter) WHERE NOT ()-[:beats]->(ee) RETURN ee

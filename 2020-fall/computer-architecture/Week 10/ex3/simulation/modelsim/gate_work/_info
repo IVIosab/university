@@ -1,0 +1,98 @@
+m255
+K4
+z2
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 dC:/Users/mosab/Desktop/CA LABS/Week 10/ex3/simulation/modelsim
+vex3
+!s110 1604611479
+!i10b 1
+!s100 7<Hca5V:NiMKU1JK2W7do1
+IRo0KH>6EkT=I^De1Y`2]o3
+Z1 VDg1SIo80bB@j0V0VzS_@n1
+R0
+w1604611387
+8C:/Users/mosab/Desktop/CA LABS/Week 10/ex3/ex3.v
+FC:/Users/mosab/Desktop/CA LABS/Week 10/ex3/ex3.v
+L0 1
+Z2 OV;L;10.5b;63
+r1
+!s85 0
+31
+!s108 1604611478.000000
+!s107 C:/Users/mosab/Desktop/CA LABS/Week 10/ex3/ex3.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+C:/Users/mosab/Desktop/CA LABS/Week 10/ex3|C:/Users/mosab/Desktop/CA LABS/Week 10/ex3/ex3.v|
+!i113 1
+Z3 o-vlog01compat -work work
+Z4 !s92 -vlog01compat -work work {+incdir+C:/Users/mosab/Desktop/CA LABS/Week 10/ex3}
+Z5 tCvgOpt 0
+vfull
+!s110 1604611477
+!i10b 1
+!s100 SVg7S4i@B5Lle3IlB::Ff3
+IG^EfEn^1Sg7`U><G0`ZZh2
+R1
+R0
+w1604611372
+8C:/Users/mosab/Desktop/CA LABS/Week 10/ex3/full.v
+FC:/Users/mosab/Desktop/CA LABS/Week 10/ex3/full.v
+L0 1
+R2
+r1
+!s85 0
+31
+!s108 1604611476.000000
+!s107 C:/Users/mosab/Desktop/CA LABS/Week 10/ex3/full.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+C:/Users/mosab/Desktop/CA LABS/Week 10/ex3|C:/Users/mosab/Desktop/CA LABS/Week 10/ex3/full.v|
+!i113 1
+R3
+R4
+R5
+vhard_block
+!s110 1604611476
+!i10b 1
+!s100 BgPC><=]Oe;=EfGfm4bk_3
+IXB6jgGGU[zbU:_m_B64WB3
+R1
+R0
+w1604611460
+8ex3.vo
+Fex3.vo
+L0 1478
+R2
+r1
+!s85 0
+31
+!s108 1604611474.000000
+!s107 ex3.vo|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+.|ex3.vo|
+!i113 1
+R3
+!s92 -vlog01compat -work work +incdir+.
+R5
+vripple_carry_testbench
+!s110 1604611478
+!i10b 1
+!s100 YI=G::1ZQXV7iiiCeG14h1
+IhPHBQ:GzhAa=m=o580f:L0
+R1
+R0
+w1604608933
+8C:/Users/mosab/Desktop/CA LABS/Week 10/ex3/ripple_carry_testbench.v
+FC:/Users/mosab/Desktop/CA LABS/Week 10/ex3/ripple_carry_testbench.v
+L0 1
+R2
+r1
+!s85 0
+31
+!s108 1604611477.000000
+!s107 C:/Users/mosab/Desktop/CA LABS/Week 10/ex3/ripple_carry_testbench.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+C:/Users/mosab/Desktop/CA LABS/Week 10/ex3|C:/Users/mosab/Desktop/CA LABS/Week 10/ex3/ripple_carry_testbench.v|
+!i113 1
+R3
+R4
+R5

@@ -1,0 +1,6 @@
+cmake_minimum_required(VERSION 3.17)
+project(PSS_II___Homework_01___Mosab_Mohamed___B20_03)
+
+set(CMAKE_CXX_STANDARD 14)
+
+add_executable(PSS_II___Homework_01___Mosab_Mohamed___B20_03 main.cpp)

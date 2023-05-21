@@ -1,0 +1,11 @@
+[Unit]
+Description=My custom web service to show system resources
+
+[Service]
+ExecStart=/usr/bin/script.sh
+Slice=myslice.slice
+Restart=on-failure
+RestartSec=5s
+
+[Install]
+WantedBy=multi-user.target

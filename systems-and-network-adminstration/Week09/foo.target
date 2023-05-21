@@ -1,0 +1,7 @@
+[Unit]
+Description=Foobar boot target
+Requires=multi-user.target
+Wants=uuidd.service
+Conflicts=rescue.service rescue.target
+After=multi-user.target rescue.service rescue.target
+AllowIsolate=yes

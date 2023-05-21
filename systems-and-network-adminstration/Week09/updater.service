@@ -1,0 +1,8 @@
+[Unit]
+Description=Service for updating packages
+
+[Service]
+ExecStart=/bin/bash apt update
+
+[Install]
+WantedBy=multi-user.target

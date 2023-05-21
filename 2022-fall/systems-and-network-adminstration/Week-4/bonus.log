@@ -1,6 +1,0 @@
-at com.databricks.backend.daemon.data.client.DatabricksFileSystemV2.recordOperation(DatabricksFileSystemV2.scala:474)
-at com.databricks.backend.daemon.data.client.DBFSV2.initialize(DatabricksFileSystemV2.scala:64)
-at com.databricks.backend.daemon.data.client.DatabricksFileSystem.initialize(DatabricksFileSystem.scala:222)
-at org.apache.hadoop.fs.FileSystem.createFileSystem(FileSystem.java:2669)
-at org.apache.hadoop.fs.FileSystem.access$200(FileSystem.java:94)
-at org.apache.hadoop.fs.FileSystem$Cache.getInternal(FileSystem.java:2703)

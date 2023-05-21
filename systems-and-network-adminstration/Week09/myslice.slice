@@ -1,0 +1,9 @@
+[Unit]
+Description=Custom systemd slice for exercise 4 in SNA Lab 9
+Before=slices.target
+
+[Slice]
+MemoryAccounting=true
+CPUAccounting=true
+MemoryMax=256M
+CPUQuota=15%

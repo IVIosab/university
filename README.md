@@ -19,9 +19,6 @@ As of now the repo is a work in progress.
 - [Essentials of Analytical Geometry and Linear Algebra 1 (Analytical Geometry and Linear Algebra 1)](https://github.com/IVIosab/university/tree/main/analytical-geometry-and-linear-algebra-1)
 	- Instructor: Vladimir Ivanov
 	- Grade: 
-- [Foreign Langauge 1](https://github.com/IVIosab/university/tree/main/foriegn-language-1)
-	- Instructor: Guzel Fazlyeva
-	- Grade: A
 - [Philosophy 1 (Fundamentals of Logic)](https://github.com/IVIosab/university/tree/main/philosophy-1)
 	- Instructor: Mirko Farina
 	- Grade: B

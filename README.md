@@ -118,7 +118,7 @@ As of now the repo is a work in progress.
 	- Instructor: Eugene Zouev
 	- Grade: A
 - [Distributed Systems](https://github.com/IVIosab/university/tree/main/distributed-systems)
-	- Instructor: Ashan Kazmi
+	- Instructor: Ahsan Kazmi
 	- Grade: A
 - [Front-end Web Development](https://github.com/IVIosab/university/tree/main/front-end-web-development)
 	- Instructor: Abdelrahman Abounegm

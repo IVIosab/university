@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="mobile-web-app-capable" content="yes">
+    <title>
+        Lab 7: Processes and signals - HackMD
+    </title>
+    <link rel="icon" type="image/png" href="https://hackmd.io/favicon.png">
+    <link rel="apple-touch-icon" href="https://hackmd.io/apple-touch-icon.png">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css" integrity="sha256-3iu9jgsy9TpTwXKb7bNQzqWekRX7pPK+2OLj3R922fo=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/octicons/3.5.0/octicons.min.css" integrity="sha256-QiWfLIsCT02Sdwkogf6YMiQlj4NE84MKkzEMkZnMGdg=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.5.1/themes/prism.min.css" integrity="sha256-vtR0hSWRc3Tb26iuN2oZHt3KRUomwTufNIf5/4oeCyg=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@hackmd/emojify.js@2.1.0/dist/css/basic/emojify.min.css" integrity="sha256-UOrvMOsSDSrW6szVLe8ZDZezBxh5IoIfgTwdNDgTjiU=" crossorigin="anonymous" />
+    <style>
+        @import url(https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i|Source+Code+Pro:300,400,500|Source+Sans+Pro:300,300i,400,400i,600,600i|Source+Serif+Pro&subset=latin-ext);.hljs{background:#fff;color:#333;display:block;overflow-x:auto;padding:.5em}.hljs-comment,.hljs-meta{color:#969896}.hljs-emphasis,.hljs-quote,.hljs-string,.hljs-strong,.hljs-template-variable,.hljs-variable{color:#df5000}.hljs-keyword,.hljs-selector-tag,.hljs-type{color:#a71d5d}.hljs-attribute,.hljs-bullet,.hljs-literal,.hljs-number,.hljs-symbol{color:#0086b3}.hljs-built_in,.hljs-builtin-name{color:#005cc5}.hljs-name,.hljs-section{color:#63a35c}.hljs-tag{color:#333}.hljs-attr,.hljs-selector-attr,.hljs-selector-class,.hljs-selector-id,.hljs-selector-pseudo,.hljs-title{color:#795da3}.hljs-addition{background-color:#eaffea;color:#55a532}.hljs-deletion{background-color:#ffecec;color:#bd2c00}.hljs-link{text-decoration:underline}.markdown-body{word-wrap:break-word;font-size:16px;line-height:1.5}.markdown-body:after,.markdown-body:before{content:"";display:table}.markdown-body:after{clear:both}.markdown-body>:first-child{margin-top:0!important}.markdown-body>:last-child{margin-bottom:0!important}.markdown-body a:not([href]){color:inherit;text-decoration:none}.markdown-body .absent{color:#c00}.markdown-body .anchor{float:left;line-height:1;margin-left:-20px;padding-right:4px}.markdown-body .anchor:focus{outline:none}.markdown-body blockquote,.markdown-body dl,.markdown-body ol,.markdown-body p,.markdown-body pre,.markdown-body table,.markdown-body ul{margin-bottom:16px;margin-top:0}.markdown-body hr{background-color:#e7e7e7;border:0;height:.25em;margin:24px 0;padding:0}.markdown-body blockquote{border-left:.25em solid #ddd;color:#777;font-size:16px;padding:0 1em}.markdown-body blockquote>:first-child{margin-top:0}.markdown-body blockquote>:last-child{margin-bottom:0}.markdown-body kbd,.popover kbd{background-color:#fcfcfc;border:1px solid;border-color:#ccc #ccc #bbb;border-radius:3px;box-shadow:inset 0 -1px 0 #bbb;color:#555;display:inline-block;font-size:11px;line-height:10px;padding:3px 5px;vertical-align:middle}.markdown-body .loweralpha{list-style-type:lower-alpha}.markdown-body h1,.markdown-body h2,.markdown-body h3,.markdown-body h4,.markdown-body h5,.markdown-body h6{font-weight:600;line-height:1.25;margin-bottom:16px;margin-top:24px}.markdown-body h1 .octicon-link,.markdown-body h2 .octicon-link,.markdown-body h3 .octicon-link,.markdown-body h4 .octicon-link,.markdown-body h5 .octicon-link,.markdown-body h6 .octicon-link{color:#000;vertical-align:middle;visibility:hidden}.markdown-body h1:hover .anchor,.markdown-body h2:hover .anchor,.markdown-body h3:hover .anchor,.markdown-body h4:hover .anchor,.markdown-body h5:hover .anchor,.markdown-body h6:hover .anchor{text-decoration:none}.markdown-body h1:hover .anchor .octicon-link,.markdown-body h2:hover .anchor .octicon-link,.markdown-body h3:hover .anchor .octicon-link,.markdown-body h4:hover .anchor .octicon-link,.markdown-body h5:hover .anchor .octicon-link,.markdown-body h6:hover .anchor .octicon-link{visibility:visible}.markdown-body h1 code,.markdown-body h1 tt,.markdown-body h2 code,.markdown-body h2 tt,.markdown-body h3 code,.markdown-body h3 tt,.markdown-body h4 code,.markdown-body h4 tt,.markdown-body h5 code,.markdown-body h5 tt,.markdown-body h6 code,.markdown-body h6 tt{font-size:inherit}.markdown-body h1{font-size:2em}.markdown-body h1,.markdown-body h2{border-bottom:1px solid #eee;padding-bottom:.3em}.markdown-body h2{font-size:1.5em}.markdown-body h3{font-size:1.25em}.markdown-body h4{font-size:1em}.markdown-body h5{font-size:.875em}.markdown-body h6{color:#777;font-size:.85em}.markdown-body ol,.markdown-body ul{padding-left:2em}.markdown-body ol.no-list,.markdown-body ul.no-list{list-style-type:none;padding:0}.markdown-body ol ol,.markdown-body ol ul,.markdown-body ul ol,.markdown-body ul ul{margin-bottom:0;margin-top:0}.markdown-body li>p{margin-top:16px}.markdown-body li+li{padding-top:.25em}.markdown-body dl{padding:0}.markdown-body dl dt{font-size:1em;font-style:italic;font-weight:700;margin-top:16px;padding:0}.markdown-body dl dd{margin-bottom:16px;padding:0 16px}.markdown-body table{display:block;overflow:auto;width:100%;word-break:normal;word-break:keep-all}.markdown-body table th{font-weight:700}.markdown-body table td,.markdown-body table th{border:1px solid #ddd;padding:6px 13px}.markdown-body table tr{background-color:#fff;border-top:1px solid #ccc}.markdown-body table tr:nth-child(2n){background-color:#f8f8f8}.markdown-body img{background-color:#fff;box-sizing:initial;max-width:100%}.markdown-body img[align=right]{padding-left:20px}.markdown-body img[align=left]{padding-right:20px}.markdown-body .emoji{background-color:initial;max-width:none;vertical-align:text-top}.markdown-body span.frame{display:block;overflow:hidden}.markdown-body span.frame>span{border:1px solid #ddd;display:block;float:left;margin:13px 0 0;overflow:hidden;padding:7px;width:auto}.markdown-body span.frame span img{display:block;float:left}.markdown-body span.frame span span{clear:both;color:#333;display:block;padding:5px 0 0}.markdown-body span.align-center{clear:both;display:block;overflow:hidden}.markdown-body span.align-center>span{display:block;margin:13px auto 0;overflow:hidden;text-align:center}.markdown-body span.align-center span img{margin:0 auto;text-align:center}.markdown-body span.align-right{clear:both;display:block;overflow:hidden}.markdown-body span.align-right>span{display:block;margin:13px 0 0;overflow:hidden;text-align:right}.markdown-body span.align-right span img{margin:0;text-align:right}.markdown-body span.float-left{display:block;float:left;margin-right:13px;overflow:hidden}.markdown-body span.float-left span{margin:13px 0 0}.markdown-body span.float-right{display:block;float:right;margin-left:13px;overflow:hidden}.markdown-body span.float-right>span{display:block;margin:13px auto 0;overflow:hidden;text-align:right}.markdown-body code,.markdown-body tt{background-color:#0000000a;border-radius:3px;font-size:85%;margin:0;padding:.2em 0}.markdown-body code:after,.markdown-body code:before,.markdown-body tt:after,.markdown-body tt:before{content:"\00a0";letter-spacing:-.2em}.markdown-body code br,.markdown-body tt br{display:none}.markdown-body del code{text-decoration:inherit}.markdown-body pre{word-wrap:normal}.markdown-body pre>code{background:#0000;border:0;font-size:100%;margin:0;padding:0;white-space:pre;word-break:normal}.markdown-body .highlight{margin-bottom:16px}.markdown-body .highlight pre{margin-bottom:0;word-break:normal}.markdown-body .highlight pre,.markdown-body pre{background-color:#f7f7f7;border-radius:3px;font-size:85%;line-height:1.45;overflow:auto;padding:16px}.markdown-body pre code,.markdown-body pre tt{word-wrap:normal;background-color:initial;border:0;display:inline;line-height:inherit;margin:0;max-width:auto;overflow:visible;padding:0}.markdown-body pre code:after,.markdown-body pre code:before,.markdown-body pre tt:after,.markdown-body pre tt:before{content:normal}.markdown-body .csv-data td,.markdown-body .csv-data th{font-size:12px;line-height:1;overflow:hidden;padding:5px;text-align:left;white-space:nowrap}.markdown-body .csv-data .blob-line-num{background:#fff;border:0;padding:10px 8px 9px;text-align:right}.markdown-body .csv-data tr{border-top:0}.markdown-body .csv-data th{background:#f8f8f8;border-top:0;font-weight:700}.news .alert .markdown-body blockquote{border:0;padding:0 0 0 40px}.activity-tab .news .alert .commits,.activity-tab .news .markdown-body blockquote{padding-left:0}.task-list-item{list-style-type:none}.task-list-item label{font-weight:400}.task-list-item.enabled label{cursor:pointer}.task-list-item+.task-list-item{margin-top:3px}.task-list-item-checkbox{cursor:default!important;float:left;margin:.31em 0 .2em -1.3em!important;vertical-align:middle}.markdown-body{max-width:758px;overflow:visible!important;padding-bottom:40px;padding-top:40px;position:relative}.markdown-body .emoji{vertical-align:top}.markdown-body pre{border:inherit!important}.markdown-body code{color:inherit!important}.markdown-body pre code .wrapper{display:-moz-inline-flex;display:-ms-inline-flex;display:-o-inline-flex;display:inline-flex}.markdown-body pre code .gutter{float:left;overflow:hidden;-webkit-user-select:none;user-select:none}.markdown-body pre code .gutter.linenumber{border-right:3px solid #6ce26c!important;box-sizing:initial;color:#afafaf!important;cursor:default;display:inline-block;min-width:20px;padding:0 8px 0 0;position:relative;text-align:right;z-index:4}.markdown-body pre code .gutter.linenumber>span:before{content:attr(data-linenumber)}.markdown-body pre code .code{float:left;margin:0 0 0 16px}.markdown-body .gist .line-numbers{border-bottom:none;border-left:none;border-top:none}.markdown-body .gist .line-data{border:none}.markdown-body .gist table{border-collapse:inherit!important;border-spacing:0}.markdown-body code[data-gist-id]{background:none;padding:0}.markdown-body code[data-gist-id]:after,.markdown-body code[data-gist-id]:before{content:""}.markdown-body code[data-gist-id] .blob-num{border:unset}.markdown-body code[data-gist-id] table{margin-bottom:unset;overflow:unset}.markdown-body code[data-gist-id] table tr{background:unset}.markdown-body[dir=rtl] pre{direction:ltr}.markdown-body[dir=rtl] code{direction:ltr;unicode-bidi:embed}.markdown-body .alert>p:last-child{margin-bottom:0}.markdown-body pre.abc,.markdown-body pre.flow-chart,.markdown-body pre.graphviz,.markdown-body pre.mermaid,.markdown-body pre.sequence-diagram,.markdown-body pre.vega{background-color:inherit;border-radius:0;overflow:visible;text-align:center;white-space:inherit}.markdown-body pre.abc>code,.markdown-body pre.flow-chart>code,.markdown-body pre.graphviz>code,.markdown-body pre.mermaid>code,.markdown-body pre.sequence-diagram>code,.markdown-body pre.vega>code{text-align:left}.markdown-body pre.abc>svg,.markdown-body pre.flow-chart>svg,.markdown-body pre.graphviz>svg,.markdown-body pre.mermaid>svg,.markdown-body pre.sequence-diagram>svg,.markdown-body pre.vega>svg{height:100%;max-width:100%}.markdown-body pre>code.wrap{word-wrap:break-word;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space:-o-pre-wrap}.markdown-body .alert>p:last-child,.markdown-body .alert>ul:last-child{margin-bottom:0}.markdown-body summary{display:list-item}.markdown-body summary:focus{outline:none}.markdown-body details summary{cursor:pointer}.markdown-body details:not([open])>:not(summary){display:none}.markdown-body figure{margin:1em 40px}.markdown-body .mark,.markdown-body mark{background-color:#fff1a7}.vimeo,.youtube{background-color:#000;background-position:50%;background-repeat:no-repeat;background-size:contain;cursor:pointer;display:table;overflow:hidden;text-align:center}.vimeo,.youtube{position:relative;width:100%}.youtube{padding-bottom:56.25%}.vimeo img{object-fit:contain;width:100%;z-index:0}.youtube img{object-fit:cover;z-index:0}.vimeo iframe,.youtube iframe,.youtube img{height:100%;left:0;position:absolute;top:0;width:100%}.vimeo iframe,.youtube iframe{vertical-align:middle;z-index:1}.vimeo .icon,.youtube .icon{color:#fff;height:auto;left:50%;opacity:.3;position:absolute;top:50%;transform:translate(-50%,-50%);transition:opacity .2s;width:auto;z-index:0}.vimeo:hover .icon,.youtube:hover .icon{opacity:.6;transition:opacity .2s}.slideshare .inner,.speakerdeck .inner{position:relative;width:100%}.slideshare .inner iframe,.speakerdeck .inner iframe{bottom:0;height:100%;left:0;position:absolute;right:0;top:0;width:100%}.figma{display:table;padding-bottom:56.25%;position:relative;width:100%}.figma iframe{border:1px solid #eee;bottom:0;height:100%;left:0;position:absolute;right:0;top:0;width:100%}.markmap-container{height:300px}.markmap-container>svg{height:100%;width:100%}.MJX_Assistive_MathML{display:none}#MathJax_Message{z-index:1000!important}.ui-infobar{color:#777;margin:25px auto -25px;max-width:760px;position:relative;z-index:2}.toc .invisable-node{list-style-type:none}.ui-toc{bottom:20px;position:fixed;z-index:998}.ui-toc.both-mode{margin-left:8px}.ui-toc.both-mode .ui-toc-label{border-bottom-left-radius:0;border-top-left-radius:0;height:40px;padding:10px 4px}.ui-toc-label{background-color:#e6e6e6;border:none;color:#868686;transition:opacity .2s}.ui-toc .open .ui-toc-label{color:#fff;opacity:1;transition:opacity .2s}.ui-toc-label:focus{background-color:#ccc;color:#000;opacity:.3}.ui-toc-label:hover{background-color:#ccc;opacity:1;transition:opacity .2s}.ui-toc-dropdown{margin-bottom:20px;margin-top:20px;max-height:70vh;max-width:45vw;overflow:auto;padding-left:10px;padding-right:10px;text-align:inherit;width:25vw}.ui-toc-dropdown>.toc{max-height:calc(70vh - 100px);overflow:auto}.ui-toc-dropdown[dir=rtl] .nav{letter-spacing:.0029em;padding-right:0}.ui-toc-dropdown a{overflow:hidden;text-overflow:ellipsis;white-space:pre}.ui-toc-dropdown .nav>li>a{color:#767676;display:block;font-size:13px;font-weight:500;padding:4px 20px}.ui-toc-dropdown .nav>li:first-child:last-child>ul,.ui-toc-dropdown .toc.expand ul{display:block}.ui-toc-dropdown .nav>li>a:focus,.ui-toc-dropdown .nav>li>a:hover{background-color:initial;border-left:1px solid #000;color:#000;padding-left:19px;text-decoration:none}.ui-toc-dropdown[dir=rtl] .nav>li>a:focus,.ui-toc-dropdown[dir=rtl] .nav>li>a:hover{border-left:none;border-right:1px solid #000;padding-right:19px}.ui-toc-dropdown .nav>.active:focus>a,.ui-toc-dropdown .nav>.active:hover>a,.ui-toc-dropdown .nav>.active>a{background-color:initial;border-left:2px solid #000;color:#000;font-weight:700;padding-left:18px}.ui-toc-dropdown[dir=rtl] .nav>.active:focus>a,.ui-toc-dropdown[dir=rtl] .nav>.active:hover>a,.ui-toc-dropdown[dir=rtl] .nav>.active>a{border-left:none;border-right:2px solid #000;padding-right:18px}.ui-toc-dropdown .nav .nav{display:none;padding-bottom:10px}.ui-toc-dropdown .nav>.active>ul{display:block}.ui-toc-dropdown .nav .nav>li>a{font-size:12px;font-weight:400;padding-bottom:1px;padding-left:30px;padding-top:1px}.ui-toc-dropdown[dir=rtl] .nav .nav>li>a{padding-right:30px}.ui-toc-dropdown .nav .nav>li>ul>li>a{font-size:12px;font-weight:400;padding-bottom:1px;padding-left:40px;padding-top:1px}.ui-toc-dropdown[dir=rtl] .nav .nav>li>ul>li>a{padding-right:40px}.ui-toc-dropdown .nav .nav>li>a:focus,.ui-toc-dropdown .nav .nav>li>a:hover{padding-left:29px}.ui-toc-dropdown[dir=rtl] .nav .nav>li>a:focus,.ui-toc-dropdown[dir=rtl] .nav .nav>li>a:hover{padding-right:29px}.ui-toc-dropdown .nav .nav>li>ul>li>a:focus,.ui-toc-dropdown .nav .nav>li>ul>li>a:hover{padding-left:39px}.ui-toc-dropdown[dir=rtl] .nav .nav>li>ul>li>a:focus,.ui-toc-dropdown[dir=rtl] .nav .nav>li>ul>li>a:hover{padding-right:39px}.ui-toc-dropdown .nav .nav>.active:focus>a,.ui-toc-dropdown .nav .nav>.active:hover>a,.ui-toc-dropdown .nav .nav>.active>a{font-weight:500;padding-left:28px}.ui-toc-dropdown[dir=rtl] .nav .nav>.active:focus>a,.ui-toc-dropdown[dir=rtl] .nav .nav>.active:hover>a,.ui-toc-dropdown[dir=rtl] .nav .nav>.active>a{padding-right:28px}.ui-toc-dropdown .nav .nav>.active>.nav>.active:focus>a,.ui-toc-dropdown .nav .nav>.active>.nav>.active:hover>a,.ui-toc-dropdown .nav .nav>.active>.nav>.active>a{font-weight:500;padding-left:38px}.ui-toc-dropdown[dir=rtl] .nav .nav>.active>.nav>.active:focus>a,.ui-toc-dropdown[dir=rtl] .nav .nav>.active>.nav>.active:hover>a,.ui-toc-dropdown[dir=rtl] .nav .nav>.active>.nav>.active>a{padding-right:38px}.markdown-body{font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica Neue,Helvetica,Roboto,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol}html[lang^=ja] .markdown-body{font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica Neue,Helvetica,Roboto,Arial,Hiragino Kaku Gothic Pro,ヒラギノ角ゴ Pro W3,Osaka,Meiryo,メイリオ,MS Gothic,ＭＳ ゴシック,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol}html[lang=zh-tw] .markdown-body{font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica Neue,Helvetica,Roboto,Arial,PingFang TC,Microsoft JhengHei,微軟正黑,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol}html[lang=zh-cn] .markdown-body{font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica Neue,Helvetica,Roboto,Arial,PingFang SC,Microsoft YaHei,微软雅黑,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol}html .markdown-body[lang^=ja]{font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica Neue,Helvetica,Roboto,Arial,Hiragino Kaku Gothic Pro,ヒラギノ角ゴ Pro W3,Osaka,Meiryo,メイリオ,MS Gothic,ＭＳ ゴシック,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol}html .markdown-body[lang=zh-tw]{font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica Neue,Helvetica,Roboto,Arial,PingFang TC,Microsoft JhengHei,微軟正黑,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol}html .markdown-body[lang=zh-cn]{font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica Neue,Helvetica,Roboto,Arial,PingFang SC,Microsoft YaHei,微软雅黑,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol}html[lang^=ja] .ui-toc-dropdown{font-family:Source Sans Pro,Helvetica,Arial,Meiryo UI,MS PGothic,ＭＳ Ｐゴシック,sans-serif}html[lang=zh-tw] .ui-toc-dropdown{font-family:Source Sans Pro,Helvetica,Arial,Microsoft JhengHei UI,微軟正黑UI,sans-serif}html[lang=zh-cn] .ui-toc-dropdown{font-family:Source Sans Pro,Helvetica,Arial,Microsoft YaHei UI,微软雅黑UI,sans-serif}html .ui-toc-dropdown[lang^=ja]{font-family:Source Sans Pro,Helvetica,Arial,Meiryo UI,MS PGothic,ＭＳ Ｐゴシック,sans-serif}html .ui-toc-dropdown[lang=zh-tw]{font-family:Source Sans Pro,Helvetica,Arial,Microsoft JhengHei UI,微軟正黑UI,sans-serif}html .ui-toc-dropdown[lang=zh-cn]{font-family:Source Sans Pro,Helvetica,Arial,Microsoft YaHei UI,微软雅黑UI,sans-serif}.ui-affix-toc{max-height:70vh;max-width:15vw;overflow:auto;position:fixed;top:0}.back-to-top,.expand-toggle,.go-to-bottom{color:#999;display:block;font-size:12px;font-weight:500;margin-left:10px;margin-top:10px;padding:4px 10px}.back-to-top:focus,.back-to-top:hover,.expand-toggle:focus,.expand-toggle:hover,.go-to-bottom:focus,.go-to-bottom:hover{color:#563d7c;text-decoration:none}.back-to-top,.go-to-bottom{margin-top:0}.ui-user-icon{background-position:50%;background-repeat:no-repeat;background-size:cover;border-radius:50%;display:block;height:20px;margin-bottom:2px;margin-right:5px;margin-top:2px;width:20px}.ui-user-icon.small{display:inline-block;height:18px;margin:0 0 .2em;vertical-align:middle;width:18px}.ui-infobar>small>span{line-height:22px}.ui-infobar>small .dropdown{display:inline-block}.ui-infobar>small .dropdown a:focus,.ui-infobar>small .dropdown a:hover{text-decoration:none}.ui-more-info{color:#888;cursor:pointer;vertical-align:middle}.ui-more-info .fa{font-size:16px}.ui-connectedGithub,.ui-published-note{color:#888}.ui-connectedGithub{line-height:23px;white-space:nowrap}.ui-connectedGithub a.file-path{color:#888;padding-left:22px;text-decoration:none}.ui-connectedGithub a.file-path:active,.ui-connectedGithub a.file-path:hover{color:#888;text-decoration:underline}.ui-connectedGithub .fa{font-size:20px}.ui-published-note .fa{font-size:20px;vertical-align:top}.unselectable{-webkit-user-select:none;-o-user-select:none;user-select:none}.selectable{-webkit-user-select:text;-o-user-select:text;user-select:text}.inline-spoiler-section{cursor:pointer}.inline-spoiler-section .spoiler-text{background-color:#333;border-radius:2px}.inline-spoiler-section .spoiler-text>*{opacity:0}.inline-spoiler-section .spoiler-img{filter:blur(10px)}.inline-spoiler-section.raw{background-color:#333;border-radius:2px}.inline-spoiler-section.raw>*{opacity:0}.inline-spoiler-section.unveil{cursor:auto}.inline-spoiler-section.unveil .spoiler-text{background-color:#3333331a}.inline-spoiler-section.unveil .spoiler-text>*{opacity:1}.inline-spoiler-section.unveil .spoiler-img{filter:none}@media print{blockquote,div,img,pre,table{page-break-inside:avoid!important}a[href]:after{font-size:12px!important}}.markdown-body.slides{color:#222;position:relative;z-index:1}.markdown-body.slides:before{background-color:currentColor;bottom:0;box-shadow:0 0 0 50vw;content:"";display:block;left:0;position:absolute;right:0;top:0;z-index:-1}.markdown-body.slides section[data-markdown]{background-color:#fff;margin-bottom:1.5em;position:relative;text-align:center}.markdown-body.slides section[data-markdown] code{text-align:left}.markdown-body.slides section[data-markdown]:before{content:"";display:block;padding-bottom:56.23%}.markdown-body.slides section[data-markdown]>div:first-child{left:1em;max-height:100%;overflow:hidden;position:absolute;right:1em;top:50%;transform:translateY(-50%)}.markdown-body.slides section[data-markdown]>ul{display:inline-block}.markdown-body.slides>section>section+section:after{border:3px solid #777;content:"";height:1.5em;position:absolute;right:1em;top:-1.5em}.site-ui-font{font-family:Source Sans Pro,Helvetica,Arial,sans-serif}html[lang^=ja] .site-ui-font{font-family:Source Sans Pro,Helvetica,Arial,Hiragino Kaku Gothic Pro,ヒラギノ角ゴ Pro W3,Osaka,Meiryo,メイリオ,MS Gothic,ＭＳ ゴシック,sans-serif}html[lang=zh-tw] .site-ui-font{font-family:Source Sans Pro,Helvetica,Arial,PingFang TC,Microsoft JhengHei,微軟正黑,sans-serif}html[lang=zh-cn] .site-ui-font{font-family:Source Sans Pro,Helvetica,Arial,PingFang SC,Microsoft YaHei,微软雅黑,sans-serif}body{font-smoothing:subpixel-antialiased!important;-webkit-font-smoothing:subpixel-antialiased!important;-moz-osx-font-smoothing:auto!important;-webkit-overflow-scrolling:touch;font-family:Source Sans Pro,Helvetica,Arial,sans-serif;letter-spacing:.025em}html[lang^=ja] body{font-family:Source Sans Pro,Helvetica,Arial,Hiragino Kaku Gothic Pro,ヒラギノ角ゴ Pro W3,Osaka,Meiryo,メイリオ,MS Gothic,ＭＳ ゴシック,sans-serif}html[lang=zh-tw] body{font-family:Source Sans Pro,Helvetica,Arial,PingFang TC,Microsoft JhengHei,微軟正黑,sans-serif}html[lang=zh-cn] body{font-family:Source Sans Pro,Helvetica,Arial,PingFang SC,Microsoft YaHei,微软雅黑,sans-serif}abbr[title]{border-bottom:none;text-decoration:underline;-webkit-text-decoration:underline dotted;text-decoration:underline dotted}abbr[data-original-title],abbr[title]{cursor:help}body.modal-open{overflow-y:auto;padding-right:0!important}svg{text-shadow:none}
+    </style>
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    	<script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js" integrity="sha256-3Jy/GbSLrg0o9y5Z5n1uw0qxZECH7C6OQpVBgNFYa0g=" crossorigin="anonymous"></script>
+    	<script src="https://cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.min.js" integrity="sha256-g6iAfvZp+nDQ2TdTR/VVKJf3bGro4ub5fvWSWVRi2NE=" crossorigin="anonymous"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/es5-shim/4.5.9/es5-shim.min.js" integrity="sha256-8E4Is26QH0bD52WoQpcB+R/tcWQtpzlCojrybUd7Mxo=" crossorigin="anonymous"></script>
+    <![endif]-->
+</head>
+
+<body>
+    <div id="doc" class="markdown-body container-fluid comment-enabled" data-hard-breaks="true"><h1 id="Lab-7-Processes-and-signals" data-id="Lab-7-Processes-and-signals"><a class="anchor hidden-xs" href="#Lab-7-Processes-and-signals" title="Lab-7-Processes-and-signals"><span class="octicon octicon-link"></span></a><span>Lab 7: Processes and signals</span></h1><h2 id="Exercise-1-Managing-processes" data-id="Exercise-1-Managing-processes"><a class="anchor hidden-xs" href="#Exercise-1-Managing-processes" title="Exercise-1-Managing-processes"><span class="octicon octicon-link"></span></a><span>Exercise 1: Managing processes</span></h2><h3 id="Task-1-Process-id-and-jobs" data-id="Task-1-Process-id-and-jobs"><a class="anchor hidden-xs" href="#Task-1-Process-id-and-jobs" title="Task-1-Process-id-and-jobs"><span class="octicon octicon-link"></span></a><span>Task 1: Process id and jobs</span></h3><ul>
+<li><span>We will start a few processes and manage them through the command line. Open a command shell and change directory to your home. Start the top command and put it into the background. Use </span><code>&amp;</code><span> to put the process in the background</span><pre><code>$ top &amp;
+</code></pre>
+</li>
+<li><span>Then start a background process called </span><code>yes</code><span> and redirect its out to </span><code>/dev/null</code><span> (the bit bucket).</span><pre><code>$ yes &gt; /dev/null &amp;
+</code></pre>
+</li>
+<li><span>Now let’s start an </span><code>md5sum</code><span> process to calculate the md5 hash of the first drive on the system. Notice how this hangs the prompt; it should take a long time to complete this task.</span><pre><code>$ md5sum /dev/sda
+</code></pre>
+</li>
+<li><span>Let’s stop the process and background it. To stop the process push </span><code>CTRL+Z</code><span>.</span></li>
+<li><span>Now restart the job in the background. To see the jobs numbers use the following. You can mention that </span><code>top</code><span> process also was stopped in the background</span><pre><code>$ jobs
+</code></pre>
+</li>
+</ul><blockquote>
+<p><span>Starting full screen programs like “nano” or “top” in background are immediately stopped (by a SIGTTIN signal - when they try to read from the tty, or by a SIGTTOU signal, when try to change the tty parameters). Many programs handle that badly.</span><br>
+<span>About tty and signals: </span><a href="http://www.linusakesson.net/programming/tty/index.php" target="_blank" rel="noopener"><span>http://www.linusakesson.net/programming/tty/index.php</span></a></p>
+</blockquote><ul>
+<li><span>Identify </span><code>id</code><span> number of the job </span><code>md5sum</code><span> from the previous command and point it with </span><code>bg</code><span> command</span><pre><code>$ bg 3
+</code></pre>
+</li>
+<li><span>Now list the current jobs running and stopped, see the changes</span><pre><code>$ jobs
+</code></pre>
+</li>
+<li><span>We can bring specific job also to the terminal screen. Afterwards you can terminate the process by </span><code>CTRL+C</code><pre><code>$ fg 3
+</code></pre>
+</li>
+</ul><blockquote>
+<p><code>CTRL+C</code><span> – sends to a process by its controlling terminal (by the TTY driver) SIGINT signal to the current foreground job.</span></p>
+</blockquote><ul>
+<li><span>To list the process IDs of the current processes running in the current shell</span><pre><code>$ ps
+</code></pre>
+</li>
+<li><span>The fundamental way of controlling processes in Linux is by sending signals to them. There are multiple signals that you can send to a process, to view all the signals run</span><pre><code>$ kill -l
+</code></pre>
+</li>
+<li><span>Identify the process ID for the </span><code>yes</code><span> process, in this example its ID is </span><code>27522</code><span>. To kill this process with a SIGTERM (-15)</span><pre><code>$ kill 27522
+</code></pre>
+</li>
+<li><span>If that failed, you can use a SIGKILL (-9)</span><pre><code>$ kill -9 27522
+</code></pre>
+</li>
+<li><span>To list all process running on the system, issue the following command</span><pre><code>$ ps -ef
+</code></pre>
+</li>
+<li><span>To find the process ID of a specific process named </span><code>bash</code><pre><code>$ ps -ef | grep bash
+</code></pre>
+</li>
+<li><span>Another useful command is the pstree command which shows a tree structure of the cascading process IDs (-p).</span><pre><code>$ pstree -p
+</code></pre>
+</li>
+<li><span>When you press the </span><code>CTRL+C</code><span> or Break key at your terminal during execution of a shell program, normally that program is immediately terminated, and your command prompt returns. This may not always be desirable. For instance, you may end up leaving a bunch of temporary files that won’t get cleaned up.</span></li>
+<li><span>Trapping these signals is quite easy, and the trap command has the following syntax:</span><pre><code>trap "commands" signals
+</code></pre>
+<span>Here command can be any valid Unix command, or even a user-defined function, and signal can be a list of any number of signals you want to trap.</span><br>
+<span>There are two common uses for trap in shell scripts:</span>
+<ul>
+<li><span>Clean up temporary files</span></li>
+<li><span>Ignore signals</span></li>
+</ul>
+</li>
+<li><span>Let’s create a script with a trap </span><code>SIGINT</code><span>. Save the script as </span><code>sleeper.sh</code><pre><code class="bash hljs"><div class="wrapper"><div class="gutter linenumber"><span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span></div><div class="code"><span class="hljs-meta">#!/bin/bash</span>
+
+<span class="hljs-built_in">trap</span> <span class="hljs-string">"echo SIGINT encountered, Goodbye forever!"</span> SIGINT
+<span class="hljs-built_in">echo</span> Hello, I am now going to <span class="hljs-built_in">sleep</span>
+<span class="hljs-built_in">sleep</span> infinity
+</div></div></code></pre>
+<blockquote>
+<p><span>The command to execute when the trap is encountered must be in quotes.</span></p>
+</blockquote>
+</li>
+<li><span>Now run </span><code>sleeper.sh</code><pre><code>$ bash sleeper.sh
+Hello, I am now going to sleep
+</code></pre>
+</li>
+<li><span>Send a </span><code>SIGINT</code><span> by pressing </span><code>CTRL+C</code><span> on the keyboard. You should have the following output:</span><pre><code>$ bash sleeper.sh
+Hello, I am now going to sleep
+^CSIGINT encountered, Goodbye forever!
+</code></pre>
+<blockquote>
+<p><span>Remember, you can also find the process ID and then use </span><code>kill</code><span> to send the signal in the form </span><code>$ kill -signal pid</code></p>
+</blockquote>
+</li>
+<li><span>You can also use trap to ensure the user cannot interrupt the script execution. This feature is important when executing sensitive commands whose interruption may permanently damage the system. The syntax for disabling a signal is:</span><pre><code>trap "command" [signal]
+</code></pre>
+<span>Double quotation marks mean that no command will be executed when the signal is received. For example, to trap the SIGINT and SIGABRT signals, type:</span><pre><code>trap "" SIGINT SIGABRT
+</code></pre>
+</li>
+</ul><h3 id="Task-2-The-proc-file-system" data-id="Task-2-The-proc-file-system"><a class="anchor hidden-xs" href="#Task-2-The-proc-file-system" title="Task-2-The-proc-file-system"><span class="octicon octicon-link"></span></a><span>Task 2: The proc file system</span></h3><p><span>The </span><code>/proc/</code><span> directory — also called the proc file system — contains a hierarchy of special files which represent the current state of the kernel — allowing applications and users to peer into the kernel’s view of the system.</span><br>
+<span>Within the </span><code>/proc/</code><span> directory, one can find a wealth of information detailing the system hardware and any processes currently running. In addition, some of the files within the </span><code>/proc/</code><span> directory tree can be manipulated by users and applications to communicate configuration changes to the kernel.</span></p><ul>
+<li>
+<p><span>You can view the </span><code>/proc/</code><span> virtual files with the command line file readers. For example, view </span><code>/proc/cpuinfo</code></p>
+<pre><code>$ cat /proc/cpuinfo
+</code></pre>
+<p><span>You should receive output similar to the following:</span></p>
+<pre><code>processor	: 0
+vendor_id	: AuthenticAMD
+cpu family	: 25
+model		: 80
+model name	: AMD Ryzen 5 5600H with Radeon Graphics
+stepping	: 0
+microcode	: 0xffffffff
+cpu MHz		: 3293.695
+cache size	: 512 KB
+physical id	: 0
+siblings	: 2
+core id		: 0
+cpu cores	: 2
+apicid		: 0
+initial apicid	: 0
+fpu		: yes
+fpu_exception	: yes
+cpuid level	: 13
+wp		: yes
+</code></pre>
+<p><span>When viewing different virtual files in the </span><code>/proc/</code><span> file system, some of the information is easily understandable while some is not human-readable. This is in part why utilities exist to pull data from virtual files and display it in a useful way. Examples of these utilities include </span><code>lspci</code><span>, </span><code>apm</code><span>, </span><code>free</code><span>, and </span><code>top</code><span>.</span></p>
+</li>
+<li>
+<p><span>Mst virtual files within the </span><code>/proc/</code><span> directory are read-only. However, some can be used to adjust settings in the kernel. This is especially true for files in the </span><code>/proc/sys/</code><span> subdirectory.</span></p>
+</li>
+<li>
+<p><span>To change the value of a virtual file, use the </span><code>echo</code><span> command and redirect (&gt;) the new value to the file. For example, to change the hostname on the fly, type:</span></p>
+<pre><code>echo SNALab7PC &gt; /proc/sys/kernel/hostname 
+</code></pre>
+</li>
+<li>
+<p><span>Other files act as binary or Boolean switches. Typing </span><code>$ cat /proc/sys/net/ipv4/ip_forward</code><span> returns either a 0 or a 1. A </span><code>0</code><span> indicates that the kernel is not forwarding network packets. Using the echo command to change the value of the </span><code>ip_forward</code><span> file to </span><code>1</code><span> immediately turns packet forwarding on.</span></p>
+</li>
+<li>
+<p><span>On multi-user systems, it is often useful to secure the process directories stored in </span><code>/proc/</code><span> so that they can be viewed only by the </span><code>root</code><span> user. You can restrict the access to these directories with the use of the </span><code>hidepid</code><span> option.</span></p>
+</li>
+<li>
+<p><span>To change the file system parameters, you can use the </span><code>mount</code><span> command with the </span><code>-o</code><span> remount option.</span></p>
+<pre><code>$ sudo mount -o remount,hidepid=value /proc
+</code></pre>
+<p><span>Here, value passed to hidepid is one of:</span></p>
+<ul>
+<li><code>0</code><span> (default) — every user can read all world-readable files stored in a process directory.</span></li>
+<li><code>1</code><span> — users can access only their own process directories. This protects the sensitive files like cmdline, sched, or status from access by non-root users. This setting does not affect the actual file permissions.</span></li>
+<li><code>2</code><span> — process files are invisible to non-root users. The existence of a process can be learned by other means, but its effective UID and GID is hidden. Hiding these IDs complicates an intruder’s task of gathering information about running processes.</span></li>
+</ul>
+</li>
+<li>
+<p><span>To make process files accessible only to the root user, type:</span></p>
+<pre><code>$ sudo mount -o remount,hidepid=1 /proc
+</code></pre>
+<p><span>With </span><code>hidepid=1</code><span>, a non-root user cannot access the contents of process directories. An attempt to do so fails with the following message:</span></p>
+<pre><code>$ ls /proc/1/
+ls: /proc/1/: Operation not permitted
+</code></pre>
+<p><span>With hidepid=2 enabled, process directories are made invisible to non-root users:</span></p>
+<pre><code>$ ls /proc/1/       
+ls: /proc/1/: No such file or directory
+</code></pre>
+</li>
+<li>
+<p><span>Also, you can specify a user group that will have access to process files even when </span><code>hidepid</code><span> is set to 1 or 2. To do this, use the gid option.</span></p>
+<pre><code>$ sudo mount -o remount,hidepid=value,gid=gid /proc
+</code></pre>
+<blockquote>
+<p><span>You can find system groups and their respective group IDs in </span><code>/etc/group</code><br>
+<span>Replace </span><code>gid</code><span> with the specific group id. For members of selected group, the process files will act as if </span><code>hidepid</code><span> was set to </span><code>0</code><span>. However, users which are not supposed to monitor the tasks in the whole system should not be added to the group.</span></p>
+</blockquote>
+</li>
+</ul><h3 id="Task-3-top" data-id="Task-3-top"><a class="anchor hidden-xs" href="#Task-3-top" title="Task-3-top"><span class="octicon octicon-link"></span></a><span>Task 3: </span><code>top</code></h3><ul>
+<li><span>Open a command shell run the </span><code>top</code><span> command</span><pre><code>$ top
+</code></pre>
+</li>
+</ul><blockquote>
+<p><span>This opens up a tool that shows the top processes running on your system. This tool can be used to kill processes, renice processes, sort and various other process management. Press the h command to get a list of help.</span><br>
+<span>Read material:</span><br>
+<a href="https://www.guru99.com/managing-processes-in-linux.html" target="_blank" rel="noopener"><span>https://www.guru99.com/managing-processes-in-linux.html</span></a></p>
+</blockquote><ul>
+<li>
+<p><span>By default, top sorts the process list using the %CPU column. To sort processes using a different column, press one of the following keys.</span></p>
+<ul>
+<li><code>M</code><span> Sort by the </span><code>%MEM</code><span> column.</span></li>
+<li><code>N</code><span> Sort by </span><code>PID</code><span> column.</span></li>
+<li><code>T</code><span> Sort by the </span><code>TIME+</code><span> column.</span></li>
+<li><code>P</code><span> Sort by the </span><code>%CPU</code><span> column.</span></li>
+</ul>
+</li>
+<li>
+<p><span>To show the process command line instead of just the process name, press </span><code>c</code><span>.</span></p>
+</li>
+<li>
+<p><span>The filter feature allows using a filter expression to limit which processes to see in the list. Activate the filter option by pressing </span><code>o</code><span>. The program prompts you to enter a filter expression. You can enter the following to filter processes using more than 1% CPU.</span></p>
+<pre><code>%CPU&gt;1.0
+</code></pre>
+</li>
+<li>
+<p><span>Clear the filters by pressing </span><code>=</code></p>
+</li>
+<li>
+<p><span>To filter processes by a specific user, specify the </span><code>-u</code><span> option when you run the top command</span></p>
+<pre><code>$ top -u root
+</code></pre>
+</li>
+<li>
+<p><span>The first five lines of the output show some useful statistics</span><br>
+<img src="https://i.imgur.com/LKULGZE.png" alt="" loading="lazy"></p>
+<ul>
+<li><code>top</code><span> displays uptime information</span></li>
+<li><code>Tasks</code><span> displays process status information</span></li>
+<li><code>%Cpu(s)</code><span> displays various processor values</span></li>
+<li><code>MiB Mem</code><span> displays physical memory utilization</span></li>
+<li><code>MiB Swap</code><span> displays virtual memory utilization</span></li>
+</ul>
+</li>
+</ul><p><strong><span>Uptime</span></strong><br>
+<span>Top’s first line, </span><code>top</code><span>, shows the same information as the uptime command. The first value is the system time. The second value represents how long the system has been up and running, while the third value indicates the current number of users on the system. The final values are the load average for the system.</span></p><p><span>The load average is broken down into three time increments. The first shows the load for the last one minute, the second for the last five minutes, and the final value for the last 15 minutes. The results are a percentage of CPU load between 0 and 1.0. The processor is likely overworked if 1.0 (or higher) is displayed.</span></p><pre><code>top - 00:49:59 up 1 day, 12:12,  3 users,  load average: 0,63, 0,66, 0,64
+</code></pre><p><strong><span>Tasks</span></strong><br>
+<span>The second line is the </span><code>Tasks</code><span> output, and it’s broken down into five states. These five states display the status of processes on the system:</span></p><ul>
+<li><code>total</code><span> shows the sum of the processes from any state.</span></li>
+<li><code>running</code><span> shows how many processes are handling requests, executing normally, and have CPU access.</span></li>
+<li><code>sleeping</code><span> indicates processes awaiting resources, which is a normal state.</span></li>
+<li><code>stopped</code><span> reports processes exiting and releasing resources; these send a termination message to the parent process.</span></li>
+<li><code>zombie</code><span> refers to a process waiting for its parent process to release it; it may become orphaned if the parent exits first.</span><br>
+<span>Zombie processes usually mean an application or service didn’t exit gracefully. A few zombie processes on a long-running system are not usually a problem.</span></li>
+</ul><pre><code>Tasks: 386 total,   1 running, 384 sleeping,   1 stopped,   0 zombie
+</code></pre><p><strong><span>%Cpu(s)</span></strong><br>
+<span>Values related to processor utilization are displayed on the third line. They provide insight into exactly what the CPUs are doing.</span></p><ul>
+<li><code>us</code><span> is the percent of time spent running user processes.</span></li>
+<li><code>sy</code><span> is the percent of time spent running the kernel.</span></li>
+<li><code>ni</code><span> is the percent of time spent running processes with manually configured nice values.</span></li>
+<li><code>id</code><span> is the percent of time idle (if high, CPU may be overworked).</span></li>
+<li><code>wa</code><span> is the percent of wait time (if high, CPU is waiting for I/O access).</span></li>
+<li><code>hi</code><span> is the percent of time managing hardware interrupts.</span></li>
+<li><code>si</code><span> is the percent of time managing software interrupts.</span></li>
+<li><code>st</code><span> is the percent of virtual CPU time waiting for access to physical CPU.</span><br>
+<span>Values such as </span><code>id</code><span>, </span><code>wa</code><span>, and </span><code>st</code><span> help identify whether the system is overworked.</span></li>
+</ul><pre><code>%Cpu(s):  4,1 us,  0,4 sy,  0,0 ni, 95,3 id,  0,0 wa,  0,0 hi,  0,1 si,  0,0 st
+</code></pre><p><strong><span>MiB Memory</span></strong><br>
+<span>The final two lines of top’s output provide information on memory utilization. The first line—</span><code>MiB Mem</code><span>—displays physical memory utilization. This value is based on the total amount of physical RAM installed on the system.</span></p><pre><code>MiB Mem :  15967,8 total,    260,9 free,   2749,7 used,  12957,2 buff/cache
+</code></pre><blockquote>
+<p><span>Note: The term mebibyte (and similar units, such as kibibytes and gibibytes) differs slightly from measurements such as megabytes. Mebibytes are based on 1024 units, and megabytes are based on 1000 units (decimal). Most users are familiar with the decimal measurement, but it is not as accurate as the binary form. The top utility reports memory consumption in decimal.</span></p>
+<ul>
+<li><code>total</code><span> shows total installed memory.</span></li>
+<li><code>free</code><span> shows available memory.</span></li>
+<li><code>used</code><span> shows consumed memory.</span></li>
+<li><code>buff/cache</code><span> shows the amount of information buffered to be written.</span></li>
+</ul>
+</blockquote><p><strong><span>MiB Swap</span></strong><br>
+<span>Linux can take advantage of virtual memory when physical memory space is consumed by borrowing storage space from storage disks. The process of swapping data back and forth between physical RAM and storage drives is time-consuming and uses system resources, so it’s best to minimize the use of virtual memory.</span></p><pre><code>MiB Swap:   2048,0 total,   2047,5 free,      0,5 used.  12739,8 avail Mem
+</code></pre><ul>
+<li><code>total</code><span> shows total swap space.</span></li>
+<li><code>free</code><span> shows available swap space.</span></li>
+<li><code>used</code><span> shows consumed swap space.</span></li>
+<li><code>buff/cache</code><span> shows the amount of information cached for future reads.</span></li>
+</ul><p><span>In general, a high amount of swap utilization indicates the system does not have enough memory installed for its tasks. The solution is to either increase RAM or decrease the workload.</span></p><h3 id="Task-4-free" data-id="Task-4-free"><a class="anchor hidden-xs" href="#Task-4-free" title="Task-4-free"><span class="octicon octicon-link"></span></a><span>Task 4: </span><code>free</code></h3><p><code>free</code><span> is a popular command used by system administrators on Unix/Linux platforms. It’s a powerful tool that gives insight into the memory usage in human-readable format.</span><br>
+<span>The man page for this command states that free displays the total amount of free and used memory on the system, including physical and swap space, as well as the buffers and caches used by the kernel. The information is gathered by parsing </span><code>/proc/meminfo</code><span>.</span></p><ul>
+<li><span>Run </span><code>free</code><span> with the </span><code>-h</code><span> option for human-readable output</span><pre><code>free -h
+               total        used        free      shared  buff/cache   available
+Mem:            15Gi       2,7Gi       265Mi       149Mi        12Gi        12Gi
+Swap:          2,0Gi       0,0Ki       2,0Gi
+
+</code></pre>
+</li>
+<li><code>free</code><span> provides options to display amount of memory in various units. free </span><code>-b</code><span>, </span><code>-k</code><span>, </span><code>-m</code><span>, </span><code>-g</code><span> display the amount of memory in bytes, kilobytes, megabytes, gigabytes respectively.</span></li>
+<li><span>The various columns, displayed by the various releases above, seek to identify the Total, used, free, shared memory. It also seeks to display the memory held in cache and buffers as well.</span></li>
+</ul><h2 id="Questions-to-answer" data-id="Questions-to-answer"><a class="anchor hidden-xs" href="#Questions-to-answer" title="Questions-to-answer"><span class="octicon octicon-link"></span></a><span>Questions to answer</span></h2><ol>
+<li><span>What are zombie processes? How can you find and kill them?</span></li>
+<li><span>What are the differences between </span><code>kill</code><span>, </span><code>killall</code><span>, and </span><code>pkill</code><span>?</span></li>
+<li><span>Run the </span><code>top</code><span> command on your system and annotate the data in the </span><code>Tasks</code><span> and </span><code>%Cpu(s)</code><span> lines of your output. Provide single sentence explanations for each of the data presented in these two lines.</span></li>
+<li><span>Execute the following bash command:</span><pre><code class="bash hljs">$ bash -c <span class="hljs-string">"exec -a fun<span class="hljs-variable">${RANDOM}</span>process sleep infinity"</span> &amp;
+</code></pre>
+<ul>
+<li><span>Assume that there are multiple of such processes. To simulate this, you can run the command more than once.</span></li>
+<li><span>Write a bash script that will locate and kill all the processes created by this command.</span></li>
+<li><span>Display status messages when one of such processes is found, and when the process is killed. Additionally, display a message when the process is not found.</span></li>
+<li><span>Your script should work on any machine it is executed on.</span></li>
+<li><span>Be extremely careful and be as accurate as possible when finding this process. You don’t want to kill the wrong process.</span></li>
+</ul>
+<blockquote>
+<p><span>Show test results in the form of screenshots.</span></p>
+</blockquote>
+</li>
+<li><span>Write a bash script that loops infinitely and prints “Hello world!” every ten seconds. It should print “Interrupt received” when it receives </span><code>SIGUSR1</code><span>.</span>
+<ul>
+<li><span>Show the script in the report, and show how you’re sending the signal to it.</span></li>
+</ul>
+</li>
+<li><span>Write a bash script to monitor CPU usage, memory usage, and disk space usage.</span>
+<ul>
+<li><span>For testing purposes, the check should execute every 15 seconds.</span></li>
+<li><span>The usage statistics should be saved to a log file </span><code>/var/log/system_utilization.log</code><span>.</span></li>
+<li><span>One line of log should contain the timestamp, the % of CPU in use, the % of memory in use, and the % of disk space used.</span></li>
+<li><span>The log should contain descriptive information that will make it easy to understand.</span></li>
+</ul>
+<blockquote>
+<p><span>Show log samples created by this service in your report.</span></p>
+</blockquote>
+</li>
+</ol></div>
+    <div class="ui-toc dropup unselectable hidden-print" style="display:none;">
+        <div class="pull-right dropdown">
+            <a id="tocLabel" class="ui-toc-label btn btn-default" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" title="Table of content">
+                <i class="fa fa-bars"></i>
+            </a>
+            <ul id="ui-toc" class="ui-toc-dropdown dropdown-menu" aria-labelledby="tocLabel">
+                <div class="toc"><ul class="nav">
+<li><a href="#Lab-7-Processes-and-signals" title="Lab 7: Processes and signals">Lab 7: Processes and signals</a><ul class="nav">
+<li><a href="#Exercise-1-Managing-processes" title="Exercise 1: Managing processes">Exercise 1: Managing processes</a><ul class="nav">
+<li><a href="#Task-1-Process-id-and-jobs" title="Task 1: Process id and jobs">Task 1: Process id and jobs</a></li>
+<li><a href="#Task-2-The-proc-file-system" title="Task 2: The proc file system">Task 2: The proc file system</a></li>
+<li><a href="#Task-3-top" title="Task 3: top">Task 3: top</a></li>
+<li><a href="#Task-4-free" title="Task 4: free">Task 4: free</a></li>
+</ul>
+</li>
+<li><a href="#Questions-to-answer" title="Questions to answer">Questions to answer</a></li>
+</ul>
+</li>
+</ul>
+</div><div class="toc-menu"><a class="expand-toggle" href="#">Expand all</a><a class="back-to-top" href="#">Back to top</a><a class="go-to-bottom" href="#">Go to bottom</a></div>
+            </ul>
+        </div>
+    </div>
+    <div id="ui-toc-affix" class="ui-affix-toc ui-toc-dropdown unselectable hidden-print" data-spy="affix" style="top:17px;display:none;" null null>
+        <div class="toc"><ul class="nav">
+<li><a href="#Lab-7-Processes-and-signals" title="Lab 7: Processes and signals">Lab 7: Processes and signals</a><ul class="nav">
+<li><a href="#Exercise-1-Managing-processes" title="Exercise 1: Managing processes">Exercise 1: Managing processes</a><ul class="nav">
+<li><a href="#Task-1-Process-id-and-jobs" title="Task 1: Process id and jobs">Task 1: Process id and jobs</a></li>
+<li><a href="#Task-2-The-proc-file-system" title="Task 2: The proc file system">Task 2: The proc file system</a></li>
+<li><a href="#Task-3-top" title="Task 3: top">Task 3: top</a></li>
+<li><a href="#Task-4-free" title="Task 4: free">Task 4: free</a></li>
+</ul>
+</li>
+<li><a href="#Questions-to-answer" title="Questions to answer">Questions to answer</a></li>
+</ul>
+</li>
+</ul>
+</div><div class="toc-menu"><a class="expand-toggle" href="#">Expand all</a><a class="back-to-top" href="#">Back to top</a><a class="go-to-bottom" href="#">Go to bottom</a></div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gist-embed/2.6.0/gist-embed.min.js" integrity="sha256-KyF2D6xPIJUW5sUDSs93vWyZm+1RzIpKCexxElmxl8g=" crossorigin="anonymous" defer></script>
+    <script>
+        var markdown = $(".markdown-body");
+        //smooth all hash trigger scrolling
+        function smoothHashScroll() {
+            var hashElements = $("a[href^='#']").toArray();
+            for (var i = 0; i < hashElements.length; i++) {
+                var element = hashElements[i];
+                var $element = $(element);
+                var hash = element.hash;
+                if (hash) {
+                    $element.on('click', function (e) {
+                        // store hash
+                        var hash = this.hash;
+                        if ($(hash).length <= 0) return;
+                        // prevent default anchor click behavior
+                        e.preventDefault();
+                        // animate
+                        $('body, html').stop(true, true).animate({
+                            scrollTop: $(hash).offset().top
+                        }, 100, "linear", function () {
+                            // when done, add hash to url
+                            // (default click behaviour)
+                            window.location.hash = hash;
+                        });
+                    });
+                }
+            }
+        }
+
+        smoothHashScroll();
+        var toc = $('.ui-toc');
+        var tocAffix = $('.ui-affix-toc');
+        var tocDropdown = $('.ui-toc-dropdown');
+        //toc
+        tocDropdown.click(function (e) {
+            e.stopPropagation();
+        });
+
+        var enoughForAffixToc = true;
+
+        function generateScrollspy() {
+            $(document.body).scrollspy({
+                target: ''
+            });
+            $(document.body).scrollspy('refresh');
+            if (enoughForAffixToc) {
+                toc.hide();
+                tocAffix.show();
+            } else {
+                tocAffix.hide();
+                toc.show();
+            }
+            $(document.body).scroll();
+        }
+
+        function windowResize() {
+            //toc right
+            var paddingRight = parseFloat(markdown.css('padding-right'));
+            var right = ($(window).width() - (markdown.offset().left + markdown.outerWidth() - paddingRight));
+            toc.css('right', right + 'px');
+            //affix toc left
+            var newbool;
+            var rightMargin = (markdown.parent().outerWidth() - markdown.outerWidth()) / 2;
+            //for ipad or wider device
+            if (rightMargin >= 133) {
+                newbool = true;
+                var affixLeftMargin = (tocAffix.outerWidth() - tocAffix.width()) / 2;
+                var left = markdown.offset().left + markdown.outerWidth() - affixLeftMargin;
+                tocAffix.css('left', left + 'px');
+            } else {
+                newbool = false;
+            }
+            if (newbool != enoughForAffixToc) {
+                enoughForAffixToc = newbool;
+                generateScrollspy();
+            }
+        }
+        $(window).resize(function () {
+            windowResize();
+        });
+        $(document).ready(function () {
+            windowResize();
+            generateScrollspy();
+        });
+
+        //remove hash
+        function removeHash() {
+            window.location.hash = '';
+        }
+
+        var backtotop = $('.back-to-top');
+        var gotobottom = $('.go-to-bottom');
+
+        backtotop.click(function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+            if (scrollToTop)
+                scrollToTop();
+            removeHash();
+        });
+        gotobottom.click(function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+            if (scrollToBottom)
+                scrollToBottom();
+            removeHash();
+        });
+
+        var toggle = $('.expand-toggle');
+        var tocExpand = false;
+
+        checkExpandToggle();
+        toggle.click(function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+            tocExpand = !tocExpand;
+            checkExpandToggle();
+        })
+
+        function checkExpandToggle () {
+            var toc = $('.ui-toc-dropdown .toc');
+            var toggle = $('.expand-toggle');
+            if (!tocExpand) {
+                toc.removeClass('expand');
+                toggle.text('Expand all');
+            } else {
+                toc.addClass('expand');
+                toggle.text('Collapse all');
+            }
+        }
+
+        function scrollToTop() {
+            $('body, html').stop(true, true).animate({
+                scrollTop: 0
+            }, 100, "linear");
+        }
+
+        function scrollToBottom() {
+            $('body, html').stop(true, true).animate({
+                scrollTop: $(document.body)[0].scrollHeight
+            }, 100, "linear");
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="mobile-web-app-capable" content="yes">
+    <title>
+        Lab 11: System time and Package managers - HackMD
+    </title>
+    <link rel="icon" type="image/png" href="https://hackmd.io/favicon.png">
+    <link rel="apple-touch-icon" href="https://hackmd.io/apple-touch-icon.png">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css" integrity="sha256-3iu9jgsy9TpTwXKb7bNQzqWekRX7pPK+2OLj3R922fo=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/octicons/3.5.0/octicons.min.css" integrity="sha256-QiWfLIsCT02Sdwkogf6YMiQlj4NE84MKkzEMkZnMGdg=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.5.1/themes/prism.min.css" integrity="sha256-vtR0hSWRc3Tb26iuN2oZHt3KRUomwTufNIf5/4oeCyg=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@hackmd/emojify.js@2.1.0/dist/css/basic/emojify.min.css" integrity="sha256-UOrvMOsSDSrW6szVLe8ZDZezBxh5IoIfgTwdNDgTjiU=" crossorigin="anonymous" />
+    <style>
+        @import url(https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i|Source+Code+Pro:300,400,500|Source+Sans+Pro:300,300i,400,400i,600,600i|Source+Serif+Pro&subset=latin-ext);.hljs{background:#fff;color:#333;display:block;overflow-x:auto;padding:.5em}.hljs-comment,.hljs-meta{color:#969896}.hljs-emphasis,.hljs-quote,.hljs-string,.hljs-strong,.hljs-template-variable,.hljs-variable{color:#df5000}.hljs-keyword,.hljs-selector-tag,.hljs-type{color:#a71d5d}.hljs-attribute,.hljs-bullet,.hljs-literal,.hljs-number,.hljs-symbol{color:#0086b3}.hljs-built_in,.hljs-builtin-name{color:#005cc5}.hljs-name,.hljs-section{color:#63a35c}.hljs-tag{color:#333}.hljs-attr,.hljs-selector-attr,.hljs-selector-class,.hljs-selector-id,.hljs-selector-pseudo,.hljs-title{color:#795da3}.hljs-addition{background-color:#eaffea;color:#55a532}.hljs-deletion{background-color:#ffecec;color:#bd2c00}.hljs-link{text-decoration:underline}.markdown-body{word-wrap:break-word;font-size:16px;line-height:1.5}.markdown-body:after,.markdown-body:before{content:"";display:table}.markdown-body:after{clear:both}.markdown-body>:first-child{margin-top:0!important}.markdown-body>:last-child{margin-bottom:0!important}.markdown-body a:not([href]){color:inherit;text-decoration:none}.markdown-body .absent{color:#c00}.markdown-body .anchor{float:left;line-height:1;margin-left:-20px;padding-right:4px}.markdown-body .anchor:focus{outline:none}.markdown-body blockquote,.markdown-body dl,.markdown-body ol,.markdown-body p,.markdown-body pre,.markdown-body table,.markdown-body ul{margin-bottom:16px;margin-top:0}.markdown-body hr{background-color:#e7e7e7;border:0;height:.25em;margin:24px 0;padding:0}.markdown-body blockquote{border-left:.25em solid #ddd;color:#777;font-size:16px;padding:0 1em}.markdown-body blockquote>:first-child{margin-top:0}.markdown-body blockquote>:last-child{margin-bottom:0}.markdown-body kbd,.popover kbd{background-color:#fcfcfc;border:1px solid;border-color:#ccc #ccc #bbb;border-radius:3px;box-shadow:inset 0 -1px 0 #bbb;color:#555;display:inline-block;font-size:11px;line-height:10px;padding:3px 5px;vertical-align:middle}.markdown-body .loweralpha{list-style-type:lower-alpha}.markdown-body h1,.markdown-body h2,.markdown-body h3,.markdown-body h4,.markdown-body h5,.markdown-body h6{font-weight:600;line-height:1.25;margin-bottom:16px;margin-top:24px}.markdown-body h1 .octicon-link,.markdown-body h2 .octicon-link,.markdown-body h3 .octicon-link,.markdown-body h4 .octicon-link,.markdown-body h5 .octicon-link,.markdown-body h6 .octicon-link{color:#000;vertical-align:middle;visibility:hidden}.markdown-body h1:hover .anchor,.markdown-body h2:hover .anchor,.markdown-body h3:hover .anchor,.markdown-body h4:hover .anchor,.markdown-body h5:hover .anchor,.markdown-body h6:hover .anchor{text-decoration:none}.markdown-body h1:hover .anchor .octicon-link,.markdown-body h2:hover .anchor .octicon-link,.markdown-body h3:hover .anchor .octicon-link,.markdown-body h4:hover .anchor .octicon-link,.markdown-body h5:hover .anchor .octicon-link,.markdown-body h6:hover .anchor .octicon-link{visibility:visible}.markdown-body h1 code,.markdown-body h1 tt,.markdown-body h2 code,.markdown-body h2 tt,.markdown-body h3 code,.markdown-body h3 tt,.markdown-body h4 code,.markdown-body h4 tt,.markdown-body h5 code,.markdown-body h5 tt,.markdown-body h6 code,.markdown-body h6 tt{font-size:inherit}.markdown-body h1{font-size:2em}.markdown-body h1,.markdown-body h2{border-bottom:1px solid #eee;padding-bottom:.3em}.markdown-body h2{font-size:1.5em}.markdown-body h3{font-size:1.25em}.markdown-body h4{font-size:1em}.markdown-body h5{font-size:.875em}.markdown-body h6{color:#777;font-size:.85em}.markdown-body ol,.markdown-body ul{padding-left:2em}.markdown-body ol.no-list,.markdown-body ul.no-list{list-style-type:none;padding:0}.markdown-body ol ol,.markdown-body ol ul,.markdown-body ul ol,.markdown-body ul ul{margin-bottom:0;margin-top:0}.markdown-body li>p{margin-top:16px}.markdown-body li+li{padding-top:.25em}.markdown-body dl{padding:0}.markdown-body dl dt{font-size:1em;font-style:italic;font-weight:700;margin-top:16px;padding:0}.markdown-body dl dd{margin-bottom:16px;padding:0 16px}.markdown-body table{display:block;overflow:auto;width:100%;word-break:normal;word-break:keep-all}.markdown-body table th{font-weight:700}.markdown-body table td,.markdown-body table th{border:1px solid #ddd;padding:6px 13px}.markdown-body table tr{background-color:#fff;border-top:1px solid #ccc}.markdown-body table tr:nth-child(2n){background-color:#f8f8f8}.markdown-body img{background-color:#fff;box-sizing:initial;max-width:100%}.markdown-body img[align=right]{padding-left:20px}.markdown-body img[align=left]{padding-right:20px}.markdown-body .emoji{background-color:initial;max-width:none;vertical-align:text-top}.markdown-body span.frame{display:block;overflow:hidden}.markdown-body span.frame>span{border:1px solid #ddd;display:block;float:left;margin:13px 0 0;overflow:hidden;padding:7px;width:auto}.markdown-body span.frame span img{display:block;float:left}.markdown-body span.frame span span{clear:both;color:#333;display:block;padding:5px 0 0}.markdown-body span.align-center{clear:both;display:block;overflow:hidden}.markdown-body span.align-center>span{display:block;margin:13px auto 0;overflow:hidden;text-align:center}.markdown-body span.align-center span img{margin:0 auto;text-align:center}.markdown-body span.align-right{clear:both;display:block;overflow:hidden}.markdown-body span.align-right>span{display:block;margin:13px 0 0;overflow:hidden;text-align:right}.markdown-body span.align-right span img{margin:0;text-align:right}.markdown-body span.float-left{display:block;float:left;margin-right:13px;overflow:hidden}.markdown-body span.float-left span{margin:13px 0 0}.markdown-body span.float-right{display:block;float:right;margin-left:13px;overflow:hidden}.markdown-body span.float-right>span{display:block;margin:13px auto 0;overflow:hidden;text-align:right}.markdown-body code,.markdown-body tt{background-color:#0000000a;border-radius:3px;font-size:85%;margin:0;padding:.2em 0}.markdown-body code:after,.markdown-body code:before,.markdown-body tt:after,.markdown-body tt:before{content:"\00a0";letter-spacing:-.2em}.markdown-body code br,.markdown-body tt br{display:none}.markdown-body del code{text-decoration:inherit}.markdown-body pre{word-wrap:normal}.markdown-body pre>code{background:#0000;border:0;font-size:100%;margin:0;padding:0;white-space:pre;word-break:normal}.markdown-body .highlight{margin-bottom:16px}.markdown-body .highlight pre{margin-bottom:0;word-break:normal}.markdown-body .highlight pre,.markdown-body pre{background-color:#f7f7f7;border-radius:3px;font-size:85%;line-height:1.45;overflow:auto;padding:16px}.markdown-body pre code,.markdown-body pre tt{word-wrap:normal;background-color:initial;border:0;display:inline;line-height:inherit;margin:0;max-width:auto;overflow:visible;padding:0}.markdown-body pre code:after,.markdown-body pre code:before,.markdown-body pre tt:after,.markdown-body pre tt:before{content:normal}.markdown-body .csv-data td,.markdown-body .csv-data th{font-size:12px;line-height:1;overflow:hidden;padding:5px;text-align:left;white-space:nowrap}.markdown-body .csv-data .blob-line-num{background:#fff;border:0;padding:10px 8px 9px;text-align:right}.markdown-body .csv-data tr{border-top:0}.markdown-body .csv-data th{background:#f8f8f8;border-top:0;font-weight:700}.news .alert .markdown-body blockquote{border:0;padding:0 0 0 40px}.activity-tab .news .alert .commits,.activity-tab .news .markdown-body blockquote{padding-left:0}.task-list-item{list-style-type:none}.task-list-item label{font-weight:400}.task-list-item.enabled label{cursor:pointer}.task-list-item+.task-list-item{margin-top:3px}.task-list-item-checkbox{cursor:default!important;float:left;margin:.31em 0 .2em -1.3em!important;vertical-align:middle}.markdown-body{max-width:758px;overflow:visible!important;padding-bottom:40px;padding-top:40px;position:relative}.markdown-body .emoji{vertical-align:top}.markdown-body pre{border:inherit!important}.markdown-body code{color:inherit!important}.markdown-body pre code .wrapper{display:-moz-inline-flex;display:-ms-inline-flex;display:-o-inline-flex;display:inline-flex}.markdown-body pre code .gutter{float:left;overflow:hidden;-webkit-user-select:none;user-select:none}.markdown-body pre code .gutter.linenumber{border-right:3px solid #6ce26c!important;box-sizing:initial;color:#afafaf!important;cursor:default;display:inline-block;min-width:20px;padding:0 8px 0 0;position:relative;text-align:right;z-index:4}.markdown-body pre code .gutter.linenumber>span:before{content:attr(data-linenumber)}.markdown-body pre code .code{float:left;margin:0 0 0 16px}.markdown-body .gist .line-numbers{border-bottom:none;border-left:none;border-top:none}.markdown-body .gist .line-data{border:none}.markdown-body .gist table{border-collapse:inherit!important;border-spacing:0}.markdown-body code[data-gist-id]{background:none;padding:0}.markdown-body code[data-gist-id]:after,.markdown-body code[data-gist-id]:before{content:""}.markdown-body code[data-gist-id] .blob-num{border:unset}.markdown-body code[data-gist-id] table{margin-bottom:unset;overflow:unset}.markdown-body code[data-gist-id] table tr{background:unset}.markdown-body[dir=rtl] pre{direction:ltr}.markdown-body[dir=rtl] code{direction:ltr;unicode-bidi:embed}.markdown-body .alert>p:last-child{margin-bottom:0}.markdown-body pre.abc,.markdown-body pre.flow-chart,.markdown-body pre.graphviz,.markdown-body pre.mermaid,.markdown-body pre.sequence-diagram,.markdown-body pre.vega{background-color:inherit;border-radius:0;overflow:visible;text-align:center;white-space:inherit}.markdown-body pre.abc>code,.markdown-body pre.flow-chart>code,.markdown-body pre.graphviz>code,.markdown-body pre.mermaid>code,.markdown-body pre.sequence-diagram>code,.markdown-body pre.vega>code{text-align:left}.markdown-body pre.abc>svg,.markdown-body pre.flow-chart>svg,.markdown-body pre.graphviz>svg,.markdown-body pre.mermaid>svg,.markdown-body pre.sequence-diagram>svg,.markdown-body pre.vega>svg{height:100%;max-width:100%}.markdown-body pre>code.wrap{word-wrap:break-word;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space:-o-pre-wrap}.markdown-body .alert>p:last-child,.markdown-body .alert>ul:last-child{margin-bottom:0}.markdown-body summary{display:list-item}.markdown-body summary:focus{outline:none}.markdown-body details summary{cursor:pointer}.markdown-body details:not([open])>:not(summary){display:none}.markdown-body figure{margin:1em 40px}.markdown-body .mark,.markdown-body mark{background-color:#fff1a7}.vimeo,.youtube{background-color:#000;background-position:50%;background-repeat:no-repeat;background-size:contain;cursor:pointer;display:table;overflow:hidden;text-align:center}.vimeo,.youtube{position:relative;width:100%}.youtube{padding-bottom:56.25%}.vimeo img{object-fit:contain;width:100%;z-index:0}.youtube img{object-fit:cover;z-index:0}.vimeo iframe,.youtube iframe,.youtube img{height:100%;left:0;position:absolute;top:0;width:100%}.vimeo iframe,.youtube iframe{vertical-align:middle;z-index:1}.vimeo .icon,.youtube .icon{color:#fff;height:auto;left:50%;opacity:.3;position:absolute;top:50%;transform:translate(-50%,-50%);transition:opacity .2s;width:auto;z-index:0}.vimeo:hover .icon,.youtube:hover .icon{opacity:.6;transition:opacity .2s}.slideshare .inner,.speakerdeck .inner{position:relative;width:100%}.slideshare .inner iframe,.speakerdeck .inner iframe{bottom:0;height:100%;left:0;position:absolute;right:0;top:0;width:100%}.figma{display:table;padding-bottom:56.25%;position:relative;width:100%}.figma iframe{border:1px solid #eee;bottom:0;height:100%;left:0;position:absolute;right:0;top:0;width:100%}.markmap-container{height:300px}.markmap-container>svg{height:100%;width:100%}.MJX_Assistive_MathML{display:none}#MathJax_Message{z-index:1000!important}.ui-infobar{color:#777;margin:25px auto -25px;max-width:760px;position:relative;z-index:2}.toc .invisable-node{list-style-type:none}.ui-toc{bottom:20px;position:fixed;z-index:998}.ui-toc.both-mode{margin-left:8px}.ui-toc.both-mode .ui-toc-label{border-bottom-left-radius:0;border-top-left-radius:0;height:40px;padding:10px 4px}.ui-toc-label{background-color:#e6e6e6;border:none;color:#868686;transition:opacity .2s}.ui-toc .open .ui-toc-label{color:#fff;opacity:1;transition:opacity .2s}.ui-toc-label:focus{background-color:#ccc;color:#000;opacity:.3}.ui-toc-label:hover{background-color:#ccc;opacity:1;transition:opacity .2s}.ui-toc-dropdown{margin-bottom:20px;margin-top:20px;max-height:70vh;max-width:45vw;overflow:auto;padding-left:10px;padding-right:10px;text-align:inherit;width:25vw}.ui-toc-dropdown>.toc{max-height:calc(70vh - 100px);overflow:auto}.ui-toc-dropdown[dir=rtl] .nav{letter-spacing:.0029em;padding-right:0}.ui-toc-dropdown a{overflow:hidden;text-overflow:ellipsis;white-space:pre}.ui-toc-dropdown .nav>li>a{color:#767676;display:block;font-size:13px;font-weight:500;padding:4px 20px}.ui-toc-dropdown .nav>li:first-child:last-child>ul,.ui-toc-dropdown .toc.expand ul{display:block}.ui-toc-dropdown .nav>li>a:focus,.ui-toc-dropdown .nav>li>a:hover{background-color:initial;border-left:1px solid #000;color:#000;padding-left:19px;text-decoration:none}.ui-toc-dropdown[dir=rtl] .nav>li>a:focus,.ui-toc-dropdown[dir=rtl] .nav>li>a:hover{border-left:none;border-right:1px solid #000;padding-right:19px}.ui-toc-dropdown .nav>.active:focus>a,.ui-toc-dropdown .nav>.active:hover>a,.ui-toc-dropdown .nav>.active>a{background-color:initial;border-left:2px solid #000;color:#000;font-weight:700;padding-left:18px}.ui-toc-dropdown[dir=rtl] .nav>.active:focus>a,.ui-toc-dropdown[dir=rtl] .nav>.active:hover>a,.ui-toc-dropdown[dir=rtl] .nav>.active>a{border-left:none;border-right:2px solid #000;padding-right:18px}.ui-toc-dropdown .nav .nav{display:none;padding-bottom:10px}.ui-toc-dropdown .nav>.active>ul{display:block}.ui-toc-dropdown .nav .nav>li>a{font-size:12px;font-weight:400;padding-bottom:1px;padding-left:30px;padding-top:1px}.ui-toc-dropdown[dir=rtl] .nav .nav>li>a{padding-right:30px}.ui-toc-dropdown .nav .nav>li>ul>li>a{font-size:12px;font-weight:400;padding-bottom:1px;padding-left:40px;padding-top:1px}.ui-toc-dropdown[dir=rtl] .nav .nav>li>ul>li>a{padding-right:40px}.ui-toc-dropdown .nav .nav>li>a:focus,.ui-toc-dropdown .nav .nav>li>a:hover{padding-left:29px}.ui-toc-dropdown[dir=rtl] .nav .nav>li>a:focus,.ui-toc-dropdown[dir=rtl] .nav .nav>li>a:hover{padding-right:29px}.ui-toc-dropdown .nav .nav>li>ul>li>a:focus,.ui-toc-dropdown .nav .nav>li>ul>li>a:hover{padding-left:39px}.ui-toc-dropdown[dir=rtl] .nav .nav>li>ul>li>a:focus,.ui-toc-dropdown[dir=rtl] .nav .nav>li>ul>li>a:hover{padding-right:39px}.ui-toc-dropdown .nav .nav>.active:focus>a,.ui-toc-dropdown .nav .nav>.active:hover>a,.ui-toc-dropdown .nav .nav>.active>a{font-weight:500;padding-left:28px}.ui-toc-dropdown[dir=rtl] .nav .nav>.active:focus>a,.ui-toc-dropdown[dir=rtl] .nav .nav>.active:hover>a,.ui-toc-dropdown[dir=rtl] .nav .nav>.active>a{padding-right:28px}.ui-toc-dropdown .nav .nav>.active>.nav>.active:focus>a,.ui-toc-dropdown .nav .nav>.active>.nav>.active:hover>a,.ui-toc-dropdown .nav .nav>.active>.nav>.active>a{font-weight:500;padding-left:38px}.ui-toc-dropdown[dir=rtl] .nav .nav>.active>.nav>.active:focus>a,.ui-toc-dropdown[dir=rtl] .nav .nav>.active>.nav>.active:hover>a,.ui-toc-dropdown[dir=rtl] .nav .nav>.active>.nav>.active>a{padding-right:38px}.markdown-body{font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica Neue,Helvetica,Roboto,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol}html[lang^=ja] .markdown-body{font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica Neue,Helvetica,Roboto,Arial,Hiragino Kaku Gothic Pro,ヒラギノ角ゴ Pro W3,Osaka,Meiryo,メイリオ,MS Gothic,ＭＳ ゴシック,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol}html[lang=zh-tw] .markdown-body{font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica Neue,Helvetica,Roboto,Arial,PingFang TC,Microsoft JhengHei,微軟正黑,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol}html[lang=zh-cn] .markdown-body{font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica Neue,Helvetica,Roboto,Arial,PingFang SC,Microsoft YaHei,微软雅黑,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol}html .markdown-body[lang^=ja]{font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica Neue,Helvetica,Roboto,Arial,Hiragino Kaku Gothic Pro,ヒラギノ角ゴ Pro W3,Osaka,Meiryo,メイリオ,MS Gothic,ＭＳ ゴシック,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol}html .markdown-body[lang=zh-tw]{font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica Neue,Helvetica,Roboto,Arial,PingFang TC,Microsoft JhengHei,微軟正黑,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol}html .markdown-body[lang=zh-cn]{font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica Neue,Helvetica,Roboto,Arial,PingFang SC,Microsoft YaHei,微软雅黑,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol}html[lang^=ja] .ui-toc-dropdown{font-family:Source Sans Pro,Helvetica,Arial,Meiryo UI,MS PGothic,ＭＳ Ｐゴシック,sans-serif}html[lang=zh-tw] .ui-toc-dropdown{font-family:Source Sans Pro,Helvetica,Arial,Microsoft JhengHei UI,微軟正黑UI,sans-serif}html[lang=zh-cn] .ui-toc-dropdown{font-family:Source Sans Pro,Helvetica,Arial,Microsoft YaHei UI,微软雅黑UI,sans-serif}html .ui-toc-dropdown[lang^=ja]{font-family:Source Sans Pro,Helvetica,Arial,Meiryo UI,MS PGothic,ＭＳ Ｐゴシック,sans-serif}html .ui-toc-dropdown[lang=zh-tw]{font-family:Source Sans Pro,Helvetica,Arial,Microsoft JhengHei UI,微軟正黑UI,sans-serif}html .ui-toc-dropdown[lang=zh-cn]{font-family:Source Sans Pro,Helvetica,Arial,Microsoft YaHei UI,微软雅黑UI,sans-serif}.ui-affix-toc{max-height:70vh;max-width:15vw;overflow:auto;position:fixed;top:0}.back-to-top,.expand-toggle,.go-to-bottom{color:#999;display:block;font-size:12px;font-weight:500;margin-left:10px;margin-top:10px;padding:4px 10px}.back-to-top:focus,.back-to-top:hover,.expand-toggle:focus,.expand-toggle:hover,.go-to-bottom:focus,.go-to-bottom:hover{color:#563d7c;text-decoration:none}.back-to-top,.go-to-bottom{margin-top:0}.ui-user-icon{background-position:50%;background-repeat:no-repeat;background-size:cover;border-radius:50%;display:block;height:20px;margin-bottom:2px;margin-right:5px;margin-top:2px;width:20px}.ui-user-icon.small{display:inline-block;height:18px;margin:0 0 .2em;vertical-align:middle;width:18px}.ui-infobar>small>span{line-height:22px}.ui-infobar>small .dropdown{display:inline-block}.ui-infobar>small .dropdown a:focus,.ui-infobar>small .dropdown a:hover{text-decoration:none}.ui-more-info{color:#888;cursor:pointer;vertical-align:middle}.ui-more-info .fa{font-size:16px}.ui-connectedGithub,.ui-published-note{color:#888}.ui-connectedGithub{line-height:23px;white-space:nowrap}.ui-connectedGithub a.file-path{color:#888;padding-left:22px;text-decoration:none}.ui-connectedGithub a.file-path:active,.ui-connectedGithub a.file-path:hover{color:#888;text-decoration:underline}.ui-connectedGithub .fa{font-size:20px}.ui-published-note .fa{font-size:20px;vertical-align:top}.unselectable{-webkit-user-select:none;-o-user-select:none;user-select:none}.selectable{-webkit-user-select:text;-o-user-select:text;user-select:text}.inline-spoiler-section{cursor:pointer}.inline-spoiler-section .spoiler-text{background-color:#333;border-radius:2px}.inline-spoiler-section .spoiler-text>*{opacity:0}.inline-spoiler-section .spoiler-img{filter:blur(10px)}.inline-spoiler-section.raw{background-color:#333;border-radius:2px}.inline-spoiler-section.raw>*{opacity:0}.inline-spoiler-section.unveil{cursor:auto}.inline-spoiler-section.unveil .spoiler-text{background-color:#3333331a}.inline-spoiler-section.unveil .spoiler-text>*{opacity:1}.inline-spoiler-section.unveil .spoiler-img{filter:none}@media print{blockquote,div,img,pre,table{page-break-inside:avoid!important}a[href]:after{font-size:12px!important}}.markdown-body.slides{color:#222;position:relative;z-index:1}.markdown-body.slides:before{background-color:currentColor;bottom:0;box-shadow:0 0 0 50vw;content:"";display:block;left:0;position:absolute;right:0;top:0;z-index:-1}.markdown-body.slides section[data-markdown]{background-color:#fff;margin-bottom:1.5em;position:relative;text-align:center}.markdown-body.slides section[data-markdown] code{text-align:left}.markdown-body.slides section[data-markdown]:before{content:"";display:block;padding-bottom:56.23%}.markdown-body.slides section[data-markdown]>div:first-child{left:1em;max-height:100%;overflow:hidden;position:absolute;right:1em;top:50%;transform:translateY(-50%)}.markdown-body.slides section[data-markdown]>ul{display:inline-block}.markdown-body.slides>section>section+section:after{border:3px solid #777;content:"";height:1.5em;position:absolute;right:1em;top:-1.5em}.site-ui-font{font-family:Source Sans Pro,Helvetica,Arial,sans-serif}html[lang^=ja] .site-ui-font{font-family:Source Sans Pro,Helvetica,Arial,Hiragino Kaku Gothic Pro,ヒラギノ角ゴ Pro W3,Osaka,Meiryo,メイリオ,MS Gothic,ＭＳ ゴシック,sans-serif}html[lang=zh-tw] .site-ui-font{font-family:Source Sans Pro,Helvetica,Arial,PingFang TC,Microsoft JhengHei,微軟正黑,sans-serif}html[lang=zh-cn] .site-ui-font{font-family:Source Sans Pro,Helvetica,Arial,PingFang SC,Microsoft YaHei,微软雅黑,sans-serif}body{font-smoothing:subpixel-antialiased!important;-webkit-font-smoothing:subpixel-antialiased!important;-moz-osx-font-smoothing:auto!important;-webkit-overflow-scrolling:touch;font-family:Source Sans Pro,Helvetica,Arial,sans-serif;letter-spacing:.025em}html[lang^=ja] body{font-family:Source Sans Pro,Helvetica,Arial,Hiragino Kaku Gothic Pro,ヒラギノ角ゴ Pro W3,Osaka,Meiryo,メイリオ,MS Gothic,ＭＳ ゴシック,sans-serif}html[lang=zh-tw] body{font-family:Source Sans Pro,Helvetica,Arial,PingFang TC,Microsoft JhengHei,微軟正黑,sans-serif}html[lang=zh-cn] body{font-family:Source Sans Pro,Helvetica,Arial,PingFang SC,Microsoft YaHei,微软雅黑,sans-serif}abbr[title]{border-bottom:none;text-decoration:underline;-webkit-text-decoration:underline dotted;text-decoration:underline dotted}abbr[data-original-title],abbr[title]{cursor:help}body.modal-open{overflow-y:auto;padding-right:0!important}svg{text-shadow:none}
+    </style>
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    	<script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js" integrity="sha256-3Jy/GbSLrg0o9y5Z5n1uw0qxZECH7C6OQpVBgNFYa0g=" crossorigin="anonymous"></script>
+    	<script src="https://cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.min.js" integrity="sha256-g6iAfvZp+nDQ2TdTR/VVKJf3bGro4ub5fvWSWVRi2NE=" crossorigin="anonymous"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/es5-shim/4.5.9/es5-shim.min.js" integrity="sha256-8E4Is26QH0bD52WoQpcB+R/tcWQtpzlCojrybUd7Mxo=" crossorigin="anonymous"></script>
+    <![endif]-->
+</head>
+
+<body>
+    <div id="doc" class="markdown-body container-fluid comment-enabled" data-hard-breaks="true"><h1 id="Lab-11-System-time-and-Package-managers" data-id="Lab-11-System-time-and-Package-managers"><a class="anchor hidden-xs" href="#Lab-11-System-time-and-Package-managers" title="Lab-11-System-time-and-Package-managers"><span class="octicon octicon-link"></span></a><span>Lab 11: System time and Package managers</span></h1><h2 id="Exercise-1-System-time" data-id="Exercise-1-System-time"><a class="anchor hidden-xs" href="#Exercise-1-System-time" title="Exercise-1-System-time"><span class="octicon octicon-link"></span></a><span>Exercise 1: System time</span></h2><h3 id="Task-1-Time-zone" data-id="Task-1-Time-zone"><a class="anchor hidden-xs" href="#Task-1-Time-zone" title="Task-1-Time-zone"><span class="octicon octicon-link"></span></a><span>Task 1: Time zone</span></h3><ul>
+<li><span>Check the current time zone</span><pre><code>$ timedatectl
+</code></pre>
+<span>You should get output similar to the following:</span><pre><code>               Local time: Вс 2022-11-06 12:40:33 +04
+           Universal time: Вс 2022-11-06 08:40:33 UTC
+                 RTC time: Вс 2022-11-06 08:40:33
+                Time zone: Europe/Samara (+04, +0400)
+System clock synchronized: yes
+              NTP service: active
+          RTC in local TZ: no
+</code></pre>
+</li>
+<li><span>Assume that we are in Vladivostok and we want to set the timezone to Vladivostok Standard Time (GMT +10). To do this, first get a list of all available time zones.</span><pre><code>$ timedatectl list-timezones
+</code></pre>
+<span>You will find the full name for the time zone in Vladivostok from the long list of output:</span><pre><code>Asia/Vladivostok
+</code></pre>
+</li>
+<li><span>Now that we have identified the name of the time zone on our system, switch to that with the following command:</span><pre><code>$ sudo timedatectl set-timezone Asia/Vladivostok
+</code></pre>
+</li>
+<li><span>Run </span><code>timedatectl</code><span> and you should get output different from what we had initially.</span><pre><code>$ timedatectl
+               Local time: Вс 2022-11-06 18:55:05 +10
+           Universal time: Вс 2022-11-06 08:55:05 UTC
+                 RTC time: Вс 2022-11-06 08:55:05
+                Time zone: Asia/Vladivostok (+10, +1000)
+System clock synchronized: yes
+              NTP service: active
+          RTC in local TZ: no
+</code></pre>
+</li>
+<li><span>To see how this affects system logging, restart rsyslog to trigger some system log events.</span><pre><code>$ systemctl restart rsyslog
+</code></pre>
+</li>
+<li><span>View the log file </span><code>/var/log/syslog</code><span>.</span><pre><code>$ tail -n 15 /var/log/syslog
+</code></pre>
+<span>You should see output similar to the following with noticeable change in the timestamp.</span><pre><code>Nov  6 12:55:35 sna-vm systemd[1]: systemd-timedated.service: Deactivated successfully.
+Nov  6 12:57:44 sna-vm systemd[1606]: Started VTE child process 4376 launched by gnome-terminal-server process 2335.
+Nov  6 18:57:54 sna-vm systemd[1]: Stopping System Logging Service...
+Nov  6 18:57:54 sna-vm rsyslogd: [origin software="rsyslogd" swVersion="8.2112.0" x-pid="889" x-info="https://www.rsyslog.com"] exiting on signal 15.
+Nov  6 18:57:54 sna-vm systemd[1]: rsyslog.service: Deactivated successfully.
+Nov  6 18:57:54 sna-vm systemd[1]: Stopped System Logging Service.
+Nov  6 18:57:54 sna-vm systemd[1]: Starting System Logging Service...
+</code></pre>
+</li>
+</ul><h4 id="Change-time-zone-with-symlink" data-id="Change-time-zone-with-symlink"><a class="anchor hidden-xs" href="#Change-time-zone-with-symlink" title="Change-time-zone-with-symlink"><span class="octicon octicon-link"></span></a><span>Change time zone with symlink</span></h4><ul>
+<li><span>You can manually change the time zone with a symlink. The symlink at </span><code>/etc/localtime</code><span> points to the time zone that is currently configured.</span><pre><code>$ ls -l /etc/localtime
+lrwxrwxrwx 1 root root 36 ноя  6 18:54 /etc/localtime -&gt; /usr/share/zoneinfo/Asia/Vladivostok
+</code></pre>
+</li>
+<li><span>Remove the symlink</span><pre><code>$ sudo rm -rf /etc/localtime
+</code></pre>
+</li>
+<li><span>Let’s change time zone to Moscow time. To do this, create a new symlink to the Moscow time </span><code>Europe/Moscow</code><span> in </span><code>/usr/share/zoneinfo/</code><span>.</span><pre><code>$ sudo ln -s /usr/share/zoneinfo/Europe/Moscow /etc/localtime
+</code></pre>
+</li>
+<li><span>Check the time zone again.</span><pre><code>$ timedatectl
+</code></pre>
+</li>
+</ul><h3 id="Task-2-NTP" data-id="Task-2-NTP"><a class="anchor hidden-xs" href="#Task-2-NTP" title="Task-2-NTP"><span class="octicon octicon-link"></span></a><span>Task 2: NTP</span></h3><p><span>We are going to set up an NTP server and then configure a client to use this NTP server. You need two VMs to test this. You can work in pairs to set up the client-sever infrastructure.</span></p><h4 id="Installing-and-configuring-an-NTP-server" data-id="Installing-and-configuring-an-NTP-server"><a class="anchor hidden-xs" href="#Installing-and-configuring-an-NTP-server" title="Installing-and-configuring-an-NTP-server"><span class="octicon octicon-link"></span></a><span>Installing and configuring an NTP server</span></h4><ul>
+<li>
+<p><span>First install NTP and it’s dependencies.</span></p>
+<pre><code>$ apt install -y ntp
+$ apt install -y ntpstat
+</code></pre>
+</li>
+<li>
+<p><span>Open the NTP configuration file </span><code>/etc/ntp.conf</code><span> and configure the remote NTP server.</span></p>
+<pre><code>$ vi /etc/ntp.conf
+</code></pre>
+<p><span>Locate the following lines in the configuration file</span><br>
+<img src="https://i.imgur.com/7LLFXIN.png" alt="" loading="lazy"></p>
+<p><span>Replace those lines with the following</span></p>
+<pre><code class="hljs"><div class="wrapper"><div class="gutter linenumber"><span></span>
+<span></span>
+<span></span>
+<span></span></div><div class="code">pool time1.google.com iburst
+pool time2.google.com iburst
+pool time3.google.com iburst
+pool time4.google.com iburst
+</div></div></code></pre>
+<p><span>Also place a comment on </span><code>pool ntp.ubuntu.com</code><span>.</span><br>
+<span>You should have something similar to the following after this modification:</span><br>
+<img src="https://i.imgur.com/fsGWV7w.png" alt="" loading="lazy"></p>
+</li>
+<li>
+<p><span>Restart and enable the NTP service to apply the change.</span></p>
+<pre><code>$ systemctl restart ntp
+$ systemctl enable ntp
+</code></pre>
+</li>
+<li>
+<p><span>Allow NTP port on the firewall.</span></p>
+<pre><code>$ sudo ufw allow ntp
+</code></pre>
+</li>
+<li>
+<p><span>It will take some time for your NTP server to synchronize with the google NTP servers. Wait for about a minute and run the following command to check the sync status:</span></p>
+<pre><code>$ ntpstat
+</code></pre>
+<p><span>You should get output similar to the following:</span></p>
+<pre><code>synchronised to NTP server (185.125.190.56) at stratum 3 
+   time correct to within 977 ms
+   polling server every 64 s
+</code></pre>
+<p><span>The local NTP server is ready.</span></p>
+</li>
+<li>
+<p><span>View all NTP peers.</span></p>
+<pre><code>$ ntpq -p
+     remote           refid      st t when poll reach   delay   offset  jitter
+==============================================================================
+ time1.google.co .POOL.          16 p    -   64    0    0.000   +0.000   0.004
+ time2.google.co .POOL.          16 p    -   64    0    0.000   +0.000   0.004
+ time3.google.co .POOL.          16 p    -   64    0    0.000   +0.000   0.004
+ time4.google.co .POOL.          16 p    -   64    0    0.000   +0.000   0.004
++time1.google.co .GOOG.           1 u   15   64    1   70.098   +3.123   8.037
+*time2.google.co .GOOG.           1 u   17   64    1   38.087   +6.703   6.897
++time3.google.co .GOOG.           1 u   15   64    1   39.216   +4.192   7.641
++time4.google.co .GOOG.           1 u   18   64    1   62.781   +8.027  13.030
+</code></pre>
+</li>
+</ul><h4 id="Configuring-the-client" data-id="Configuring-the-client"><a class="anchor hidden-xs" href="#Configuring-the-client" title="Configuring-the-client"><span class="octicon octicon-link"></span></a><span>Configuring the client</span></h4><p><span>We show two approaches for configuring the client. You can use either the systemd service </span><code>systemd-timesyncd</code><span> that comes with systemd-based systems by default, or use </span><code>chronyd</code><span>.</span></p><h5 id="1-Using-systemd-timesyncd" data-id="1-Using-systemd-timesyncd"><a class="anchor hidden-xs" href="#1-Using-systemd-timesyncd" title="1-Using-systemd-timesyncd"><span class="octicon octicon-link"></span></a><span>1. Using </span><code>systemd-timesyncd</code></h5><ul>
+<li><span>Edit the service configuration file:</span><pre><code>$ vi /etc/systemd/timesyncd.conf
+</code></pre>
+<span>Add the following line to the file</span><pre><code>NTP=&lt;ntp-server-address&gt;
+</code></pre>
+<span>You should have something like this:</span><br>
+<img src="https://i.imgur.com/hfME91i.png" alt="" loading="lazy"><br>
+<span>Save and exit the file.</span></li>
+<li><span>Restart the time sync service</span><pre><code>$ systemctl restart systemd-timesyncd
+</code></pre>
+</li>
+<li><span>Check the status of the time synchronisation:</span><pre><code>$ timedatectl timesync-status
+       Server: 192.168.132.136 (192.168.132.136)
+Poll interval: 1min 4s (min: 32s; max 34min 8s)
+         Leap: normal
+      Version: 4
+      Stratum: 2
+    Reference: D8EF2308
+    Precision: 4us (-18)
+Root distance: 33.583ms (max: 5s)
+       Offset: -9.704ms
+        Delay: 675us
+       Jitter: 0
+ Packet count: 1
+    Frequency: -81,109ppm
+</code></pre>
+</li>
+</ul><h5 id="2-Using-chrony" data-id="2-Using-chrony"><a class="anchor hidden-xs" href="#2-Using-chrony" title="2-Using-chrony"><span class="octicon octicon-link"></span></a><span>2. Using </span><code>chrony</code></h5><ul>
+<li><span>Install </span><code>chrony</code><pre><code>$ apt -y install chrony
+</code></pre>
+</li>
+<li><span>Edit the </span><code>chrony</code><span> configuration file:</span><pre><code>$ vi /etc/chrony/chrony.conf
+</code></pre>
+<span>Locate the following lines and remove them</span><br>
+<img src="https://i.imgur.com/HBAdgZW.png" alt="" loading="lazy"><br>
+<span>Then add the address of the local NTP server we have configured in the form:</span><pre><code>server &lt;ntp-server-address&gt; iburst prefer
+</code></pre>
+<img src="https://i.imgur.com/W5mlt6Z.png" alt="" loading="lazy"><br>
+<span>Save the configuration and exit.</span></li>
+<li><span>Restart and enable the </span><code>chronyd</code><span> service.</span><pre><code>$ systemctl restart chrony
+$ systemctl enable chrony
+</code></pre>
+</li>
+<li><span>View all sources</span><pre><code>$ chronyc sources -v
+</code></pre>
+<blockquote>
+<p><span>Remember that chrony is a client/server utility. Therefore, other devices can be configured to use this “client” as their NTP “server”.</span></p>
+</blockquote>
+</li>
+</ul><h4 id="Test-the-setup" data-id="Test-the-setup"><a class="anchor hidden-xs" href="#Test-the-setup" title="Test-the-setup"><span class="octicon octicon-link"></span></a><span>Test the setup</span></h4><ul>
+<li><span>First check the current time on the client system.</span><pre><code>$ timedatectl
+               Local time: Вс 2022-11-06 18:35:16 MSK
+           Universal time: Вс 2022-11-06 15:35:16 UTC
+                 RTC time: Пн 2022-11-07 11:49:46
+                Time zone: Europe/Moscow (MSK, +0300)
+System clock synchronized: yes
+              NTP service: active
+          RTC in local TZ: no
+</code></pre>
+</li>
+<li><span>Go to the NTP server and change the date to something completely wrong.</span><pre><code>$ timedatectl set-time 2030-06-10
+</code></pre>
+</li>
+<li><span>Go to the client system and restart the timesync service to force an immediate sync with the local NTP server.</span><pre><code>$ systemctl restart systemd-timesyncd
+OR
+$ systemctl restart chrony
+</code></pre>
+</li>
+<li><span>Check the time on the client machine, and you should see that the client has been configured with the new date we added to the server.</span><pre><code>$ timedatectl
+               Local time: Пн 2030-06-10 00:01:19 MSK
+           Universal time: Вс 2030-06-09 21:01:19 UTC
+                 RTC time: Вс 2030-06-09 21:01:19
+                Time zone: Europe/Moscow (MSK, +0300)
+System clock synchronized: yes
+              NTP service: active
+          RTC in local TZ: no
+</code></pre>
+</li>
+<li><span>The local NTP server will later sync with the Google NTP servers we configured earlier and correct its time. The client machine will then sync with the local NTP server and correct its time too.</span></li>
+<li><span>Wait for about a minute or two and check the time on the NTP server to see the change.</span><pre><code>$ timedatectl
+               Local time: Вс 2022-11-06 18:42:19 MSK
+           Universal time: Вс 2022-11-06 15:42:19 UTC
+                 RTC time: Вс 2022-11-06 15:42:19
+                Time zone: Europe/Moscow (MSK, +0300)
+System clock synchronized: yes
+              NTP service: n/a
+          RTC in local TZ: no
+</code></pre>
+<span>The time on the client machine will also be corrected after a while.</span></li>
+</ul><h2 id="Exercise-2-Package-managers" data-id="Exercise-2-Package-managers"><a class="anchor hidden-xs" href="#Exercise-2-Package-managers" title="Exercise-2-Package-managers"><span class="octicon octicon-link"></span></a><span>Exercise 2: Package managers</span></h2><p><span>A package manager automates the process of installing, configuring, upgrading, and removing packages.</span><br>
+<span>There are several package managers depending on the OS. This lab focuses on Ubuntu package managers.</span><br>
+<span>Note that Ubuntu is based on the Debian distro and it uses the same APT packaging system as Debian and shares a huge number of packages and libraries from Debian repositories.</span></p><h3 id="Task-3-dpkg" data-id="Task-3-dpkg"><a class="anchor hidden-xs" href="#Task-3-dpkg" title="Task-3-dpkg"><span class="octicon octicon-link"></span></a><span>Task 3: dpkg</span></h3><p><code>dpkg</code><span> is a tool that allows the installation and analysis of </span><code>.deb</code><span> packages. It can also be used to package software.</span></p><ul>
+<li>
+<p><span>View a list of all installed packages</span></p>
+<pre><code>$ dpkg -l
+</code></pre>
+<p><span>You should get an output similar to the following:</span><br>
+<img src="https://i.imgur.com/Te0ZnIm.png" alt="" loading="lazy"></p>
+</li>
+<li>
+<p><span>Install a local </span><code>.deb</code><span> file using the command </span><code>dpkg -i &lt;deb-package&gt;</code><span>.</span><br>
+<span>Let’s download and install Google Chrome browser</span></p>
+<pre><code>$ wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+$ dpkg -i google-chrome-stable_current_amd64.deb
+</code></pre>
+</li>
+<li>
+<p><span>Verify the package installation using </span><code>dpkg -s &lt;deb-package&gt;</code></p>
+<pre><code>$ dpkg -s google-chrome-stable
+</code></pre>
+<p><span>You get an output similar to the following</span></p>
+<pre><code>Package: google-chrome-stable
+Status: install ok installed
+Priority: optional
+Section: web
+Installed-Size: 299404
+Maintainer: Chrome Linux Team &lt;chromium-dev@chromium.org&gt;
+Architecture: amd64
+Version: 107.0.5304.87-1
+Provides: www-browser
+Depends: ca-certificates, fonts-liberation, libasound2 (&gt;= 1.0.17), libatk-bridge2.0-0 (&gt;= 2.5.3), libatk1.0-0 (&gt;= 2.2.0), libatspi2.0-0 (&gt;= 2.9.90), libc6 (&gt;= 2.17), libcairo2 (&gt;= 1.6.0), libcups2 (&gt;= 1.6.0), libcurl3-gnutls | libcurl3-nss | libcurl4 | libcurl3, libdbus-1-3 (&gt;= 1.5.12), libdrm2 (&gt;= 2.4.60), libexpat1 (&gt;= 2.0.1), libgbm1 (&gt;= 8.1~0), libglib2.0-0 (&gt;= 2.39.4), libgtk-3-0 (&gt;= 3.9.10) | libgtk-4-1, libnspr4 (&gt;= 2:4.9-2~), libnss3 (&gt;= 2:3.26), libpango-1.0-0 (&gt;= 1.14.0), libwayland-client0 (&gt;= 1.0.2), libx11-6 (&gt;= 2:1.4.99.1), libxcb1 (&gt;= 1.9.2), libxcomposite1 (&gt;= 1:0.4.4-1), libxdamage1 (&gt;= 1:1.1), libxext6, libxfixes3, libxkbcommon0 (&gt;= 0.4.1), libxrandr2, wget, xdg-utils (&gt;= 1.0.2)
+Pre-Depends: dpkg (&gt;= 1.14.0)
+Recommends: libu2f-udev, libvulkan1
+Description: The web browser from Google
+ Google Chrome is a browser that combines a minimal design with sophisticated technology to make the web faster, safer, and easier.
+</code></pre>
+</li>
+<li>
+<p><span>List all files installed by a package with the command </span><code>dpkg -L &lt;package-name&gt;</code></p>
+<pre><code>$ dpkg -L google-chrome-stable
+</code></pre>
+</li>
+<li>
+<p><span>Remove a package using </span><code>dpkg -r &lt;package-name&gt;</code></p>
+<pre><code>$ dpkg -r google-chrome-stable
+</code></pre>
+</li>
+<li>
+<p><span>Check the status of the package again and you should see that it is in the </span><code>deinstall</code><span> state, but the configuration files are still present.</span></p>
+<pre><code>$ dpkg -s google-chrome-stable
+Package: google-chrome-stable
+Status: deinstall ok config-files
+</code></pre>
+<p><span>The </span><code>-r</code><span> option simply removes the package but all the configuration files are preserved.</span></p>
+</li>
+<li>
+<p><span>To remove a package along with its configuration files, specify the </span><code>--purge</code><span> option.</span></p>
+<pre><code>$ dpkg --purge google-chrome-stable
+</code></pre>
+</li>
+<li>
+<p><span>Check the status of the package to verify that the package and all its configuration files have been removed.</span></p>
+<pre><code>$ dpkg -s google-chrome-stable
+dpkg-query: package 'google-chrome-stable' is not installed and no information is available
+Use dpkg --info (= dpkg-deb --info) to examine archive files.
+</code></pre>
+</li>
+</ul><h3 id="Task-4-APT" data-id="Task-4-APT"><a class="anchor hidden-xs" href="#Task-4-APT" title="Task-4-APT"><span class="octicon octicon-link"></span></a><span>Task 4: APT</span></h3><p><span>The Advanced Packaging Tools (APT) is a package manager on Ubuntu systems. </span><code>apt</code><span> acts as a user friendly tool that interacts with </span><code>dpkg</code><span>. Unlike </span><code>dpkg</code><span>, </span><code>apt</code><span> allows download and installation of packages from online repositories.</span></p><ul>
+<li><span>View all available packages in your repository</span><pre><code>$ apt list
+</code></pre>
+</li>
+<li><span>List only installed packages</span><pre><code>$ apt list --installed
+</code></pre>
+</li>
+<li><span>Search for a package using </span><code>apt search &lt;package-name&gt;</code><span>. Let’s search for “chromium”.</span><pre><code>$ apt search chromium
+</code></pre>
+<img src="https://i.imgur.com/EnpSwBv.png" alt="" loading="lazy"></li>
+<li><span>After knowing the correct package name, you can find out more details about the package using </span><code>apt show &lt;package-name&gt;</code><pre><code>$ apt show chromium-browser
+</code></pre>
+</li>
+<li><span>Proceed to install the package using </span><code>apt install &lt;package-name&gt;</code><pre><code>$ apt install chromium-browser
+</code></pre>
+</li>
+<li><span>Remove a package using </span><code>apt remove &lt;package-name&gt;</code><pre><code>$ apt remove chromium-browser
+</code></pre>
+</li>
+</ul><blockquote>
+<p><span>You can install or remove multiple packages in one command by separating them by spaces. e.g </span><code>apt install package1 package2 package3</code><span>.</span><br>
+<span>To remove multiple packages is similar e.g </span><code>apt remove package1 package2 package3</code><span>.</span></p>
+</blockquote><ul>
+<li><span>Specify the </span><code>remove</code><span> option in combination with the </span><code>--purge</code><span> option to remove a package along with its configuration.</span><pre><code>$ apt remove --purge chromium-browser
+</code></pre>
+</li>
+<li><span>Specify </span><code>autoremove</code><span> to remove the package and its dependencies, if not used by any other application. The format is shown below:</span><pre><code>$ apt autoremove &lt;package-name&gt;
+</code></pre>
+</li>
+<li><span>You can update the APT package index to get a list of the available packages. This list can indicate installed packages that need upgrading, as well as new packages that have been added to the repositories.</span><br>
+<span>The reposiroties are defined in the </span><code>/etc/apt/sources.list</code><span> file and in the </span><code>/etc/apt/sources.list.d</code><span> directory.</span></li>
+<li><span>View the </span><code>sources.list</code><span> file to see all the defined repositories.</span><pre><code>$ cat /etc/apt/sources.list
+</code></pre>
+</li>
+<li><span>To update the local package index with latest updates to repositories, use the following command:</span><pre><code>$ apt update
+</code></pre>
+</li>
+<li><span>APT maintains a list of packages (package index) in </span><code>/var/lib/apt/lists/</code><span>.</span><pre><code>$ ls -lah /var/lib/apt/lists/
+</code></pre>
+</li>
+<li><span>To upgrade a single package that has been previously installed, run the </span><code>apt install &lt;package-name&gt;</code><span> command.</span></li>
+<li><span>To upgrade all installed packages, run the following command:</span><pre><code>$ apt upgrade
+</code></pre>
+<span>This command will upgrade all packages that can be upgraded without installing additional packages or removing conflicting installed packages.</span></li>
+<li><span>Run </span><code>apt full-upgrade</code><span> to upgrade the packages, the kernel, and remove conflicting packages or install new ones. The </span><code>full-upgrade</code><span> option is “smart” and can remove unnecessary dependency packages, or install new ones (if required).</span></li>
+</ul><h3 id="Task-5-sourceslist" data-id="Task-5-sourceslist"><a class="anchor hidden-xs" href="#Task-5-sourceslist" title="Task-5-sourceslist"><span class="octicon octicon-link"></span></a><span>Task 5: sources.list</span></h3><ul>
+<li><span>View the </span><code>sources.list</code><span> file without the comments</span><pre><code>$ grep -o '^[^#]*' /etc/apt/sources.list
+deb http://ru.archive.ubuntu.com/ubuntu/ jammy main restricted
+deb http://ru.archive.ubuntu.com/ubuntu/ jammy-updates main restricted
+deb http://ru.archive.ubuntu.com/ubuntu/ jammy universe
+deb http://ru.archive.ubuntu.com/ubuntu/ jammy-updates universe
+deb http://ru.archive.ubuntu.com/ubuntu/ jammy multiverse
+deb http://ru.archive.ubuntu.com/ubuntu/ jammy-updates multiverse
+deb http://ru.archive.ubuntu.com/ubuntu/ jammy-backports main restricted universe multiverse
+deb http://security.ubuntu.com/ubuntu jammy-security main restricted
+deb http://security.ubuntu.com/ubuntu jammy-security universe
+deb http://security.ubuntu.com/ubuntu jammy-security multiverse
+</code></pre>
+</li>
+<li><span>Each line in the </span><code>sources.list</code><span> has a structure in the following order: </span><strong><span>Type</span></strong><span>, </span><strong><span>URL</span></strong><span>, </span><strong><span>Distribution</span></strong><span>, and </span><strong><span>Component</span></strong><span>. Let’s analyse the first line in the </span><code>sources.list</code><span> above.</span>
+<ul>
+<li><span>The </span><strong><span>Type</span></strong><span> is </span><code>deb</code><span>. The term </span><code>deb</code><span> indicates that it is a repository of binaries.</span></li>
+<li><span>The repository </span><strong><span>URL</span></strong><span> is </span><code>http://ru.archive.ubuntu.com/ubuntu/</code><span>. This is the location of the repository where the packages will be downloaded.</span></li>
+<li><span>The </span><strong><span>Distribution</span></strong><span> is </span><code>jammy</code><span>. This is the short code name of the release. Run </span><code>$ cat /etc/os-release</code><span> to view the </span><code>VERSION_CODENAME</code><span> of your system.</span></li>
+<li><span>The </span><strong><span>Components</span></strong><span> are </span><code>main</code><span> and </span><code>restricted</code><span>. These are information about the licensing of the packages in the repository.</span>
+<ul>
+<li><code>main</code><span> contains Canonical supported free and open source software.</span></li>
+<li><code>restricted</code><span> contains proprietary drivers for devices.</span></li>
+<li><code>universe</code><span> contains community supported free and open source software.</span></li>
+<li><code>multiverse</code><span> contains software restricted by copyright or legal issues.</span></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul><h4 id="Adding-repositories" data-id="Adding-repositories"><a class="anchor hidden-xs" href="#Adding-repositories" title="Adding-repositories"><span class="octicon octicon-link"></span></a><span>Adding repositories</span></h4><ul>
+<li><span>Let’s try to install a package that is not in Ubuntu repository by default. Install MongoDB</span><pre><code>$ apt install mongo-db
+</code></pre>
+<span>You should get an output similar to the following</span><pre><code>Reading package lists... Done
+Building dependency tree... Done
+Reading state information... Done
+E: Unable to locate package mongodb-org
+</code></pre>
+<span>We need to add the MongoDB repository to our repository sources.</span></li>
+<li><span>The basic syntax of the add-apt-repository command is as follows:</span><pre><code>$ add-apt-repository [options] repository
+</code></pre>
+<span>The </span><code>repository</code><span> can be a regular repository entry that can be added to </span><code>sources.list</code><span> in the format </span><code>deb http://ru.archive.ubuntu.com/ubuntu/ distro component</code><span> or a PPA repository in the </span><code>ppa:&lt;user&gt;/&lt;ppa-name&gt;</code><span> format.</span></li>
+<li><span>First import MongoDB PGP key. The key is used to verify the integrity of packages that are downloaded from this repository.</span><pre><code>$ curl -fsSL https://www.mongodb.org/static/pgp/server-6.0.asc | sudo gpg --dearmor -o /etc/apt/trusted.gpg.d/mongodb-6.gpg
+</code></pre>
+</li>
+<li><span>Create a list for MongoDB</span><pre><code>$ add-apt-repository 'deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntu focal/mongodb-org/6.0 multiverse'
+</code></pre>
+<blockquote>
+<p><span>Alternatively, you can manually create the list file and add the repository to it.</span></p>
+<pre><code>echo "echo "deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntu focal/mongodb-org/6.0 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-6.0.list
+</code></pre>
+</blockquote>
+</li>
+<li><span>View the new list file that has been created</span><pre><code>$ cat /etc/apt/sources.list.d/*mongodb*.list
+</code></pre>
+</li>
+<li><span>The </span><code>add-apt-repository</code><span> command automatically updates the local package database for you. If you added the repository via an alternative means, you need to run </span><code>$ apt update</code><span> to update the local package database.</span></li>
+<li><span>View the package index directory to see the MongoDB related files created.</span><pre><code>$ ls -lah /var/lib/apt/lists/ | grep mongodb
+</code></pre>
+<blockquote>
+<p><span>MongoDB requires </span><code>libssl1.1 (&gt;= 1.1.1)</code><span>. So let’s download and install this package before proceeding</span></p>
+<pre><code>$ wget http://archive.ubuntu.com/ubuntu/pool/main/o/openssl/libssl1.1_1.1.1f-1ubuntu2.16_amd64.deb
+$ dpkg -i ./libssl1.1_1.1.1f-1ubuntu2.16_amd64.deb
+</code></pre>
+</blockquote>
+</li>
+<li><span>You can now proced to install MongoDB from the newly enabled repository.</span><pre><code>$ apt install mongodb-org
+</code></pre>
+<blockquote>
+<p><span>You can answer the prompt that asks you to type </span><code>Y</code><span> to verify your choice by adding the option </span><code>-y</code><span> to your install command in the format </span><code>apt install mongodb-org -y</code><span>. This is very useful when writing scripts that install packages.</span></p>
+</blockquote>
+</li>
+<li><span>Verify that MongoDB has been installed</span><pre><code>$ mongod --version
+</code></pre>
+</li>
+<li><span>You can remove a previously enabled repository using the format </span><code>add-apt-repository --remove repository</code><span>. Let’s remove the MongoDB repository</span><pre><code>$ add-apt-repository --remove 'deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntu focal/mongodb-org/6.0 multiverse'
+</code></pre>
+</li>
+<li><span>Run the following commands to verify that the repository has been removed.</span><pre><code>$ ls -lah /var/lib/apt/lists/ | grep mongodb
+$ cat /etc/apt/sources.list.d/*mongodb*.list
+</code></pre>
+</li>
+</ul><h3 id="Task-6-Creating-a-custom-Ubuntu-package" data-id="Task-6-Creating-a-custom-Ubuntu-package"><a class="anchor hidden-xs" href="#Task-6-Creating-a-custom-Ubuntu-package" title="Task-6-Creating-a-custom-Ubuntu-package"><span class="octicon octicon-link"></span></a><span>Task 6: Creating a custom Ubuntu package</span></h3><ul>
+<li><span>Create a directory for the package. We will name the package </span><code>snalab11</code><span>.</span><pre><code>$ mkdir snalab11
+</code></pre>
+</li>
+<li><span>Create the internal structure by placing your program files where they should be installed to on the target system. In this case, we want to place the program file in </span><code>/usr/local/bin</code><span> on the target system, therefore we create the directory </span><code>snalab11/usr/local/bin</code><span>.</span><pre><code>$ mkdir -p snalab11/usr/local/bin
+</code></pre>
+</li>
+<li><span>Create the program file (script) </span><code>snalab11/usr/local/bin/snalab11</code><span> and add the following to it.</span><pre><code class="=bash hljs"><span class="hljs-meta">#!/bin/bash</span>
+<span class="hljs-built_in">echo</span> <span class="hljs-string">"Hello World. This is SNA Lab 11"</span>
+</code></pre>
+</li>
+<li><span>Give the program file execute permission</span><pre><code>chmod +x snalab11/usr/local/bin/snalab11
+</code></pre>
+</li>
+<li><span>Create a directory </span><code>DEBIAN</code><span> in </span><code>snalab11</code><pre><code>$ mkdir snalab11/DEBIAN
+</code></pre>
+</li>
+<li><span>Create the control file in the </span><code>DEBIAN</code><span> directory. The control file contains package description and information about the maintainer. Create the file </span><code>snalab11/DEBIAN/control</code><span> and add the following content.</span><pre><code class="hljs"><div class="wrapper"><div class="gutter linenumber"><span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span></div><div class="code">Package: snalab11
+Version: 1.0
+Maintainer: Awwal
+Architecture: all
+Description: Hello SNA
+</div></div></code></pre>
+<blockquote>
+<p><span>These a mandatory fields in the control file. There are several other fields that can be defined.</span></p>
+</blockquote>
+</li>
+<li><span>Build the package with </span><code>dpkg</code><pre><code>$ dpkg-deb --build --root-owner-group snalab11
+</code></pre>
+<blockquote>
+<p><span>The </span><code>--root-owner-group</code><span> flag makes all deb package content owned by the root user. Without this flag, all files and folders would be owned by your user, which might not exist in the target system the deb package would be installed to.</span></p>
+</blockquote>
+</li>
+<li><span>You should have a debian package in your CWD named </span><code>snalab11.deb</code><span>. Proceed to install this package.</span><pre><code>$ dpkg -i snalab11.deb
+</code></pre>
+<span>You should get an output similar to the following</span><pre><code>Selecting previously unselected package snalab11.
+(Reading database ... 195723 files and directories currently installed.)
+Preparing to unpack snalab11.deb ...
+Unpacking snalab11 (1.0) ...
+Setting up snalab11 (1.0) ...
+</code></pre>
+</li>
+<li><span>Run the newly installed package.</span><pre><code>$ snalab11
+Hello World. This is SNA Lab 11
+</code></pre>
+</li>
+</ul><blockquote>
+<p><span>You can have a compiled application in place of the script we have used.</span></p>
+</blockquote><h2 id="Questions-to-answer" data-id="Questions-to-answer"><a class="anchor hidden-xs" href="#Questions-to-answer" title="Questions-to-answer"><span class="octicon octicon-link"></span></a><span>Questions to answer</span></h2><blockquote>
+<p><strong><span>Instruction:</span></strong><span> Show all steps taken including screenshots of commands executed, files created, and configuration added.</span></p>
+</blockquote><ol>
+<li><span>What alternative do you have for configuring your NTP server pool if you don’t want to be dependent on NTP servers on the internet. The time must be accurate and appear to be in sync with other devices globally. Describe how you will perform this setup.</span>
+<blockquote>
+<p><span>The accuracy of the time should be strongly considered.</span></p>
+</blockquote>
+</li>
+<li><span>You have two Linux servers whose time won’t stay in sync for various reasons. They tend to drift so much that they have a 30 second difference after 7 days of operation. What can you do to ensure that they stay in sync with each other without relying on external devices or servers?</span>
+<blockquote>
+<p><span>Hint: Inaccurate time is not a problem in this case. The goal is to ensure that both servers are in sync.</span></p>
+</blockquote>
+</li>
+<li><span>What are the differences between </span><code>apt</code><span> and </span><code>apt-get</code><span>?</span></li>
+<li><span>Why should System Administrators prefer </span><code>apt upgrade</code><span> over </span><code>apt full-upgrade</code><span>?</span></li>
+<li><span>Show how you will install a package </span><code>lab11assign</code><span> from this repository </span><a href="https://8a73-188-130-155-159.eu.ngrok.io/apt-repo/" target="_blank" rel="noopener"><span>https://8a73-188-130-155-159.eu.ngrok.io/apt-repo/</span></a><span>.</span>
+<blockquote>
+<p><span>You can use the following if you are on Innopolis network: </span><a href="http://10.90.137.100/apt-repo/" target="_blank" rel="noopener"><span>http://10.90.137.100/apt-repo/</span></a></p>
+</blockquote>
+<ul>
+<li><span>You need to add this repository to your package index.</span></li>
+<li><span>The repository is not signed, so you need to add it as a trusted repository in the options.</span>
+<blockquote>
+<p><span>Hint: [trusted=yes]</span></p>
+</blockquote>
+</li>
+<li><span>After adding the repository, show the output when you run </span><code>$ apt search lab11</code></li>
+</ul>
+<blockquote>
+<p><span>You are not allowed to manually download the debian package and install it.</span></p>
+</blockquote>
+</li>
+<li><span>Create an Ubuntu package that meets the following requirements:</span>
+<ul>
+<li><span>The package creates the directory </span><code>/var/helloworld/</code><span> on the target system.</span></li>
+<li><span>The package contains the python script </span><code>/var/helloworld/helloworld.py</code><span>. The python script is simple:</span><pre><code class="=python hljs"><span class="hljs-meta">#!/usr/bin/env python3</span>
+print(<span class="hljs-string">"Hello, World!"</span>)
+</code></pre>
+</li>
+<li><span>The package should deploy a bash script </span><code>helloworld</code><span> that executes </span><code>/var/helloworld/hello.py</code><span> on the target system.</span></li>
+</ul>
+</li>
+</ol><p><span>Take the following steps after building the package</span></p><ul>
+<li><span>List the content of the package with the command </span><code>$ dpkg -c &lt;package-name&gt;.deb</code><span>.</span></li>
+<li><span>Install the package and show all artifacts added to your system by the package.</span></li>
+</ul><blockquote>
+<p><span>After a user installs your package, he should be able to run </span><code>$ helloworld</code><span> from the terminal without additinonal steps.</span><br>
+<span>The expected flow of execution is </span><code>helloworld (bash script) -&gt; helloworld.py -&gt; Output (Hello, World!)</code></p>
+</blockquote><h3 id="Bonus" data-id="Bonus"><a class="anchor hidden-xs" href="#Bonus" title="Bonus"><span class="octicon octicon-link"></span></a><span>Bonus</span></h3><blockquote>
+<p><span>The bonus tasks encourage you to failiarize yourself with CentOS and RPM packages. Linux distributions such as Red Hat and CentOS are very common and they utilize RPM packages.</span></p>
+</blockquote><ol start="7">
+<li><span>Find and add new source repository to be used for yum.</span>
+<ul>
+<li><span>Install a package from it (for example MongoDB).</span></li>
+<li><span>Check with the RPM package manager to verify that the package was installed, and provide details such as dependencies needed.</span></li>
+<li><span>Find logs related to all actions from the previous steps.</span></li>
+</ul>
+</li>
+<li><span>Sometimes you might have access to an open-source application source code but might not have the RPM file to install it on your system. In that situation, you can either compile the source code and install the application from source code or build an RPM file from source code by yourself and use the RPM file to install the application. There might also be a situation where you want to build a custom RPM package for the application that you developed.</span><br>
+<span>Create an RPM package to deploy any application of your choice.</span></li>
+</ol></div>
+    <div class="ui-toc dropup unselectable hidden-print" style="display:none;">
+        <div class="pull-right dropdown">
+            <a id="tocLabel" class="ui-toc-label btn btn-default" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" title="Table of content">
+                <i class="fa fa-bars"></i>
+            </a>
+            <ul id="ui-toc" class="ui-toc-dropdown dropdown-menu" aria-labelledby="tocLabel">
+                <div class="toc"><ul class="nav">
+<li><a href="#Lab-11-System-time-and-Package-managers" title="Lab 11: System time and Package managers">Lab 11: System time and Package managers</a><ul class="nav">
+<li><a href="#Exercise-1-System-time" title="Exercise 1: System time">Exercise 1: System time</a><ul class="nav">
+<li><a href="#Task-1-Time-zone" title="Task 1: Time zone">Task 1: Time zone</a></li>
+<li><a href="#Task-2-NTP" title="Task 2: NTP">Task 2: NTP</a></li>
+</ul>
+</li>
+<li><a href="#Exercise-2-Package-managers" title="Exercise 2: Package managers">Exercise 2: Package managers</a><ul class="nav">
+<li><a href="#Task-3-dpkg" title="Task 3: dpkg">Task 3: dpkg</a></li>
+<li><a href="#Task-4-APT" title="Task 4: APT">Task 4: APT</a></li>
+<li><a href="#Task-5-sourceslist" title="Task 5: sources.list">Task 5: sources.list</a></li>
+<li><a href="#Task-6-Creating-a-custom-Ubuntu-package" title="Task 6: Creating a custom Ubuntu package">Task 6: Creating a custom Ubuntu package</a></li>
+</ul>
+</li>
+<li><a href="#Questions-to-answer" title="Questions to answer">Questions to answer</a><ul class="nav">
+<li><a href="#Bonus" title="Bonus">Bonus</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div><div class="toc-menu"><a class="expand-toggle" href="#">Expand all</a><a class="back-to-top" href="#">Back to top</a><a class="go-to-bottom" href="#">Go to bottom</a></div>
+            </ul>
+        </div>
+    </div>
+    <div id="ui-toc-affix" class="ui-affix-toc ui-toc-dropdown unselectable hidden-print" data-spy="affix" style="top:17px;display:none;" null null>
+        <div class="toc"><ul class="nav">
+<li><a href="#Lab-11-System-time-and-Package-managers" title="Lab 11: System time and Package managers">Lab 11: System time and Package managers</a><ul class="nav">
+<li><a href="#Exercise-1-System-time" title="Exercise 1: System time">Exercise 1: System time</a><ul class="nav">
+<li><a href="#Task-1-Time-zone" title="Task 1: Time zone">Task 1: Time zone</a></li>
+<li><a href="#Task-2-NTP" title="Task 2: NTP">Task 2: NTP</a></li>
+</ul>
+</li>
+<li><a href="#Exercise-2-Package-managers" title="Exercise 2: Package managers">Exercise 2: Package managers</a><ul class="nav">
+<li><a href="#Task-3-dpkg" title="Task 3: dpkg">Task 3: dpkg</a></li>
+<li><a href="#Task-4-APT" title="Task 4: APT">Task 4: APT</a></li>
+<li><a href="#Task-5-sourceslist" title="Task 5: sources.list">Task 5: sources.list</a></li>
+<li><a href="#Task-6-Creating-a-custom-Ubuntu-package" title="Task 6: Creating a custom Ubuntu package">Task 6: Creating a custom Ubuntu package</a></li>
+</ul>
+</li>
+<li><a href="#Questions-to-answer" title="Questions to answer">Questions to answer</a><ul class="nav">
+<li><a href="#Bonus" title="Bonus">Bonus</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div><div class="toc-menu"><a class="expand-toggle" href="#">Expand all</a><a class="back-to-top" href="#">Back to top</a><a class="go-to-bottom" href="#">Go to bottom</a></div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gist-embed/2.6.0/gist-embed.min.js" integrity="sha256-KyF2D6xPIJUW5sUDSs93vWyZm+1RzIpKCexxElmxl8g=" crossorigin="anonymous" defer></script>
+    <script>
+        var markdown = $(".markdown-body");
+        //smooth all hash trigger scrolling
+        function smoothHashScroll() {
+            var hashElements = $("a[href^='#']").toArray();
+            for (var i = 0; i < hashElements.length; i++) {
+                var element = hashElements[i];
+                var $element = $(element);
+                var hash = element.hash;
+                if (hash) {
+                    $element.on('click', function (e) {
+                        // store hash
+                        var hash = this.hash;
+                        if ($(hash).length <= 0) return;
+                        // prevent default anchor click behavior
+                        e.preventDefault();
+                        // animate
+                        $('body, html').stop(true, true).animate({
+                            scrollTop: $(hash).offset().top
+                        }, 100, "linear", function () {
+                            // when done, add hash to url
+                            // (default click behaviour)
+                            window.location.hash = hash;
+                        });
+                    });
+                }
+            }
+        }
+
+        smoothHashScroll();
+        var toc = $('.ui-toc');
+        var tocAffix = $('.ui-affix-toc');
+        var tocDropdown = $('.ui-toc-dropdown');
+        //toc
+        tocDropdown.click(function (e) {
+            e.stopPropagation();
+        });
+
+        var enoughForAffixToc = true;
+
+        function generateScrollspy() {
+            $(document.body).scrollspy({
+                target: ''
+            });
+            $(document.body).scrollspy('refresh');
+            if (enoughForAffixToc) {
+                toc.hide();
+                tocAffix.show();
+            } else {
+                tocAffix.hide();
+                toc.show();
+            }
+            $(document.body).scroll();
+        }
+
+        function windowResize() {
+            //toc right
+            var paddingRight = parseFloat(markdown.css('padding-right'));
+            var right = ($(window).width() - (markdown.offset().left + markdown.outerWidth() - paddingRight));
+            toc.css('right', right + 'px');
+            //affix toc left
+            var newbool;
+            var rightMargin = (markdown.parent().outerWidth() - markdown.outerWidth()) / 2;
+            //for ipad or wider device
+            if (rightMargin >= 133) {
+                newbool = true;
+                var affixLeftMargin = (tocAffix.outerWidth() - tocAffix.width()) / 2;
+                var left = markdown.offset().left + markdown.outerWidth() - affixLeftMargin;
+                tocAffix.css('left', left + 'px');
+            } else {
+                newbool = false;
+            }
+            if (newbool != enoughForAffixToc) {
+                enoughForAffixToc = newbool;
+                generateScrollspy();
+            }
+        }
+        $(window).resize(function () {
+            windowResize();
+        });
+        $(document).ready(function () {
+            windowResize();
+            generateScrollspy();
+        });
+
+        //remove hash
+        function removeHash() {
+            window.location.hash = '';
+        }
+
+        var backtotop = $('.back-to-top');
+        var gotobottom = $('.go-to-bottom');
+
+        backtotop.click(function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+            if (scrollToTop)
+                scrollToTop();
+            removeHash();
+        });
+        gotobottom.click(function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+            if (scrollToBottom)
+                scrollToBottom();
+            removeHash();
+        });
+
+        var toggle = $('.expand-toggle');
+        var tocExpand = false;
+
+        checkExpandToggle();
+        toggle.click(function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+            tocExpand = !tocExpand;
+            checkExpandToggle();
+        })
+
+        function checkExpandToggle () {
+            var toc = $('.ui-toc-dropdown .toc');
+            var toggle = $('.expand-toggle');
+            if (!tocExpand) {
+                toc.removeClass('expand');
+                toggle.text('Expand all');
+            } else {
+                toc.addClass('expand');
+                toggle.text('Collapse all');
+            }
+        }
+
+        function scrollToTop() {
+            $('body, html').stop(true, true).animate({
+                scrollTop: 0
+            }, 100, "linear");
+        }
+
+        function scrollToBottom() {
+            $('body, html').stop(true, true).animate({
+                scrollTop: $(document.body)[0].scrollHeight
+            }, 100, "linear");
+        }
+    </script>
+</body>
+
+</html>

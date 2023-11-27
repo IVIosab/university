@@ -126,7 +126,7 @@ As of now the repo is a work in progress.
 - [Information Retrieval](https://github.com/IVIosab/university/tree/main/information-retrieval)
 	- Instructor: 
 	- Grade: A
-- [Lean Software Development](https://github.com/IVIosab/university/tree/main/lean-software-programming)
+- [Lean Software Development](https://github.com/IVIosab/university/tree/main/lean-software-development)
 	- Instructor: Giancarlo Succi
 	- Grade: A
 

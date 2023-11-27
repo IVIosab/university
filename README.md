@@ -121,7 +121,7 @@ As of now the repo is a work in progress.
 	- Instructor: Ashan Kazmi
 	- Grade: A
 - [Front-end Web Development](https://github.com/IVIosab/university/tree/main/front-end-web-development)
-	- Instructor: Abdelrahman Abonegm
+	- Instructor: Abdelrahman Abounegm
 	- Grade: A
 - [Information Retrieval](https://github.com/IVIosab/university/tree/main/information-retrieval)
 	- Instructor: 

@@ -1,11 +1,7 @@
 # Innopolis University Courses
-This repository represents  my university journey. It includes everything ranging from course's materials to my solutions, grades and feedback.
+This repository represents my university journey. It includes everything ranging from course's materials to my solutions, grades and feedback.
 
-As of now the repo is a work in progress. 
-
-## Years, Semeseters, and Courses
-
-### 2020 (Computer Engineering)
+### 2020 (General CS)
 #### Fall Semester
 - [Calculus 1 (Mathematical Analysis 1)](https://github.com/IVIosab/university/tree/main/calculus-1)
 - [Computer Architecture (Fundamentals of Computer Architecture)](https://github.com/IVIosab/university/tree/main/computer-architecture)
@@ -21,7 +17,7 @@ As of now the repo is a work in progress.
 - [Programming Software Systems 2 (Introduction to Programming 2)](https://github.com/IVIosab/university/tree/main/programming-software-systems-2)
 - [Theoretical Computer Science](https://github.com/IVIosab/university/tree/main/theoritical-computer-science)
 
-### 2021 (Computer Engineering)
+### 2021 (General CS)
 #### Fall Semester
 - [Differential Equations](https://github.com/IVIosab/university/tree/main/differential-equations)
 - [History (History of Russia, World History)](https://github.com/IVIosab/university/tree/main/history)
@@ -35,7 +31,7 @@ As of now the repo is a work in progress.
 - [Introduction to Practical Artificial Intelligence](https://github.com/IVIosab/university/tree/main/introduction-to-practical-artificial-intelligence)
 - [Networks](https://github.com/IVIosab/university/tree/main/networks)
 
-### 2022 (Software Development)
+### 2022 (CS - Software Development)
 #### Fall Semester
 - [Distributed and Network Programming](https://github.com/IVIosab/university/tree/main/distributed-network-programming)
 - [Introduction to Career Development for IT-specialist](https://github.com/IVIosab/university/tree/main/introducetion-to-career-development-for-IT-specialists)
@@ -52,7 +48,7 @@ As of now the repo is a work in progress.
 - [Information Retrieval](https://github.com/IVIosab/university/tree/main/information-retrieval)
 - [Lean Software Development](https://github.com/IVIosab/university/tree/main/lean-software-development)
 
-### 2023 (Software Development)
+### 2023 (CS - Software Development)
 #### Fall Semester
 - [Computer Graphics in Game Development](https://github.com/IVIosab/university/tree/main/computer-graphics-in-game-development)
 - [DevOps Engineering](https://github.com/IVIosab/university/tree/main/devops-engineering)
@@ -60,12 +56,6 @@ As of now the repo is a work in progress.
 - [System Programming](https://github.com/IVIosab/university/tree/main/system-programming)
 
 #### Spring Semester
-- TBA
-- TBA 
-- TBA 
-- TBA 
-	
-## Notes:
-- I do not encourage any sort of cheating.
-- I am not responsible for any positive or negative effects resulting from copying.
-- I will not under any circumctances prefer someone over another, all of this material is open source and everyone is allowed to use it.
+- [Software Quality and Reliability](https://github.com/IVIosab/university/tree/main/software-quality-and-reliability)
+- [Life Safety](https://github.com/IVIosab/university/tree/main/life-safety) 
+- [Psychology of IT-specialists](https://github.com/IVIosab/university/tree/main/psychology-of-IT-specialists) 
